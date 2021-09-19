@@ -1,0 +1,44 @@
+.track {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  height: 80px;
+  border: 1px solid black;
+  padding-left: 10px;
+  transition: all 0.1s linear;
+  cursor: pointer;
+}
+
+.track:hover {
+  -webkit-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  -moz-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+}
+
+.infoBox {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 15px;
+  font-size: 1.2rem;
+}
+
+.innerBox {
+  flex: 1;
+  display: flex;
+  line-height: 1.5;
+  /* align-items: center; */
+}
+
+.active {
+  border: 4px solid purple;
+  transform: scale(1.02);
+  transition: all 0.2s linear;
+}
+
+.trackBox {
+  height: 80%;
+  width: 60px;
+  background-color: purple;
+}

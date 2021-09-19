@@ -1,0 +1,7 @@
+.wrapper {
+  margin-top: 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+}
