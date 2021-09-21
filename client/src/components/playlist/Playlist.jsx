@@ -4,10 +4,21 @@ import Track from '../track/Track'
 import styles from './Playlist.module.css'
 
 const Playlist = () => {
-  const { tracks } = useContext(playerContext)
+  const { tracks, toggleModal } = useContext(playerContext)
   return (
     <section className={styles.playlist}>
-      <h1>Tracks:</h1>
+      <div className={styles.buttonFlex}>
+        <h1>Tracks:</h1>
+        <button
+          onClick={() => {
+            toggleModal()
+          }}
+          className={styles.btn}
+        >
+          Add new track
+        </button>
+      </div>
+
       {tracks?.map((item, index) => {
         return <Track key={item.id} id={item.id} title={item.title} author={item.author} />
       })}

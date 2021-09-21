@@ -1,7 +1,64 @@
-.wrapper {
+/* .wrapper {
   margin-top: 50px;
   max-width: 1000px;
   margin: 0 auto;
   border-radius: 5px;
   border: 1px solid gainsboro;
+} */
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  min-width: 400px;
+}
+
+.input {
+  border: 1px solid black;
+  width: 100%;
+  padding: 1em;
+  margin-bottom: 15px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: block;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5em;
+  background-color: white;
+  border: 2px solid black;
+  transition: all 0.1s linear;
+}
+
+.btn:hover {
+  -webkit-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  -moz-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  transition: all 0.2s linear;
+}
+
+.uploadTitle {
+  margin-bottom: 10px;
 }

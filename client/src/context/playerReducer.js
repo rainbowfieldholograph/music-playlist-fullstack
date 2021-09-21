@@ -4,6 +4,7 @@ import {
   TOGGLE_REPEAT,
   TOGGLE_PLAYING,
   SET_TRACKS,
+  TOGGLE_MODAL,
 } from './types'
 
 export default (state, action) => {
@@ -33,6 +34,11 @@ export default (state, action) => {
       return {
         ...state,
         tracks: action.data,
+      }
+    case TOGGLE_MODAL:
+      return {
+        ...state,
+        modal: action.data,
       }
     default:
       return state

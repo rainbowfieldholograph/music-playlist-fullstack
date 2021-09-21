@@ -136,7 +136,7 @@ const Player = () => {
           onChange={(e) => handleVolume(e)}
         />
       </div>
-      <FontAwesomeIcon
+      {/* <FontAwesomeIcon
         className={styles.clickable}
         style={random ? { fontSize: '2.5rem' } : { fontSize: '2rem' }}
         color={random ? 'purple' : 'black'}
@@ -149,7 +149,7 @@ const Player = () => {
         color={repeat ? 'purple' : 'black'}
         icon={faRedo}
         onClick={toggleRepeat}
-      />
+      /> */}
     </section>
   )
 }

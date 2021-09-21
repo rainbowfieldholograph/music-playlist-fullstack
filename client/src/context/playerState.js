@@ -10,11 +10,11 @@ import {
   TOGGLE_REPEAT,
   TOGGLE_PLAYING,
   SET_TRACKS,
+  TOGGLE_MODAL,
 } from './types'
 
 const PlayerState = (props) => {
   const { data = {}, loading: loadingData } = useQuery(getAllTracks)
-  // const { tracks: tracksData = [] } = data
   const { getAllTracks: tracksData = [] } = data
   console.log(tracksData)
 
@@ -24,8 +24,7 @@ const PlayerState = (props) => {
     repeat: false,
     random: false,
     playing: false,
-    audio: null,
-    loading: loadingData,
+    modal: false,
   }
   const [state, dispatch] = useReducer(playerReducer, initialState)
 
@@ -38,6 +37,10 @@ const PlayerState = (props) => {
 
   const togglePlaying = () => {
     dispatch({ type: TOGGLE_PLAYING, data: state.playing ? false : true })
+  }
+
+  const toggleModal = () => {
+    dispatch({ type: TOGGLE_MODAL, data: state.modal ? false : true })
   }
 
   const setCurrentTrack = (id) => dispatch({ type: SET_CURRENT_TRACK, data: id, play: true })
@@ -87,6 +90,7 @@ const PlayerState = (props) => {
         repeat: state.repeat,
         random: state.random,
         playing: state.playing,
+        modal: state.modal,
         nextTrack,
         prevTrack,
         setCurrentTrack,
@@ -94,7 +98,7 @@ const PlayerState = (props) => {
         toggleRepeat,
         togglePlaying,
         handleEnd,
-        loading: state.loading,
+        toggleModal,
       }}
     >
       {props.children}

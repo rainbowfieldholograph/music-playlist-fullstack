@@ -6,7 +6,7 @@ const { resolvers } = require('./schema/resolvers')
 const { graphqlUploadExpress } = require('graphql-upload')
 
 const app = express()
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 const mongoURL =
   'mongodb+srv://user:user123@music.dsxqg.mongodb.net/music?retryWrites=true&w=majority'
 
