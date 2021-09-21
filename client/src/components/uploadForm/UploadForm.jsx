@@ -27,6 +27,7 @@ const UploadForm = () => {
   const [file, setFile] = useState(null)
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const [uploadFile] = useMutation(UPLOAD_FILE, {
     onCompleted: (data) => {
@@ -65,8 +66,10 @@ const UploadForm = () => {
 
   const onClickUpload = async () => {
     if (title && file && author) {
+      setLoading(true)
       await uploadFile({ variables: { file } })
       console.log('src:', src, 'sqwe:')
+      setLoading(false)
       toggleModal()
       addTrack()
     } else {
@@ -87,35 +90,44 @@ const UploadForm = () => {
         }}
         className={styles.inner}
       >
-        <h1 className={styles.title}>Upload Track</h1>
-        <h3>Title</h3>
-        <input
-          className={styles.input}
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value)
-          }}
-          type="text"
-        />
-        <h3>Author</h3>
-        <input
-          className={styles.input}
-          value={author}
-          onChange={(e) => {
-            setAuthor(e.target.value)
-          }}
-          type="text"
-        />
-        <h1 className={styles.uploadTitle}>Upload audio File</h1>
-        <input accept="audio/*" type="file" onChange={handleFileChange} />
-        <button
-          className={styles.btn}
-          onClick={() => {
-            onClickUpload()
-          }}
-        >
-          UPLOAD TRACK
-        </button>
+        {loading ? (
+          <h1>
+            Upoading track... Plese wait.
+            <p>PS. use F5 after uploading, so you can see your new uploaded track</p>
+          </h1>
+        ) : (
+          <>
+            <h1 className={styles.title}>Upload Track</h1>
+            <h3>Title</h3>
+            <input
+              className={styles.input}
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value)
+              }}
+              type="text"
+            />
+            <h3>Author</h3>
+            <input
+              className={styles.input}
+              value={author}
+              onChange={(e) => {
+                setAuthor(e.target.value)
+              }}
+              type="text"
+            />
+            <h1 className={styles.uploadTitle}>Upload audio File</h1>
+            <input accept="audio/*" type="file" onChange={handleFileChange} />
+            <button
+              className={styles.btn}
+              onClick={() => {
+                onClickUpload()
+              }}
+            >
+              UPLOAD TRACK
+            </button>
+          </>
+        )}
       </div>
     </div>
   )

@@ -15,7 +15,13 @@ import {
 
 const PlayerState = (props) => {
   const { data = {}, loading: loadingData } = useQuery(getAllTracks)
-  const { getAllTracks: tracksData = [] } = data
+  const { getAllTracks: allTracksData = [] } = data
+
+  const tracksData = allTracksData.map((cur, index) => {
+    let newObj = Object.assign({}, cur)
+    newObj.index = index
+    return newObj
+  })
   console.log(tracksData)
 
   const initialState = {
@@ -31,7 +37,7 @@ const PlayerState = (props) => {
   useEffect(() => {
     if (!loadingData) {
       dispatch({ type: SET_TRACKS, data: tracksData })
-      dispatch({ type: SET_CURRENT_TRACK, data: tracksData[0]?.id, play: false })
+      dispatch({ type: SET_CURRENT_TRACK, data: tracksData[0]?.index, play: false })
     }
   }, [data])
 

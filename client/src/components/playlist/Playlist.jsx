@@ -20,7 +20,15 @@ const Playlist = () => {
       </div>
 
       {tracks?.map((item, index) => {
-        return <Track key={item.id} id={item.id} title={item.title} author={item.author} />
+        return (
+          <Track
+            index={item.index}
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            author={item.author}
+          />
+        )
       })}
     </section>
   )

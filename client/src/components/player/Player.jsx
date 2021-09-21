@@ -28,7 +28,7 @@ const Player = () => {
   } = useContext(playerContext)
 
   let playingTrack = tracks.filter((item) => {
-    if (item.id === currentTrack) {
+    if (item.index === currentTrack) {
       return true
     }
   })
@@ -77,7 +77,7 @@ const Player = () => {
         onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
         onCanPlay={(e) => setDuration(e.target.duration)}
         onEnded={handleEnd}
-        preload="true"
+        preload="auto"
       />
       <FontAwesomeIcon
         className={styles.clickable}
