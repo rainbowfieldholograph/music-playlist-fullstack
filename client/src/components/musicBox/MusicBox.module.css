@@ -1,9 +1,0 @@
-.musicBox {
-  background-color: gainsboro;
-  width: 75px;
-  height: 75px;
-  border-radius: 0.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}

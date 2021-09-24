@@ -31,10 +31,8 @@ const UploadForm = () => {
 
   const [uploadFile] = useMutation(UPLOAD_FILE, {
     onCompleted: (data) => {
-      const { uploadFile: g } = data
-      src = g.url
-      console.log(data)
-      console.log('ssqe', src)
+      const { uploadFile: f } = data
+      src = f.url
     },
   })
   const [newTrack] = useMutation(ADD_TRACK)
@@ -43,7 +41,6 @@ const UploadForm = () => {
     const f = await e.target.files[0]
     if (f.type.includes('audio/')) {
       setFile(f)
-      console.log('file', f)
     } else {
       alert('выберите audio/mpeg файл')
     }
@@ -68,7 +65,7 @@ const UploadForm = () => {
     if (title && file && author) {
       setLoading(true)
       await uploadFile({ variables: { file } })
-      console.log('src:', src, 'sqwe:')
+      console.log('src:', src)
       setLoading(false)
       toggleModal()
       addTrack()
@@ -92,8 +89,8 @@ const UploadForm = () => {
       >
         {loading ? (
           <h1>
-            Upoading track... Plese wait.
-            <p>PS. use F5 after uploading, so you can see your new uploaded track</p>
+            Uploading track... Please wait.
+            <p>PS. use F5 after uploading, so you can see your new track</p>
           </h1>
         ) : (
           <>

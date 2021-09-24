@@ -7,9 +7,9 @@ import {
   faRandom,
   faRedo,
   faPauseCircle,
+  faMusic,
 } from '@fortawesome/free-solid-svg-icons'
 import styles from './Player.module.css'
-import MusicBox from '../musicBox/MusicBox'
 import playerContext from '../../context/playerContext'
 
 const Player = () => {
@@ -85,27 +85,29 @@ const Player = () => {
           togglePlaying()
           toggleAudio()
         }}
-        style={{ fontSize: '3rem' }}
+        style={{ fontSize: '2.5rem' }}
         icon={playing ? faPauseCircle : faPlayCircle}
         color="black"
       />
       <div>
         <FontAwesomeIcon
           className={styles.clickable}
-          style={{ fontSize: '1.7rem', marginRight: 20 }}
+          style={{ fontSize: '1.5rem', marginRight: 20 }}
           icon={faStepBackward}
           color="black"
           onClick={prevTrack}
         />
         <FontAwesomeIcon
           className={styles.clickable}
-          style={{ fontSize: '1.7rem' }}
+          style={{ fontSize: '1.5rem' }}
           icon={faStepForward}
           color="black"
           onClick={nextTrack}
         />
       </div>
-      <MusicBox />
+      <div className={styles.musicBox}>
+        <FontAwesomeIcon style={{ fontSize: '1.7rem' }} icon={faMusic} color="black" />
+      </div>
       <div className={styles.info}>
         <div className={styles.infoInnerBox}>
           <h2 className={styles.title}>{playingTrack?.title}</h2>

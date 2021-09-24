@@ -2,13 +2,16 @@ const { GraphQLUpload } = require('graphql-upload')
 const fs = require('fs')
 const path = require('path')
 const Tracks = require('../models/Track.model.js')
+const util = require('util')
+const stream = require('stream')
+const pipeline = util.promisify(stream.pipeline)
 
-const PORT = process.env.PORT || 5000
+const { uploadFileAWS } = require('../s3')
 
 function generateRandomString(length) {
-  var result = ''
-  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  var charactersLength = characters.length
+  let result = ''
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
   for (var i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength))
   }
@@ -32,12 +35,11 @@ const resolvers = {
       const randomName = generateRandomString(12) + ext
       const stream = createReadStream()
       const pathName = path.join(__dirname, `../public/audio/${randomName}`)
-      console.log(pathName)
       const out = fs.createWriteStream(pathName)
-      console.log(pathName)
-      await stream.pipe(out)
-      const urlPath = `https://eyes-closed-server.herokuapp.com/audio/${randomName}` //`http://localhost:${PORT}/audio/${randomName}`
-      return { url: urlPath }
+      // await stream.pipe(out)
+      await pipeline(stream, out)
+      const uploadedFile = await uploadFileAWS(pathName, randomName)
+      return { url: uploadedFile.Location }
     },
     addTrack: (parent, args) => {
       const track = new Tracks({

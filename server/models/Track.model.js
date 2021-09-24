@@ -4,7 +4,7 @@ const TrackSchema = new Schema(
   {
     title: { type: String, required: true, unique: false },
     author: { type: String, required: true, unique: false },
-    src: { type: String, required: true, unique: true },
+    src: { type: String, required: true, unique: false },
   },
   {
     versionKey: false,

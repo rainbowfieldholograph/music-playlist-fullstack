@@ -4,11 +4,11 @@ const { ApolloServer } = require('apollo-server-express')
 const { typeDefs } = require('./schema/typeDefs')
 const { resolvers } = require('./schema/resolvers')
 const { graphqlUploadExpress } = require('graphql-upload')
+require('dotenv').config()
 
 const app = express()
 const PORT = process.env.PORT || 5000
-const mongoURL =
-  'mongodb+srv://user:user123@music.dsxqg.mongodb.net/music?retryWrites=true&w=majority'
+const mongoURL = process.env.MONGODB_URL
 
 const startServer = async () => {
   try {
