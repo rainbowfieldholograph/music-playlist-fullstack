@@ -27,11 +27,7 @@ const Player = () => {
     handleEnd,
   } = useContext(playerContext)
 
-  let playingTrack = tracks.filter((item) => {
-    if (item.index === currentTrack) {
-      return true
-    }
-  })
+  let playingTrack = tracks.filter((item) => item.index === currentTrack)
   playingTrack = playingTrack[0]
 
   const [volumeState, setVolumeState] = useState(1)

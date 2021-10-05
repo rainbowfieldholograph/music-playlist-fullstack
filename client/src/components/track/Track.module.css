@@ -6,6 +6,7 @@
   padding-left: 10px;
   transition: all 0.1s linear;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .track:hover {

@@ -14,7 +14,7 @@ import {
 } from './types'
 
 const PlayerState = (props) => {
-  const { data = {}, loading: loadingData } = useQuery(getAllTracks)
+  const { data = {}, loading } = useQuery(getAllTracks)
   const { getAllTracks: allTracksData = [] } = data
 
   const tracksData = allTracksData.map((cur, index) => {
@@ -22,7 +22,6 @@ const PlayerState = (props) => {
     newObj.index = index
     return newObj
   })
-  console.log(tracksData)
 
   const initialState = {
     tracks: tracksData,
@@ -35,11 +34,15 @@ const PlayerState = (props) => {
   const [state, dispatch] = useReducer(playerReducer, initialState)
 
   useEffect(() => {
-    if (!loadingData) {
+    if (!loading) {
       dispatch({ type: SET_TRACKS, data: tracksData })
       dispatch({ type: SET_CURRENT_TRACK, data: tracksData[0]?.index, play: false })
     }
   }, [data])
+
+  const isLoading = () => {
+    return loading
+  }
 
   const togglePlaying = () => {
     dispatch({ type: TOGGLE_PLAYING, data: state.playing ? false : true })
@@ -74,7 +77,7 @@ const PlayerState = (props) => {
     if (state.random) {
       return dispatch({
         type: SET_CURRENT_TRACK,
-        data: ~~(Math.random() * state.tracks.length),
+        data: ~~(Math.random() * state.tracksData.length),
         play: true,
       })
     } else {
@@ -105,6 +108,7 @@ const PlayerState = (props) => {
         togglePlaying,
         handleEnd,
         toggleModal,
+        isLoading,
       }}
     >
       {props.children}

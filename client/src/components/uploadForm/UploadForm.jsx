@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
 import styles from './UploadForm.module.css'
 import playerContext from '../../context/playerContext'
+import Loading from '../loading/Loading'
 
 const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {
@@ -89,6 +90,7 @@ const UploadForm = () => {
       >
         {loading ? (
           <h1>
+            <Loading />
             Uploading track... Please wait.
             <p>PS. use F5 after uploading, so you can see your new track</p>
           </h1>
