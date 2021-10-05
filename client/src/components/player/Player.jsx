@@ -62,6 +62,7 @@ const Player = () => {
 
   useEffect(() => {
     audio.current.volume = volumeState
+    setCurrentTime(0)
     playing && toggleAudio()
   }, [currentTrack])
 
@@ -75,6 +76,7 @@ const Player = () => {
         onEnded={handleEnd}
         preload="auto"
       />
+      {console.log(duration)}
       <FontAwesomeIcon
         className={styles.clickable}
         onClick={() => {
@@ -107,6 +109,7 @@ const Player = () => {
       <div className={styles.info}>
         <div className={styles.infoInnerBox}>
           <h2 className={styles.title}>{playingTrack?.title}</h2>
+          {console.log(duration)}
           <p>{calcTime(duration)}</p>
         </div>
 
@@ -116,8 +119,6 @@ const Player = () => {
         </div>
         <input
           className={styles.clickable}
-          name="progresBar"
-          id="prgbar"
           type="range"
           onChange={handleProgress}
           value={duration ? Math.round((currentTime * 100) / duration) : 0}
@@ -128,12 +129,12 @@ const Player = () => {
         <input
           className={styles.clickable}
           type="range"
-          name="volBar"
-          id="volBar"
           value={Math.round(volumeState * 100)}
           onChange={(e) => handleVolume(e)}
         />
       </div>
+      {console.log('curTime', currentTime)}
+      {console.log('dur', duration)}
       {/* <FontAwesomeIcon
         className={styles.clickable}
         style={random ? { fontSize: '2.5rem' } : { fontSize: '2rem' }}
