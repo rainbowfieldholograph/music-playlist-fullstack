@@ -38,6 +38,7 @@ const PlayerState = (props) => {
       dispatch({ type: SET_TRACKS, data: tracksData })
       dispatch({ type: SET_CURRENT_TRACK, data: tracksData[0]?.index, play: false })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data])
 
   const isLoading = () => {

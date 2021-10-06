@@ -33,6 +33,7 @@ const Player = () => {
   const [volumeState, setVolumeState] = useState(1)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
+  const [canChangeProgress, setCanChangeProgress] = useState()
 
   const audio = useRef()
 
@@ -41,9 +42,19 @@ const Player = () => {
   }
 
   const handleProgress = (e) => {
+    console.log('CAN CHANGE!!!!!!!!!!!!!!!!!!!!!', canChangeProgress)
+    if (!canChangeProgress) {
+      console.log('curTime is 0')
+
+      audio.current.currentTime = 0
+      setCurrentTime(0)
+      return
+    }
     const compute = (e.target.value * duration) / 100
-    setCurrentTime(compute)
+
     audio.current.currentTime = compute
+    setCurrentTime(compute)
+    console.log('compute', compute)
   }
 
   const handleVolume = (e) => {
@@ -62,9 +73,27 @@ const Player = () => {
 
   useEffect(() => {
     audio.current.volume = volumeState
-    setCurrentTime(0)
+    audio.current.currentTime = 0
     playing && toggleAudio()
+    console.log('trackChanged')
+    console.log(audio.current.currentTime)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrack])
+
+  useEffect(() => {
+    audio.current.onended = () => {
+      setCanChangeProgress(false)
+      console.log('ded')
+    }
+  })
+
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     if (audio.current) {
+  //       setCurrentTime(audio.current.currentTime)
+  //     }
+  //   })
+  // })
 
   return (
     <section className={styles.player}>
@@ -72,36 +101,44 @@ const Player = () => {
         ref={audio}
         src={playingTrack?.src}
         onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
-        onCanPlay={(e) => setDuration(e.target.duration)}
-        onEnded={handleEnd}
+        onLoadedData={(e) => {
+          setDuration(e.target.duration)
+          setTimeout(() => {
+            setCanChangeProgress(true)
+          }, 100)
+        }}
+        onEnded={() => {
+          handleEnd()
+        }}
         preload="auto"
       />
-      {console.log(duration)}
-      <FontAwesomeIcon
-        className={styles.clickable}
-        onClick={() => {
-          togglePlaying()
-          toggleAudio()
-        }}
-        style={{ fontSize: '2.5rem' }}
-        icon={playing ? faPauseCircle : faPlayCircle}
-        color="black"
-      />
-      <div>
+      <div className={styles.controlsBox}>
         <FontAwesomeIcon
           className={styles.clickable}
-          style={{ fontSize: '1.5rem', marginRight: 20 }}
-          icon={faStepBackward}
+          onClick={() => {
+            togglePlaying()
+            toggleAudio()
+          }}
+          style={{ fontSize: '2.5rem' }}
+          icon={playing ? faPauseCircle : faPlayCircle}
           color="black"
-          onClick={prevTrack}
         />
-        <FontAwesomeIcon
-          className={styles.clickable}
-          style={{ fontSize: '1.5rem' }}
-          icon={faStepForward}
-          color="black"
-          onClick={nextTrack}
-        />
+        <div className={styles.controls}>
+          <FontAwesomeIcon
+            className={styles.clickable}
+            style={{ fontSize: '1.5rem' }}
+            icon={faStepBackward}
+            color="black"
+            onClick={prevTrack}
+          />
+          <FontAwesomeIcon
+            className={styles.clickable}
+            style={{ fontSize: '1.5rem' }}
+            icon={faStepForward}
+            color="black"
+            onClick={nextTrack}
+          />
+        </div>
       </div>
       <div className={styles.musicBox}>
         <FontAwesomeIcon style={{ fontSize: '1.7rem' }} icon={faMusic} color="black" />
@@ -109,7 +146,6 @@ const Player = () => {
       <div className={styles.info}>
         <div className={styles.infoInnerBox}>
           <h2 className={styles.title}>{playingTrack?.title}</h2>
-          {console.log(duration)}
           <p>{calcTime(duration)}</p>
         </div>
 
@@ -118,13 +154,13 @@ const Player = () => {
           <p>{calcTime(currentTime)}</p>
         </div>
         <input
-          className={styles.clickable}
+          className={`${styles.clickable} ${styles.progressBar}`}
           type="range"
           onChange={handleProgress}
           value={duration ? Math.round((currentTime * 100) / duration) : 0}
         />
       </div>
-      <div>
+      <div className={styles.box}>
         <h3>Volume: {Math.round(volumeState * 100)}%</h3>
         <input
           className={styles.clickable}
@@ -133,8 +169,7 @@ const Player = () => {
           onChange={(e) => handleVolume(e)}
         />
       </div>
-      {console.log('curTime', currentTime)}
-      {console.log('dur', duration)}
+      {console.log(currentTime)}
       {/* <FontAwesomeIcon
         className={styles.clickable}
         style={random ? { fontSize: '2.5rem' } : { fontSize: '2rem' }}
