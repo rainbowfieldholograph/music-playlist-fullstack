@@ -42,19 +42,14 @@ const Player = () => {
   }
 
   const handleProgress = (e) => {
-    console.log('CAN CHANGE!!!!!!!!!!!!!!!!!!!!!', canChangeProgress)
     if (!canChangeProgress) {
-      console.log('curTime is 0')
-
       audio.current.currentTime = 0
       setCurrentTime(0)
       return
     }
     const compute = (e.target.value * duration) / 100
-
     audio.current.currentTime = compute
     setCurrentTime(compute)
-    console.log('compute', compute)
   }
 
   const handleVolume = (e) => {
@@ -75,15 +70,12 @@ const Player = () => {
     audio.current.volume = volumeState
     audio.current.currentTime = 0
     playing && toggleAudio()
-    console.log('trackChanged')
-    console.log(audio.current.currentTime)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrack])
 
   useEffect(() => {
     audio.current.onended = () => {
       setCanChangeProgress(false)
-      console.log('ded')
     }
   })
 
@@ -169,7 +161,6 @@ const Player = () => {
           onChange={(e) => handleVolume(e)}
         />
       </div>
-      {console.log(currentTime)}
       {/* <FontAwesomeIcon
         className={styles.clickable}
         style={random ? { fontSize: '2.5rem' } : { fontSize: '2rem' }}
