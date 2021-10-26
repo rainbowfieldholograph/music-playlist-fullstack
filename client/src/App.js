@@ -7,7 +7,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client'
 import { createUploadLink } from 'apollo-upload-client'
 import UploadForm from './components/uploadForm/UploadForm'
 
-const SERVER_URL = 'http://localhost:5000'
+const SERVER_URL = 'https://eyes-closed-server.herokuapp.com'
 const uriPath = SERVER_URL + '/graphql'
 const uploadLink = createUploadLink({ uri: uriPath })
 
