@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client'
 import React, { useEffect, useReducer } from 'react'
+import { GET_ALL_TRACKS } from '../graphql/tracks/query'
 import playerContext from './playerContext'
 import playerReducer from './playerReducer'
-import { getAllTracks } from './tracksQuery'
 
 import {
   SET_CURRENT_TRACK,
@@ -14,7 +14,7 @@ import {
 } from './types'
 
 const PlayerState = (props) => {
-  const { data = {}, loading } = useQuery(getAllTracks)
+  const { data = {}, loading } = useQuery(GET_ALL_TRACKS)
   const { getAllTracks: allTracksData = [] } = data
 
   const tracksData = allTracksData.map((cur, index) => {
@@ -85,6 +85,7 @@ const PlayerState = (props) => {
       if (state.repeat) {
         nextTrack()
       } else if (state.currentTrack === state.tracks.length - 1) {
+        setCurrentTrack(0)
         return
       } else {
         nextTrack()

@@ -1,25 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { useMutation, gql } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import styles from './UploadForm.module.css'
 import playerContext from '../../context/playerContext'
 import Loading from '../loading/Loading'
-
-const UPLOAD_FILE = gql`
-  mutation uploadFile($file: Upload!) {
-    uploadFile(file: $file) {
-      url
-    }
-  }
-`
-const ADD_TRACK = gql`
-  mutation addTrack($title: String!, $author: String!, $src: String!) {
-    addTrack(title: $title, author: $author, src: $src) {
-      title
-      author
-      src
-    }
-  }
-`
+import { ADD_TRACK, UPLOAD_FILE } from '../../graphql/tracks/mutation'
 
 let src = ''
 
@@ -39,27 +23,26 @@ const UploadForm = () => {
   const [newTrack] = useMutation(ADD_TRACK)
 
   const handleFileChange = async (e) => {
-    const f = await e.target.files[0]
-    if (f.type.includes('audio/')) {
-      setFile(f)
+    const selectedFile = await e.target.files[0]
+    if (selectedFile.type.includes('audio/')) {
+      setFile(selectedFile)
     } else {
       alert('выберите audio/mpeg файл')
     }
   }
 
-  const addTrack = () => {
-    newTrack({
+  const addTrack = async () => {
+    await newTrack({
       variables: {
         title,
         author,
         src,
       },
-    }).then(({ data }) => {
-      console.log(data)
-      setAuthor('')
-      setTitle('')
-      src = ''
     })
+    setAuthor('')
+    setTitle('')
+    src = ''
+    window.location.reload()
   }
 
   const onClickUpload = async () => {
@@ -92,7 +75,6 @@ const UploadForm = () => {
           <h1>
             <Loading />
             Uploading track... Please wait.
-            <p>PS. use F5 after uploading, so you can see your new track</p>
           </h1>
         ) : (
           <>

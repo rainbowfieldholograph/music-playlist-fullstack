@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
-export const getAllTracks = gql`
-  query getAllTracks {
+export const GET_ALL_TRACKS = gql`
+  query GetAllTracks {
     getAllTracks {
       id
       title
