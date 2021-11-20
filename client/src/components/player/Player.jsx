@@ -88,7 +88,7 @@ const Player = () => {
   // })
 
   return (
-    <section className={styles.player}>
+    <header className={styles.player}>
       <audio
         ref={audio}
         src={playingTrack?.src}
@@ -175,7 +175,7 @@ const Player = () => {
         icon={faRedo}
         onClick={toggleRepeat}
       /> */}
-    </section>
+    </header>
   )
 }
 

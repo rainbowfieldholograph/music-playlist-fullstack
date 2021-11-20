@@ -5,7 +5,7 @@ import styles from './Track.module.css'
 const Track = ({ index, title, author }) => {
   const { setCurrentTrack, currentTrack } = useContext(playerContext)
   return (
-    <div
+    <li
       className={currentTrack === index ? [styles.track, styles.active].join(' ') : styles.track}
       onClick={() => {
         return currentTrack !== index && setCurrentTrack(index)
@@ -20,7 +20,7 @@ const Track = ({ index, title, author }) => {
           <h3>{author}</h3>
         </div>
       </div>
-    </div>
+    </li>
   )
 }
 

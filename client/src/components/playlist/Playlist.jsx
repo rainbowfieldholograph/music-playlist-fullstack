@@ -24,10 +24,11 @@ const Playlist = () => {
           </button>
         </div>
       )}
-
-      {tracks?.map((item) => {
-        return <Track index={item.index} key={item.id} title={item.title} author={item.author} />
-      })}
+      <ul>
+        {tracks?.map((item) => {
+          return <Track index={item.index} key={item.id} title={item.title} author={item.author} />
+        })}
+      </ul>
     </section>
   )
 }

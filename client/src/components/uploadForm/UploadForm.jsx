@@ -45,7 +45,8 @@ const UploadForm = () => {
     window.location.reload()
   }
 
-  const onClickUpload = async () => {
+  const onClickUpload = async (event) => {
+    event.preventDefault()
     if (title && file && author) {
       setLoading(true)
       await uploadFile({ variables: { file } })
@@ -72,42 +73,41 @@ const UploadForm = () => {
         className={styles.inner}
       >
         {loading ? (
-          <h1>
+          <div>
             <Loading />
-            Uploading track... Please wait.
-          </h1>
+            <h1>Uploading track... Please wait.</h1>
+          </div>
         ) : (
-          <>
+          <form action="" onSubmit={onClickUpload}>
             <h1 className={styles.title}>Upload Track</h1>
-            <h3>Title</h3>
+            <label htmlFor="title">
+              <h3>Title</h3>
+            </label>
             <input
+              id="title"
               className={styles.input}
               value={title}
-              onChange={(e) => {
-                setTitle(e.target.value)
-              }}
+              onChange={(e) => setTitle(e.target.value)}
               type="text"
             />
-            <h3>Author</h3>
+            <label htmlFor="author">
+              <h3>Author</h3>
+            </label>
             <input
+              id="author"
               className={styles.input}
               value={author}
-              onChange={(e) => {
-                setAuthor(e.target.value)
-              }}
+              onChange={(e) => setAuthor(e.target.value)}
               type="text"
             />
-            <h1 className={styles.uploadTitle}>Upload audio File</h1>
-            <input accept="audio/*" type="file" onChange={handleFileChange} />
-            <button
-              className={styles.btn}
-              onClick={() => {
-                onClickUpload()
-              }}
-            >
+            <label htmlFor="file">
+              <h1 className={styles.uploadTitle}>Upload audio File</h1>
+            </label>
+            <input id="file" accept="audio/*" type="file" onChange={handleFileChange} />
+            <button className={styles.btn} type="submit">
               UPLOAD TRACK
             </button>
-          </>
+          </form>
         )}
       </div>
     </div>

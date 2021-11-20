@@ -11,11 +11,11 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <PlayerState>
-        <main className="container">
+        <div className="container">
           <Player />
           <Playlist />
           <UploadForm />
-        </main>
+        </div>
       </PlayerState>
     </ApolloProvider>
   )
