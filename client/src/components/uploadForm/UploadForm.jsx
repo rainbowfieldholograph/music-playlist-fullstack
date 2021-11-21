@@ -3,9 +3,7 @@ import { useMutation } from '@apollo/client'
 import styles from './UploadForm.module.css'
 import playerContext from '../../context/playerContext'
 import Loading from '../loading/Loading'
-import { ADD_TRACK, UPLOAD_FILE } from '../../graphql/tracks/mutation'
-
-let src = ''
+import { ADD_TRACK } from '../../graphql/tracks/mutation'
 
 const UploadForm = () => {
   const { modal, toggleModal } = useContext(playerContext)
@@ -13,14 +11,7 @@ const UploadForm = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [loading, setLoading] = useState(false)
-
-  const [uploadFile] = useMutation(UPLOAD_FILE, {
-    onCompleted: (data) => {
-      const { uploadFile: f } = data
-      src = f.url
-    },
-  })
-  const [newTrack] = useMutation(ADD_TRACK)
+  const [addTrack] = useMutation(ADD_TRACK)
 
   const handleFileChange = async (e) => {
     const selectedFile = await e.target.files[0]
@@ -31,32 +22,22 @@ const UploadForm = () => {
     }
   }
 
-  const addTrack = async () => {
-    await newTrack({
-      variables: {
-        title,
-        author,
-        src,
-      },
-    })
+  const onSubmitUpload = async (event) => {
+    event.preventDefault()
+    setLoading(true)
+    try {
+      await addTrack({ variables: { title: title, author: author, file: file } })
+    } catch (error) {
+      setLoading(false)
+      alert('Не удалось загрузить трек на сервер')
+      console.log(error)
+      return
+    }
+    setLoading(false)
+    toggleModal()
     setAuthor('')
     setTitle('')
-    src = ''
     window.location.reload()
-  }
-
-  const onClickUpload = async (event) => {
-    event.preventDefault()
-    if (title && file && author) {
-      setLoading(true)
-      await uploadFile({ variables: { file } })
-      console.log('src:', src)
-      setLoading(false)
-      toggleModal()
-      addTrack()
-    } else {
-      alert('заполните все поля')
-    }
   }
 
   return (
@@ -78,32 +59,34 @@ const UploadForm = () => {
             <h1>Uploading track... Please wait.</h1>
           </div>
         ) : (
-          <form action="" onSubmit={onClickUpload}>
+          <form action="" onSubmit={onSubmitUpload}>
             <h1 className={styles.title}>Upload Track</h1>
-            <label htmlFor="title">
-              <h3>Title</h3>
-            </label>
-            <input
-              id="title"
-              className={styles.input}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              type="text"
-            />
             <label htmlFor="author">
               <h3>Author</h3>
             </label>
             <input
               id="author"
+              required
               className={styles.input}
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               type="text"
             />
+            <label htmlFor="title">
+              <h3>Title</h3>
+            </label>
+            <input
+              id="title"
+              required
+              className={styles.input}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              type="text"
+            />
             <label htmlFor="file">
               <h1 className={styles.uploadTitle}>Upload audio File</h1>
             </label>
-            <input id="file" accept="audio/*" type="file" onChange={handleFileChange} />
+            <input required id="file" accept="audio/*" type="file" onChange={handleFileChange} />
             <button className={styles.btn} type="submit">
               UPLOAD TRACK
             </button>

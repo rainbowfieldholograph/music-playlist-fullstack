@@ -3,9 +3,7 @@ const { gql } = require('apollo-server-express')
 const typeDefs = gql`
   scalar Upload
 
-  type File {
-    url: String!
-  }
+  #Types
 
   type Track {
     id: ID!
@@ -14,6 +12,8 @@ const typeDefs = gql`
     src: String!
   }
 
+  #Query
+
   type Query {
     getAllTracks: [Track!]!
   }
@@ -21,8 +21,7 @@ const typeDefs = gql`
   #Mutations
 
   type Mutation {
-    uploadFile(file: Upload!): File!
-    addTrack(title: String!, author: String!, src: String!): Track!
+    addTrack(title: String!, author: String!, file: Upload!): Track!
   }
 `
 

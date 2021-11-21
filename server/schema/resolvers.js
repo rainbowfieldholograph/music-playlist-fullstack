@@ -29,7 +29,7 @@ const resolvers = {
   },
 
   Mutation: {
-    uploadFile: async (parent, { file }) => {
+    addTrack: async (parent, { title, author, file }) => {
       const { createReadStream, filename } = await file
       const { ext } = path.parse(filename)
       const randomName = generateRandomString(12) + ext
@@ -38,16 +38,18 @@ const resolvers = {
       const out = fs.createWriteStream(pathName)
       // await stream.pipe(out)
       await pipeline(stream, out)
-      const uploadedFile = await uploadFileAWS(pathName, randomName)
-      return { url: uploadedFile.Location }
-    },
-    addTrack: (parent, args) => {
-      const track = new Tracks({
-        title: args.title,
-        author: args.author,
-        src: args.src,
-      })
-      return track.save()
+      try {
+        const uploadedFile = await uploadFileAWS(pathName, randomName)
+        const track = new Tracks({
+          title: title,
+          author: author,
+          src: uploadedFile.Location,
+        })
+        const savedTrack = await track.save()
+        return savedTrack
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }
