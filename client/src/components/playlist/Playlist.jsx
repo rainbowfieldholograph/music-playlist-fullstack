@@ -13,7 +13,7 @@ const Playlist = () => {
         <Loading />
       ) : (
         <div className={styles.buttonFlex}>
-          <h1>Tracks:</h1>
+          <h1 className={styles.title}>Playlist:</h1>
           <button
             onClick={() => {
               toggleModal()
@@ -24,7 +24,7 @@ const Playlist = () => {
           </button>
         </div>
       )}
-      <ul>
+      <ul className={styles.tracksBlock}>
         {tracks?.map((item) => {
           return <Track index={item.index} key={item.id} title={item.title} author={item.author} />
         })}

@@ -1,23 +1,22 @@
 .playlist {
   max-width: 900px;
+  width: 100%;
   margin: 0 auto;
   border-radius: 5px;
   border: 1px solid gainsboro;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   padding: 20px;
 }
 
 .buttonFlex {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 1em;
 }
 
 .btn {
-  padding: 1.5em;
+  padding: 1em;
   background-color: white;
   border: 2px solid black;
   transition: all 0.1s linear;
@@ -28,4 +27,10 @@
   -moz-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
   box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
   transition: all 0.2s linear;
+}
+
+.tracksBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
 }
