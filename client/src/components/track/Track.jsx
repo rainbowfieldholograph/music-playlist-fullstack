@@ -1,14 +1,16 @@
-import React, { useContext } from 'react'
-import playerContext from '../../context/playerContext'
+import { observer } from 'mobx-react-lite'
+import React from 'react'
+import PlayerStore from '../../mobx/PlayerStore'
 import styles from './Track.module.css'
 
-const Track = ({ index, title, author }) => {
-  const { setCurrentTrack, currentTrack } = useContext(playerContext)
+const Track = observer(({ index, title, author }) => {
   return (
     <li
-      className={currentTrack === index ? [styles.track, styles.active].join(' ') : styles.track}
+      className={
+        PlayerStore.currentTrack === index ? [styles.track, styles.active].join(' ') : styles.track
+      }
       onClick={() => {
-        return currentTrack !== index && setCurrentTrack(index)
+        return PlayerStore.currentTrack !== index && PlayerStore.setCurrentTrack(index)
       }}
     >
       <div className={styles.trackBox}></div>
@@ -22,6 +24,6 @@ const Track = ({ index, title, author }) => {
       </div>
     </li>
   )
-}
+})
 
 export default Track

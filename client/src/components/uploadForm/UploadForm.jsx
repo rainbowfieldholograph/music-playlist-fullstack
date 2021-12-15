@@ -1,12 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import styles from './UploadForm.module.css'
-import playerContext from '../../context/playerContext'
 import Loading from '../loading/Loading'
 import { ADD_TRACK } from '../../graphql/tracks/mutation'
+import playerStore from '../../mobx/PlayerStore'
 
-const UploadForm = () => {
-  const { modal, toggleModal } = useContext(playerContext)
+const UploadForm = React.memo(function ({ modal, setModal }) {
   const [file, setFile] = useState(null)
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -34,16 +33,16 @@ const UploadForm = () => {
       return
     }
     setLoading(false)
-    toggleModal()
+    setModal(!modal)
     setAuthor('')
     setTitle('')
-    window.location.reload()
+    playerStore.fetchTracks()
   }
 
   return (
     <div
       onClick={() => {
-        toggleModal()
+        setModal(!modal)
       }}
       className={modal ? [styles.wrapper, styles.active].join(' ') : styles.wrapper}
     >
@@ -95,6 +94,6 @@ const UploadForm = () => {
       </div>
     </div>
   )
-}
+})
 
 export default UploadForm
