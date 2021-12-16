@@ -10,30 +10,23 @@ const Playlist = observer(() => {
   const [modal, setModal] = useState(false)
   return (
     <section className={styles.playlist}>
-      <>
-        <div className={styles.buttonFlex}>
-          <h1 className={styles.title}>Playlist:</h1>
-          <button
-            onClick={() => {
-              setModal(!modal)
-            }}
-            className={styles.btn}
-          >
-            Add new track
-          </button>
-        </div>
-        {PlayerStore.isLoading ? (
-          <Loading />
-        ) : (
-          <ul className={styles.tracksBlock}>
-            {PlayerStore.tracks.map((item, index) => {
-              return <Track index={index} key={item.id} title={item.title} author={item.author} />
-            })}
-          </ul>
-        )}
+      <div className={styles.buttonFlex}>
+        <h1 className={styles.title}>Playlist:</h1>
+        <button onClick={() => setModal(!modal)} className={styles.btn}>
+          Add new track
+        </button>
+      </div>
+      {PlayerStore.isLoading ? (
+        <Loading />
+      ) : (
+        <ul className={styles.tracksBlock}>
+          {PlayerStore.tracks.map((track, index) => {
+            return <Track key={track.id} index={index} title={track.title} author={track.author} />
+          })}
+        </ul>
+      )}
 
-        <UploadForm modal={modal} setModal={setModal} />
-      </>
+      <UploadForm modal={modal} setModal={setModal} />
     </section>
   )
 })

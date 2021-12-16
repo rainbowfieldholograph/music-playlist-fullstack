@@ -24,19 +24,19 @@ const UploadForm = React.memo(function ({ modal, setModal }) {
   const onSubmitUpload = async (event) => {
     event.preventDefault()
     setLoading(true)
+    console.log(title, author, file)
     try {
       await addTrack({ variables: { title: title, author: author, file: file } })
+      setLoading(false)
+      setModal(!modal)
+      setAuthor('')
+      setTitle('')
+      playerStore.fetchTracks()
     } catch (error) {
       setLoading(false)
       alert('Не удалось загрузить трек на сервер')
       console.log(error)
-      return
     }
-    setLoading(false)
-    setModal(!modal)
-    setAuthor('')
-    setTitle('')
-    playerStore.fetchTracks()
   }
 
   return (

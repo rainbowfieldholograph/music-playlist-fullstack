@@ -31,10 +31,6 @@
   overflow: hidden;
 }
 
-.clickable {
-  cursor: pointer;
-}
-
 .musicBox {
   background-color: gainsboro;
   width: 60px;
@@ -49,24 +45,11 @@
 .progressBar {
   max-width: 100%;
   width: 100%;
-}
-
-.controls {
-  display: flex;
-  gap: 20px;
+  cursor: pointer;
 }
 
 .box {
   max-width: 100%;
-}
-
-.controlsBox {
-  max-width: 100%;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 30px;
 }
 
 @media (max-width: 730px) {

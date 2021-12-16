@@ -1,0 +1,12 @@
+.controls {
+  display: flex;
+  gap: 20px;
+}
+.controlsBox {
+  max-width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+}

@@ -16,3 +16,7 @@ body {
   background: white;
   border: 3px solid black;
 }
+
+.clickable {
+  cursor: pointer;
+}

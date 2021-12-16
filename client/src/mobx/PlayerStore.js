@@ -3,7 +3,7 @@ import { makeAutoObservable } from 'mobx'
 class PlayerStore {
   url = `${process.env.REACT_APP_SERVER_URL}/graphql`
   tracks = []
-  currentTrack = 0
+  currentTrackIndex = 0
   playing = false
   isLoading = false
 
@@ -17,6 +17,15 @@ class PlayerStore {
 
   setTracks(data) {
     this.tracks = data
+  }
+
+  setCurrentTrackIndex = (id, play = true) => {
+    this.currentTrackIndex = id
+    this.playing = play
+  }
+
+  setPlaying = (value) => {
+    this.playing = value
   }
 
   fetchTracks() {
@@ -36,35 +45,33 @@ class PlayerStore {
           }`,
       }),
     })
-      .then((res) => res.json())
-      .then((res) => {
-        this.setTracks(res.data.getAllTracks)
+      .then((response) => response.json())
+      .then(({ data }) => {
+        this.setTracks(data.getAllTracks)
       })
       .catch((error) => {
         console.log('error: ', error)
       })
-      .finally(() => this.setLoading(false))
+      .finally(() => {
+        this.setLoading(false)
+        console.log('asdasdEND')
+      })
   }
 
   togglePlaying = () => {
-    this.playing = !this.playing
-  }
-
-  setCurrentTrack = (id, play = true) => {
-    this.currentTrack = id
-    this.playing = play
+    this.setPlaying(!this.playing)
   }
 
   prevTrack = () => {
-    this.currentTrack === 0
-      ? this.setCurrentTrack(this.tracks.length - 1)
-      : this.setCurrentTrack(this.currentTrack - 1)
+    this.currentTrackIndex === 0
+      ? this.setCurrentTrackIndex(this.tracks.length - 1)
+      : this.setCurrentTrackIndex(this.currentTrackIndex - 1)
   }
 
   nextTrack = () => {
-    this.currentTrack === this.tracks.length - 1
-      ? this.setCurrentTrack(0)
-      : this.setCurrentTrack(this.currentTrack + 1)
+    this.currentTrackIndex === this.tracks.length - 1
+      ? this.setCurrentTrackIndex(0)
+      : this.setCurrentTrackIndex(this.currentTrackIndex + 1)
   }
 
   handleEnd = () => {

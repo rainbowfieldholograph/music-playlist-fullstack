@@ -4,14 +4,11 @@ import PlayerStore from '../../mobx/PlayerStore'
 import styles from './Track.module.css'
 
 const Track = observer(({ index, title, author }) => {
+  const isCurrentTrack = PlayerStore.currentTrackIndex === index
   return (
     <li
-      className={
-        PlayerStore.currentTrack === index ? [styles.track, styles.active].join(' ') : styles.track
-      }
-      onClick={() => {
-        return PlayerStore.currentTrack !== index && PlayerStore.setCurrentTrack(index)
-      }}
+      className={isCurrentTrack ? `${styles.track} ${styles.active}` : styles.track}
+      onClick={() => !isCurrentTrack && PlayerStore.setCurrentTrackIndex(index)}
     >
       <div className={styles.trackBox}></div>
       <div className={styles.infoBox}>
