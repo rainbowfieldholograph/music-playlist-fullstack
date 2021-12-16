@@ -50,7 +50,9 @@ const Player = observer(() => {
     audio.current.volume = compute
   }
 
+  console.log(PlayerStore.currentTrackIndex)
   useEffect(() => {
+    console.log('sssq')
     if (audio.current) {
       audio.current.volume = volumeState
       audio.current.currentTime = 0
