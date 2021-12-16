@@ -19,16 +19,17 @@ class PlayerStore {
     this.tracks = data
   }
 
-  setCurrentTrackIndex = (id, play = true) => {
-    this.currentTrackIndex = id
-    this.playing = play
-  }
-
   setPlaying = (value) => {
     this.playing = value
   }
 
+  setCurrentTrackIndex = (index, play = true) => {
+    this.currentTrackIndex = index
+    this.setPlaying(play)
+  }
+
   fetchTracks() {
+    console.log('fetches')
     this.setLoading(true)
     fetch(this.url, {
       method: 'POST',

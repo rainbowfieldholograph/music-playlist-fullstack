@@ -17,8 +17,20 @@ const Player = observer(() => {
 
   const audio = useRef()
 
-  const toggleAudio = () => {
-    audio?.current.paused ? audio.current.play() : audio.current.pause()
+  const toggleAudio = async () => {
+    if (audio.current.paused) {
+      try {
+        await audio.current.play()
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      try {
+        await audio.current.pause()
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 
   const handleProgress = (event) => {
@@ -78,12 +90,10 @@ const Player = observer(() => {
             }}
             preload="auto"
           />
-
           <PlayerControls toggleAudio={toggleAudio} />
           <div className={styles.musicImage}>
             <PlayerMusicImage />
           </div>
-
           <PlayerInfo
             duration={duration}
             currentTime={currentTime}

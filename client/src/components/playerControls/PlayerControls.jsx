@@ -11,6 +11,11 @@ import {
 import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
 const PlayerControls = ({ toggleAudio }) => {
+  const onClickTogglePlay = async () => {
+    PlayerStore.togglePlaying()
+    toggleAudio()
+  }
+
   return (
     <div className={styles.controlsBox}>
       <div className={styles.musicImage}>
@@ -18,10 +23,7 @@ const PlayerControls = ({ toggleAudio }) => {
       </div>
       <FontAwesomeIcon
         className="clickable"
-        onClick={() => {
-          PlayerStore.togglePlaying()
-          toggleAudio()
-        }}
+        onClick={onClickTogglePlay}
         style={{ fontSize: '2.5rem' }}
         icon={PlayerStore.playing ? faPauseCircle : faPlayCircle}
         color="black"
