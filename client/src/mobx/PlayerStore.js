@@ -52,10 +52,7 @@ class PlayerStore {
       .catch((error) => {
         console.log('error: ', error)
       })
-      .finally(() => {
-        this.setLoading(false)
-        console.log('asdasdEND')
-      })
+      .finally(() => this.setLoading(false))
   }
 
   togglePlaying = () => {

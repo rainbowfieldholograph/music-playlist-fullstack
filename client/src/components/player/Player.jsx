@@ -1,21 +1,13 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRandom, faRedo, faMusic } from '@fortawesome/free-solid-svg-icons'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './Player.module.css'
 import { observer } from 'mobx-react-lite'
 import PlayerStore from '../../mobx/PlayerStore'
 import PlayerControls from '../playerControls/PlayerControls'
-
-const calcTime = (seconds) => {
-  const minutes = Math.floor(seconds / 60)
-  const secs = Math.floor(seconds % 60)
-  const m = minutes < 10 ? `0${minutes}` : `${minutes}`
-  const s = secs < 10 ? `0${secs}` : `${secs}`
-  return `${m}:${s}`
-}
+import PlayerInfo from '../playerInfo/PlayerInfo'
+import PlayerVolume from '../playerVolume/PlayerVolume'
+import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
 PlayerStore.fetchTracks()
-console.log('start)')
 
 const Player = observer(() => {
   const [volumeState, setVolumeState] = useState(1)
@@ -71,8 +63,6 @@ const Player = observer(() => {
         </div>
       ) : (
         <>
-          {console.log('loading: ', PlayerStore.isLoading)}
-          {console.log('hahahahha, wtf???/', PlayerStore.tracks[PlayerStore.currentTrackIndex])}
           <audio
             ref={audio}
             src={PlayerStore.tracks[PlayerStore.currentTrackIndex].src}
@@ -88,38 +78,18 @@ const Player = observer(() => {
             }}
             preload="auto"
           />
-          <PlayerControls toggleAudio={toggleAudio} />
-          <div className={styles.musicBox}>
-            <FontAwesomeIcon style={{ fontSize: '1.7rem' }} icon={faMusic} color="black" />
-          </div>
-          <div className={styles.info}>
-            <div className={styles.infoInnerBox}>
-              <h2 className={styles.title}>
-                {PlayerStore.tracks[PlayerStore.currentTrackIndex].title}
-              </h2>
-              <p>{calcTime(duration)}</p>
-            </div>
 
-            <div className={styles.infoInnerBox}>
-              <h3>{PlayerStore.tracks[PlayerStore.currentTrackIndex].author}</h3>
-              <p>{calcTime(currentTime)}</p>
-            </div>
-            <input
-              className={styles.progressBar}
-              type="range"
-              onChange={handleProgress}
-              value={duration ? Math.round((currentTime * 100) / duration) : 0}
-            />
+          <PlayerControls toggleAudio={toggleAudio} />
+          <div className={styles.musicImage}>
+            <PlayerMusicImage />
           </div>
-          <div className={styles.box}>
-            <h3>Volume: {Math.round(volumeState * 100)}%</h3>
-            <input
-              className="clickable"
-              type="range"
-              value={Math.round(volumeState * 100)}
-              onChange={(e) => handleVolume(e)}
-            />
-          </div>
+
+          <PlayerInfo
+            duration={duration}
+            currentTime={currentTime}
+            handleProgress={handleProgress}
+          />
+          <PlayerVolume volumeState={volumeState} handleVolume={handleVolume} />
         </>
       )}
     </div>

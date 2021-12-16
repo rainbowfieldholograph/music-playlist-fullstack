@@ -8,10 +8,14 @@ import {
   faStepForward,
   faPauseCircle,
 } from '@fortawesome/free-solid-svg-icons'
+import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
 const PlayerControls = ({ toggleAudio }) => {
   return (
     <div className={styles.controlsBox}>
+      <div className={styles.musicImage}>
+        <PlayerMusicImage />
+      </div>
       <FontAwesomeIcon
         className="clickable"
         onClick={() => {
