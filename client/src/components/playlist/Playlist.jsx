@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite'
 
 const Playlist = observer(() => {
   const [modal, setModal] = useState(false)
+  const { isLoading, tracks } = PlayerStore
   return (
     <section className={styles.playlist}>
       <div className={styles.buttonFlex}>
@@ -16,12 +17,20 @@ const Playlist = observer(() => {
           Add new track
         </button>
       </div>
-      {PlayerStore.isLoading ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <ul className={styles.tracksBlock}>
-          {PlayerStore.tracks.map((track, index) => {
-            return <Track key={track.id} index={index} title={track.title} author={track.author} />
+          {tracks.map((track, index) => {
+            return (
+              <Track
+                key={track.id}
+                index={index}
+                title={track.title}
+                author={track.author}
+                isCurrentTrack={PlayerStore.currentTrackIndex === index}
+              />
+            )
           })}
         </ul>
       )}

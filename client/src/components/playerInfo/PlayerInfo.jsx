@@ -1,5 +1,4 @@
 import React from 'react'
-import PlayerStore from '../../mobx/PlayerStore'
 import styles from './PlayerInfo.module.css'
 
 const calcTime = (seconds) => {
@@ -10,16 +9,16 @@ const calcTime = (seconds) => {
   return `${m}:${s}`
 }
 
-const PlayerInfo = ({ duration, currentTime, handleProgress }) => {
+const PlayerInfo = ({ track, duration, currentTime, handleProgress }) => {
   return (
     <div className={styles.info}>
       <div className={styles.infoInnerBox}>
-        <h2 className={styles.title}>{PlayerStore.tracks[PlayerStore.currentTrackIndex].title}</h2>
+        <h2 className={styles.title}>{track.title}</h2>
         <p>{calcTime(duration)}</p>
       </div>
 
       <div className={styles.infoInnerBox}>
-        <h3>{PlayerStore.tracks[PlayerStore.currentTrackIndex].author}</h3>
+        <h3>{track.author}</h3>
         <p>{calcTime(currentTime)}</p>
       </div>
       <input

@@ -19,6 +19,8 @@ const Player = observer(() => {
     currentTrackIndex,
     isLoading,
     tracks,
+    nextTrack,
+    prevTrack,
     setCurrentTime,
     setDuration,
     setVolume,
@@ -55,9 +57,9 @@ const Player = observer(() => {
       setCurrentTime(0)
       return
     }
-    const compute = (event.target.value * duration) / 100
-    audio.current.currentTime = compute
-    setCurrentTime(compute)
+    const timeCompute = (event.target.value * duration) / 100
+    audio.current.currentTime = timeCompute
+    setCurrentTime(timeCompute)
   }
 
   const handleVolume = (event) => {
@@ -106,11 +108,17 @@ const Player = observer(() => {
             }}
             preload="auto"
           />
-          <PlayerControls toggleAudio={toggleAudio} />
+          <PlayerControls
+            toggleAudio={toggleAudio}
+            nextTrack={nextTrack}
+            prevTrack={prevTrack}
+            playing={playing}
+          />
           <div className={styles.musicImage}>
             <PlayerMusicImage />
           </div>
           <PlayerInfo
+            track={tracks[PlayerStore.currentTrackIndex]}
             duration={duration}
             currentTime={currentTime}
             handleProgress={handleProgress}

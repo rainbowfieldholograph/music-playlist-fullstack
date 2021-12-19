@@ -3,8 +3,7 @@ import React from 'react'
 import PlayerStore from '../../mobx/PlayerStore'
 import styles from './Track.module.css'
 
-const Track = observer(({ index, title, author }) => {
-  const isCurrentTrack = PlayerStore.currentTrackIndex === index
+const Track = observer(({ index, title, author, isCurrentTrack }) => {
   return (
     <li
       className={isCurrentTrack ? `${styles.track} ${styles.active}` : styles.track}

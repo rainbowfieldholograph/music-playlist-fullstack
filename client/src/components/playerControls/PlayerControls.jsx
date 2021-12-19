@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import PlayerStore from '../../mobx/PlayerStore'
 import styles from './PlayerControls.module.css'
 import {
   faPlayCircle,
@@ -10,7 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
-const PlayerControls = ({ toggleAudio }) => {
+const PlayerControls = ({ toggleAudio, nextTrack, prevTrack, playing }) => {
   return (
     <div className={styles.controlsBox}>
       <div className={styles.musicImage}>
@@ -20,7 +19,7 @@ const PlayerControls = ({ toggleAudio }) => {
         className="clickable"
         onClick={toggleAudio}
         style={{ fontSize: '2.5rem' }}
-        icon={PlayerStore.playing ? faPauseCircle : faPlayCircle}
+        icon={playing ? faPauseCircle : faPlayCircle}
         color="black"
       />
       <div className={styles.controls}>
@@ -29,14 +28,14 @@ const PlayerControls = ({ toggleAudio }) => {
           style={{ fontSize: '1.5rem' }}
           icon={faStepBackward}
           color="black"
-          onClick={PlayerStore.prevTrack}
+          onClick={prevTrack}
         />
         <FontAwesomeIcon
           className="clickable"
           style={{ fontSize: '1.5rem' }}
           icon={faStepForward}
           color="black"
-          onClick={PlayerStore.nextTrack}
+          onClick={nextTrack}
         />
       </div>
     </div>

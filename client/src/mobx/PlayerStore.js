@@ -13,36 +13,35 @@ class PlayerStore {
 
   constructor() {
     makeAutoObservable(this)
-    this.setDuration = this.setDuration.bind(this)
-    this.setCurrentTime = this.setCurrentTime.bind(this)
-    this.setVolume = this.setVolume.bind(this)
-    this.setLoading = this.setLoading.bind(this)
-    this.setTracks = this.setTracks.bind(this)
-    this.setPlaying = this.setPlaying.bind(this)
-    this.setCurrentTrackIndex = this.setCurrentTrackIndex.bind(this)
-    this.fetchTracks = this.fetchTracks.bind(this)
+    // this.setDuration = this.setDuration.bind(this)
+    // this.setCurrentTime = this.setCurrentTime.bind(this)
+    // this.setVolume = this.setVolume.bind(this)
+    // this.setLoading = this.setLoading.bind(this)
+    // this.setTracks = this.setTracks.bind(this)
+    // this.setPlaying = this.setPlaying.bind(this)
+    // this.setCurrentTrackIndex = this.setCurrentTrackIndex.bind(this)
+    // this.fetchTracks = this.fetchTracks.bind(this)
+    // this.setCurrentTrackIndex = this.setCurrentTrackIndex.bind(this)
     //привязываем экземпляр обьекта к методам, для того, чтобы при деструктуризации не терялся контекст
   }
 
-  setActiveTrack() {}
-
-  setDuration(value) {
+  setDuration = (value) => {
     this.duration = value
   }
 
-  setCurrentTime(value) {
+  setCurrentTime = (value) => {
     this.currentTime = value
   }
 
-  setVolume(value) {
+  setVolume = (value) => {
     this.volume = value
   }
 
-  setLoading(value) {
+  setLoading = (value) => {
     this.isLoading = value
   }
 
-  setTracks(data) {
+  setTracks = (data) => {
     this.tracks = data
   }
 
@@ -55,7 +54,7 @@ class PlayerStore {
     this.setPlaying(play)
   }
 
-  fetchTracks() {
+  fetchTracks = () => {
     this.setLoading(true)
     fetch(this.url, {
       method: 'POST',
