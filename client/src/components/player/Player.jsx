@@ -8,28 +8,44 @@ import PlayerVolume from '../playerVolume/PlayerVolume'
 import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
 PlayerStore.fetchTracks()
+let currentAudio
 
 const Player = observer(() => {
-  const [volumeState, setVolumeState] = useState(1)
-  const [duration, setDuration] = useState(0)
-  const [currentTime, setCurrentTime] = useState(0)
+  const {
+    currentTime,
+    duration,
+    volume,
+    playing,
+    currentTrackIndex,
+    isLoading,
+    tracks,
+    setCurrentTime,
+    setDuration,
+    setVolume,
+    setCurrentTrackIndex,
+    setPlaying,
+    handleEnd,
+  } = PlayerStore
+
   const [canChangeProgress, setCanChangeProgress] = useState()
 
   const audio = useRef()
 
+  useEffect(() => {
+    if (!currentAudio) currentAudio = new Audio()
+  })
+
   const toggleAudio = async () => {
-    if (audio.current.paused) {
-      try {
+    try {
+      if (audio.current.paused) {
+        setPlaying(true)
         await audio.current.play()
-      } catch (error) {
-        console.log(error)
-      }
-    } else {
-      try {
+      } else {
+        setPlaying(false)
         await audio.current.pause()
-      } catch (error) {
-        console.log(error)
       }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -45,21 +61,19 @@ const Player = observer(() => {
   }
 
   const handleVolume = (event) => {
-    const compute = event.target.value / 100
-    setVolumeState(compute)
-    audio.current.volume = compute
+    const volumeCompute = event.target.value / 100
+    setVolume(volumeCompute)
+    audio.current.volume = volumeCompute
   }
 
-  console.log(PlayerStore.currentTrackIndex)
   useEffect(() => {
-    console.log('sssq')
     if (audio.current) {
-      audio.current.volume = volumeState
+      audio.current.volume = volume
       audio.current.currentTime = 0
-      PlayerStore.playing && toggleAudio()
+      playing && toggleAudio()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [PlayerStore.currentTrackIndex])
+  }, [currentTrackIndex])
 
   useEffect(() => {
     if (audio.current) {
@@ -71,7 +85,7 @@ const Player = observer(() => {
 
   return (
     <div className={styles.player}>
-      {PlayerStore.isLoading ? (
+      {isLoading ? (
         <div>
           <p>Loading...</p>
         </div>
@@ -79,7 +93,7 @@ const Player = observer(() => {
         <>
           <audio
             ref={audio}
-            src={PlayerStore.tracks[PlayerStore.currentTrackIndex].src}
+            src={tracks[currentTrackIndex].src}
             onTimeUpdate={(event) => setCurrentTime(event.target.currentTime)}
             onLoadedData={(event) => {
               setDuration(event.target.duration)
@@ -88,7 +102,7 @@ const Player = observer(() => {
               }, 100)
             }}
             onEnded={() => {
-              PlayerStore.handleEnd()
+              handleEnd()
             }}
             preload="auto"
           />
@@ -101,7 +115,7 @@ const Player = observer(() => {
             currentTime={currentTime}
             handleProgress={handleProgress}
           />
-          <PlayerVolume volumeState={volumeState} handleVolume={handleVolume} />
+          <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
         </>
       )}
     </div>
