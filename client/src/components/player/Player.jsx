@@ -16,7 +16,6 @@ const Player = observer(() => {
     volume,
     playing,
     currentTrack,
-    isLoading,
     nextTrack,
     prevTrack,
     setCurrentTime,
@@ -71,30 +70,24 @@ const Player = observer(() => {
 
   return (
     <div className={styles.player}>
-      {isLoading ? (
-        <div>
-          <p>Loading...</p>
+      <>
+        <PlayerControls
+          toggleAudio={toggleAudio}
+          nextTrack={nextTrack}
+          prevTrack={prevTrack}
+          playing={playing}
+        />
+        <div className={styles.musicImage}>
+          <PlayerMusicImage />
         </div>
-      ) : (
-        <>
-          <PlayerControls
-            toggleAudio={toggleAudio}
-            nextTrack={nextTrack}
-            prevTrack={prevTrack}
-            playing={playing}
-          />
-          <div className={styles.musicImage}>
-            <PlayerMusicImage />
-          </div>
-          <PlayerInfo
-            track={currentTrack}
-            duration={duration}
-            currentTime={currentTime}
-            handleProgress={handleProgress}
-          />
-          <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
-        </>
-      )}
+        <PlayerInfo
+          track={currentTrack}
+          duration={duration}
+          currentTime={currentTime}
+          handleProgress={handleProgress}
+        />
+        <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
+      </>
     </div>
   )
 })

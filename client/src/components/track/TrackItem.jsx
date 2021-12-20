@@ -8,7 +8,7 @@ const TrackItem = observer(({ track, index }) => {
   let isCurrentTrack = false
   currentTrack && (isCurrentTrack = tracks[index].id === currentTrack.id)
   return (
-    <div
+    <button
       className={isCurrentTrack ? `${styles.track} ${styles.active}` : styles.track}
       onClick={() => !isCurrentTrack && setCurrentTrack(track)}
     >
@@ -21,7 +21,7 @@ const TrackItem = observer(({ track, index }) => {
           <h3 className={styles.text}>{track.author}</h3>
         </div>
       </div>
-    </div>
+    </button>
   )
 })
 
