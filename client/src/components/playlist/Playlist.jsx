@@ -13,7 +13,7 @@ const Playlist = observer(() => {
   return (
     <section className={styles.playlist}>
       <div className={styles.buttonFlex}>
-        <h1 className={styles.title}>Playlist:</h1>
+        <h1 className={styles.title}>{`Playlist: ${tracks.length}`}</h1>
         <button onClick={() => setModal(!modal)} className={styles.btn}>
           Add new track
         </button>
