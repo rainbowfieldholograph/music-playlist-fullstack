@@ -8,6 +8,7 @@ import PlayerVolume from '../playerVolume/PlayerVolume'
 import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
 let audio = new Audio()
+let canChangeTime = true
 
 const Player = observer(() => {
   const {
@@ -34,8 +35,14 @@ const Player = observer(() => {
     if (currentTrack) {
       audio.src = currentTrack.src
       audio.ontimeupdate = () => setCurrentTime(audio.currentTime)
-      audio.onloadeddata = () => setDuration(audio.duration)
-      audio.onended = () => handleEnd()
+      audio.onloadeddata = () => {
+        canChangeTime = true
+        setDuration(audio.duration)
+      }
+      audio.onended = () => {
+        canChangeTime = false
+        handleEnd()
+      }
       toggleAudio()
     }
   }, [currentTrack])
@@ -55,9 +62,11 @@ const Player = observer(() => {
   }
 
   const handleProgress = (event) => {
-    const timeCompute = (event.target.value * duration) / 100
-    audio.currentTime = timeCompute
-    setCurrentTime(timeCompute)
+    if (canChangeTime) {
+      const timeCompute = (event.target.value * duration) / 100
+      audio.currentTime = timeCompute
+      setCurrentTime(timeCompute)
+    }
   }
 
   const handleVolume = (event) => {
