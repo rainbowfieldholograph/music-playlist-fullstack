@@ -13,12 +13,12 @@ const PlayerInfo = ({ track, duration, currentTime, handleProgress }) => {
   return (
     <div className={styles.info}>
       <div className={styles.infoInnerBox}>
-        <h2 className={styles.title}>{track.title}</h2>
+        <h2 className={styles.title}>{track?.title}</h2>
         <p>{calcTime(duration)}</p>
       </div>
 
       <div className={styles.infoInnerBox}>
-        <h3>{track.author}</h3>
+        <h3>{track?.author}</h3>
         <p>{calcTime(currentTime)}</p>
       </div>
       <input

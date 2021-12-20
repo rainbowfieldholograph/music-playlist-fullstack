@@ -3,6 +3,7 @@ Beta version.
 Fullstack приложение для прослушивания/добавления треков. Стек технологий:
 
 -React
+-Create react app
 -MobX
 -Apollo client
 

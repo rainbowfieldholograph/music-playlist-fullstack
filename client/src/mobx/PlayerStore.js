@@ -2,98 +2,93 @@ import { makeAutoObservable } from 'mobx'
 
 class PlayerStore {
   tracks = []
-  activeTrack = null
-  currentTrackIndex = 0
+  currentTrack = null
   playing = false
-  isLoading = false
+  isLoading = true
   volume = 1
   currentTime = 0
   duration = 0
   url = `${process.env.REACT_APP_SERVER_URL}/graphql`
 
   constructor() {
-    makeAutoObservable(this)
-    // this.setDuration = this.setDuration.bind(this)
-    // this.setCurrentTime = this.setCurrentTime.bind(this)
-    // this.setVolume = this.setVolume.bind(this)
-    // this.setLoading = this.setLoading.bind(this)
-    // this.setTracks = this.setTracks.bind(this)
-    // this.setPlaying = this.setPlaying.bind(this)
-    // this.setCurrentTrackIndex = this.setCurrentTrackIndex.bind(this)
-    // this.fetchTracks = this.fetchTracks.bind(this)
-    // this.setCurrentTrackIndex = this.setCurrentTrackIndex.bind(this)
-    //привязываем экземпляр обьекта к методам, для того, чтобы при деструктуризации не терялся контекст
+    makeAutoObservable(this, {}, { autoBind: true })
   }
 
-  setDuration = (value) => {
+  setDuration(value) {
     this.duration = value
   }
 
-  setCurrentTime = (value) => {
+  setCurrentTime(value) {
     this.currentTime = value
   }
 
-  setVolume = (value) => {
+  setVolume(value) {
     this.volume = value
   }
 
-  setLoading = (value) => {
+  setLoading(value) {
     this.isLoading = value
   }
 
-  setTracks = (data) => {
+  setTracks(data) {
     this.tracks = data
   }
 
-  setPlaying = (value) => {
+  setPlaying(value) {
     this.playing = value
   }
 
-  setCurrentTrackIndex = (index, play = true) => {
-    this.currentTrackIndex = index
+  setCurrentTrack(track, play = true) {
+    this.currentTrack = track
     this.setPlaying(play)
+    console.log('setcurtrack:', this.currentTrack)
   }
 
-  fetchTracks = () => {
+  async fetchTracks() {
     this.setLoading(true)
-    fetch(this.url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-          query {
-              getAllTracks {
-                id
-                title
-                author
-                src
-            }
-          }`,
-      }),
-    })
-      .then((response) => response.json())
-      .then(({ data }) => {
-        this.setTracks(data.getAllTracks)
+    try {
+      const response = await fetch(this.url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: `
+              query {
+                  getAllTracks {
+                    id
+                    title
+                    author
+                    src
+                }
+              }`,
+        }),
       })
-      .catch((error) => {
-        console.log('error: ', error)
-      })
-      .finally(() => this.setLoading(false))
+      const {
+        data: { getAllTracks: tracks },
+      } = await response.json()
+      this.setTracks(tracks)
+      return tracks
+    } catch (error) {
+      console.log('error: ', error)
+    } finally {
+      this.setLoading(false)
+    }
   }
 
-  prevTrack = () => {
-    this.currentTrackIndex === 0
-      ? this.setCurrentTrackIndex(this.tracks.length - 1)
-      : this.setCurrentTrackIndex(this.currentTrackIndex - 1)
+  prevTrack() {
+    const currentIndex = this.tracks.indexOf(this.currentTrack)
+    currentIndex === 0
+      ? this.setCurrentTrack(this.tracks[this.tracks.length - 1])
+      : this.setCurrentTrack(this.tracks[currentIndex - 1])
   }
 
-  nextTrack = () => {
-    this.currentTrackIndex === this.tracks.length - 1
-      ? this.setCurrentTrackIndex(0)
-      : this.setCurrentTrackIndex(this.currentTrackIndex + 1)
+  nextTrack() {
+    const currentIndex = this.tracks.indexOf(this.currentTrack)
+    currentIndex === this.tracks.length - 1
+      ? this.setCurrentTrack(this.tracks[0])
+      : this.setCurrentTrack(this.tracks[currentIndex + 1])
   }
 
-  handleEnd = () => {
+  handleEnd() {
     this.nextTrack()
   }
 }

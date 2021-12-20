@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import styles from './Player.module.css'
 import { observer } from 'mobx-react-lite'
 import PlayerStore from '../../mobx/PlayerStore'
@@ -7,8 +7,7 @@ import PlayerInfo from '../playerInfo/PlayerInfo'
 import PlayerVolume from '../playerVolume/PlayerVolume'
 import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
-PlayerStore.fetchTracks()
-let currentAudio
+let audio = new Audio()
 
 const Player = observer(() => {
   const {
@@ -16,74 +15,56 @@ const Player = observer(() => {
     duration,
     volume,
     playing,
-    currentTrackIndex,
+    currentTrack,
     isLoading,
-    tracks,
     nextTrack,
     prevTrack,
     setCurrentTime,
     setDuration,
     setVolume,
-    setCurrentTrackIndex,
     setPlaying,
     handleEnd,
   } = PlayerStore
 
-  const [canChangeProgress, setCanChangeProgress] = useState()
-
-  const audio = useRef()
-
-  useEffect(() => {
-    if (!currentAudio) currentAudio = new Audio()
-  })
-
   const toggleAudio = async () => {
-    try {
-      if (audio.current.paused) {
-        setPlaying(true)
-        await audio.current.play()
-      } else {
-        setPlaying(false)
-        await audio.current.pause()
+    if (audio.paused) {
+      setPlaying(true)
+      try {
+        await audio.play()
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
+    } else {
+      setPlaying(false)
+      audio.pause()
     }
   }
 
   const handleProgress = (event) => {
-    if (!canChangeProgress) {
-      audio.current.currentTime = 0
-      setCurrentTime(0)
-      return
-    }
     const timeCompute = (event.target.value * duration) / 100
-    audio.current.currentTime = timeCompute
+    audio.currentTime = timeCompute
     setCurrentTime(timeCompute)
   }
 
   const handleVolume = (event) => {
     const volumeCompute = event.target.value / 100
     setVolume(volumeCompute)
-    audio.current.volume = volumeCompute
+    audio.volume = volumeCompute
   }
 
   useEffect(() => {
-    if (audio.current) {
-      audio.current.volume = volume
-      audio.current.currentTime = 0
-      playing && toggleAudio()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentTrackIndex])
-
-  useEffect(() => {
-    if (audio.current) {
-      audio.current.onended = () => {
-        setCanChangeProgress(false)
+    if (currentTrack) {
+      audio.src = currentTrack.src
+      console.log('src: ', currentTrack.src)
+      audio.ontimeupdate = () => setCurrentTime(audio.currentTime)
+      audio.onloadeddata = () => setDuration(audio.duration)
+      audio.onended = () => {
+        console.log('sss)')
+        handleEnd()
       }
+      toggleAudio()
     }
-  })
+  }, [currentTrack])
 
   return (
     <div className={styles.player}>
@@ -93,21 +74,6 @@ const Player = observer(() => {
         </div>
       ) : (
         <>
-          <audio
-            ref={audio}
-            src={tracks[currentTrackIndex].src}
-            onTimeUpdate={(event) => setCurrentTime(event.target.currentTime)}
-            onLoadedData={(event) => {
-              setDuration(event.target.duration)
-              setTimeout(() => {
-                setCanChangeProgress(true)
-              }, 100)
-            }}
-            onEnded={() => {
-              handleEnd()
-            }}
-            preload="auto"
-          />
           <PlayerControls
             toggleAudio={toggleAudio}
             nextTrack={nextTrack}
@@ -118,7 +84,7 @@ const Player = observer(() => {
             <PlayerMusicImage />
           </div>
           <PlayerInfo
-            track={tracks[PlayerStore.currentTrackIndex]}
+            track={currentTrack}
             duration={duration}
             currentTime={currentTime}
             handleProgress={handleProgress}
