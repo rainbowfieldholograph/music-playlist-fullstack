@@ -30,8 +30,8 @@ const UploadForm = memo(function ({ setModal }) {
       setTitle('')
       fetchTracks()
     } catch (error) {
-      alert('Не удалось загрузить трек на сервер')
-      console.log(error)
+      alert('Failed to upload track to server')
+      console.log('upload failed: ', error)
     }
   }
 
@@ -39,7 +39,7 @@ const UploadForm = memo(function ({ setModal }) {
     return (
       <div>
         <Loading />
-        <p>Uploading track. Please wait.</p>
+        <p className={styles.uploadTitle}>Uploading track. Please wait.</p>
       </div>
     )
 
@@ -71,7 +71,7 @@ const UploadForm = memo(function ({ setModal }) {
       <label htmlFor="file">
         <h1 className={styles.uploadTitle}>Upload audio File</h1>
       </label>
-      <input required id="file" accept="audio/*" type="file" onChange={handleFileChange} />
+      <input required id="file" type="file" accept="audio/*" onChange={handleFileChange} />
       <button className={styles.btn} type="submit">
         UPLOAD TRACK
       </button>

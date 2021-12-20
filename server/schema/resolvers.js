@@ -30,15 +30,20 @@ const resolvers = {
 
   Mutation: {
     addTrack: async (parent, { title, author, file }) => {
-      const { createReadStream, filename } = await file
+      const { createReadStream, filename, mimetype } = await file
+      if (!mimetype.includes('audio/')) {
+        console.log('please download audio file.')
+        return new Error('please download audio file.')
+      }
       const { ext } = path.parse(filename)
       const randomName = generateRandomString(12) + ext
       const stream = createReadStream()
       const pathName = path.join(__dirname, `../public/audio/${randomName}`)
       const out = fs.createWriteStream(pathName)
       // await stream.pipe(out)
-      await pipeline(stream, out)
+      console.log(mimetype)
       try {
+        await pipeline(stream, out)
         const uploadedFile = await uploadFileAWS(pathName, randomName)
         const track = new Tracks({
           title: title,
