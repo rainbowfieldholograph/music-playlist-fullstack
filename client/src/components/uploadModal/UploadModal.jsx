@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './UploadModal.module.css'
 import UploadForm from '../uploadForm/UploadForm'
 

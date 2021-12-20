@@ -35,12 +35,13 @@ const UploadForm = React.memo(function ({ setModal }) {
     }
   }
 
-  loading && (
-    <div>
-      <Loading />
-      <p>Uploading track. Please wait.</p>
-    </div>
-  )
+  if (loading)
+    return (
+      <div>
+        <Loading />
+        <p>Uploading track. Please wait.</p>
+      </div>
+    )
 
   return (
     <form action="" onSubmit={onSubmitUpload}>
