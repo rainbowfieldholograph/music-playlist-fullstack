@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './PlayerVolume.module.css'
 
 const PlayerVolume = ({ volumeState, handleVolume }) => {

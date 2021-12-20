@@ -1,8 +1,8 @@
-import React from 'react'
+import { memo } from 'react'
 import styles from './UploadModal.module.css'
 import UploadForm from '../uploadForm/UploadForm'
 
-const UploadModal = React.memo(function ({ modal, setModal }) {
+const UploadModal = memo(function ({ modal, setModal }) {
   return (
     <div
       onClick={() => setModal(!modal)}

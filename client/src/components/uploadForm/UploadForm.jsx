@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import { useState, memo } from 'react'
 import { useMutation } from '@apollo/client'
 import styles from './UploadForm.module.css'
 import Loading from '../loading/Loading'
 import { ADD_TRACK } from '../../graphql/tracks/mutation'
 import PlayerStore from '../../mobx/PlayerStore'
 
-const UploadForm = React.memo(function ({ setModal }) {
+const UploadForm = memo(function ({ setModal }) {
   const { fetchTracks } = PlayerStore
   const [file, setFile] = useState(null)
   const [title, setTitle] = useState('')

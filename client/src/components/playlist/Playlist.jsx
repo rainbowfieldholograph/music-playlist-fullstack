@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Loading from '../loading/Loading'
-import Track from '../track/TrackItem'
+import TrackItem from '../track/TrackItem'
 import styles from './Playlist.module.css'
 import PlayerStore from '../../mobx/PlayerStore'
 import { observer } from 'mobx-react-lite'
 import UploadModal from '../uploadModal/UploadModal'
 
 const Playlist = observer(() => {
-  console.log('playlist render')
   const [modal, setModal] = useState(false)
-  const { isLoading, tracks, currentTrack } = PlayerStore
+  console.log('playlist render')
+  const { isLoading, tracks } = PlayerStore
   return (
     <section className={styles.playlist}>
       <div className={styles.buttonFlex}>
@@ -25,7 +25,7 @@ const Playlist = observer(() => {
           {tracks.map((track, index) => {
             return (
               <li key={track.id}>
-                <Track track={track} index={index} isCurrentTrack={currentTrack === index} />
+                <TrackItem track={track} index={index} />
               </li>
             )
           })}

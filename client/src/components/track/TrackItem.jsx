@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import React from 'react'
 import PlayerStore from '../../mobx/PlayerStore'
 import styles from './TrackItem.module.css'
 

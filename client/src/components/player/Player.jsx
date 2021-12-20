@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import styles from './Player.module.css'
 import { observer } from 'mobx-react-lite'
 import PlayerStore from '../../mobx/PlayerStore'

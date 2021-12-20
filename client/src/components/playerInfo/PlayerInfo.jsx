@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './PlayerInfo.module.css'
 
 const calcTime = (seconds) => {
@@ -16,7 +15,6 @@ const PlayerInfo = ({ track, duration, currentTime, handleProgress }) => {
         <h2 className={styles.title}>{track?.title}</h2>
         <p>{calcTime(duration)}</p>
       </div>
-
       <div className={styles.infoInnerBox}>
         <h3>{track?.author}</h3>
         <p>{calcTime(currentTime)}</p>
