@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Loading from '../loading/Loading'
-import Track from '../track/Track'
+import Track from '../track/TrackItem'
 import styles from './Playlist.module.css'
-import UploadForm from '../uploadForm/UploadForm'
 import PlayerStore from '../../mobx/PlayerStore'
 import { observer } from 'mobx-react-lite'
+import UploadModal from '../uploadModal/UploadModal'
 
 const Playlist = observer(() => {
+  console.log('playlist render')
   const [modal, setModal] = useState(false)
   const { isLoading, tracks, currentTrack } = PlayerStore
   return (
@@ -23,18 +24,15 @@ const Playlist = observer(() => {
         <ul className={styles.tracksBlock}>
           {tracks.map((track, index) => {
             return (
-              <Track
-                key={track.id}
-                track={track}
-                index={index}
-                isCurrentTrack={currentTrack === index}
-              />
+              <li key={track.id}>
+                <Track track={track} index={index} isCurrentTrack={currentTrack === index} />
+              </li>
             )
           })}
         </ul>
       )}
 
-      <UploadForm modal={modal} setModal={setModal} />
+      <UploadModal modal={modal} setModal={setModal} />
     </section>
   )
 })

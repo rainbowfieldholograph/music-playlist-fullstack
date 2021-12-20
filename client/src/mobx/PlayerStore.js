@@ -41,7 +41,6 @@ class PlayerStore {
   setCurrentTrack(track, play = true) {
     this.currentTrack = track
     this.setPlaying(play)
-    console.log('setcurtrack:', this.currentTrack)
   }
 
   async fetchTracks() {

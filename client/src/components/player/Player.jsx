@@ -24,7 +24,22 @@ const Player = observer(() => {
     setVolume,
     setPlaying,
     handleEnd,
+    fetchTracks,
   } = PlayerStore
+
+  useEffect(() => {
+    fetchTracks()
+  }, [])
+
+  useEffect(() => {
+    if (currentTrack) {
+      audio.src = currentTrack.src
+      audio.ontimeupdate = () => setCurrentTime(audio.currentTime)
+      audio.onloadeddata = () => setDuration(audio.duration)
+      audio.onended = () => handleEnd()
+      toggleAudio()
+    }
+  }, [currentTrack])
 
   const toggleAudio = async () => {
     if (audio.paused) {
@@ -52,19 +67,7 @@ const Player = observer(() => {
     audio.volume = volumeCompute
   }
 
-  useEffect(() => {
-    if (currentTrack) {
-      audio.src = currentTrack.src
-      console.log('src: ', currentTrack.src)
-      audio.ontimeupdate = () => setCurrentTime(audio.currentTime)
-      audio.onloadeddata = () => setDuration(audio.duration)
-      audio.onended = () => {
-        console.log('sss)')
-        handleEnd()
-      }
-      toggleAudio()
-    }
-  }, [currentTrack])
+  if (!currentTrack) return null
 
   return (
     <div className={styles.player}>
