@@ -40,9 +40,8 @@ const resolvers = {
       const stream = createReadStream()
       const pathName = path.join(__dirname, `../public/audio/${randomName}`)
       const out = fs.createWriteStream(pathName)
-      // await stream.pipe(out)
-      console.log(mimetype)
       try {
+        // await stream.pipe(out)
         await pipeline(stream, out)
         const uploadedFile = await uploadFileAWS(pathName, randomName)
         const track = new Tracks({
