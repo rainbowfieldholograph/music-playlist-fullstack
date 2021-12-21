@@ -24,12 +24,7 @@ const Player = observer(() => {
     setVolume,
     setPlaying,
     handleEnd,
-    fetchTracks,
   } = PlayerStore
-
-  useEffect(() => {
-    fetchTracks()
-  }, [])
 
   useEffect(() => {
     if (currentTrack) {

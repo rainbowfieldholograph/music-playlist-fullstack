@@ -31,6 +31,7 @@ class PlayerStore {
   }
 
   setTracks(data) {
+    console.log('tracks setted')
     this.tracks = data
   }
 
@@ -43,34 +44,8 @@ class PlayerStore {
     this.setPlaying(play)
   }
 
-  async fetchTracks() {
-    this.setLoading(true)
-    try {
-      const response = await fetch(this.url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          query: `
-              query {
-                  getAllTracks {
-                    id
-                    title
-                    author
-                    src
-                }
-              }`,
-        }),
-      })
-      const {
-        data: { getAllTracks: tracks },
-      } = await response.json()
-      this.setTracks(tracks)
-      return tracks
-    } catch (error) {
-      console.log('error: ', error)
-    } finally {
-      this.setLoading(false)
-    }
+  addToTracks(newTrack) {
+    this.tracks.push(newTrack)
   }
 
   prevTrack() {

@@ -9,6 +9,11 @@
   padding: 20px;
 }
 
+.title {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
 .buttonFlex {
   display: flex;
   justify-content: space-between;
