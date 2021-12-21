@@ -31,7 +31,6 @@ class PlayerStore {
   }
 
   setTracks(data) {
-    console.log('tracks setted')
     this.tracks = data
   }
 
