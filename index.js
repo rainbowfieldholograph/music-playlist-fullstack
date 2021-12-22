@@ -23,9 +23,7 @@ const startServer = async () => {
     app.use(graphqlUploadExpress())
     server.applyMiddleware({ app })
     app.use(express.static('public'))
-
     await mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true })
-
     app.listen(PORT, () => console.log(`Server Started on port ${PORT}`))
   } catch (error) {
     console.log('error', error)
