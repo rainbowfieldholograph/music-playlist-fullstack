@@ -1,0 +1,56 @@
+.track {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding-inline: 10px;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.track:hover,
+.track:focus {
+  -webkit-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  -moz-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+}
+
+.info {
+  height: 100%;
+  width: calc(100% - 62px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+.innerBox {
+  margin-block: auto;
+}
+
+.text {
+  font-size: 1.3rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.active {
+  border: 3px solid purple;
+  transform: scale(1.05);
+  transition: all 0.2s linear;
+  -webkit-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  -moz-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+}
+
+.trackBox {
+  height: 65px;
+  width: 65px;
+  min-width: 65px;
+  background-color: purple;
+  border-radius: 15%;
+}
