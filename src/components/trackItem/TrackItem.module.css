@@ -3,7 +3,8 @@
   align-items: center;
   width: 100%;
   height: 80px;
-  padding-inline: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   transition: all 0.1s linear;
   cursor: pointer;
   background-color: transparent;
@@ -17,23 +18,25 @@
 }
 
 .info {
-  height: 100%;
-  width: calc(100% - 62px);
+  flex-basis: 100%;
+  flex-grow: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 1rem;
+  overflow: hidden;
 }
 
 .innerBox {
-  margin-block: auto;
+  flex-grow: 0;
 }
 
 .text {
+  max-width: 100%;
   font-size: 1.3rem;
   text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
   text-align: left;
   line-height: 1.5;
 }

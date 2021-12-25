@@ -10,7 +10,7 @@ import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 
 const PlayerControls = ({ toggleAudio, nextTrack, prevTrack, playing }) => {
   return (
-    <div className={styles.controlsBox}>
+    <div className={styles.wrapper}>
       <div className={styles.musicImage}>
         <PlayerMusicImage />
       </div>

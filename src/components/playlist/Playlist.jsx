@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Loading from '../loading/Loading'
-import TrackItem from '../track/TrackItem'
+import TrackItem from '../trackItem/TrackItem'
 import styles from './Playlist.module.css'
 import PlayerStore from '../../mobx/PlayerStore'
 import { observer } from 'mobx-react-lite'
