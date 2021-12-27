@@ -21,7 +21,7 @@ const PlayerControls = ({ toggleAudio, nextTrack, prevTrack, playing }) => {
         icon={playing ? faPauseCircle : faPlayCircle}
         color="black"
       />
-      <div className={styles.controls}>
+      <div className={styles.rewindControls}>
         <FontAwesomeIcon
           className="clickable"
           style={{ fontSize: '1.5rem' }}

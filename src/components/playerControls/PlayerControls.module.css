@@ -7,7 +7,7 @@
   gap: 30px;
 }
 
-.controls {
+.rewindControls {
   display: flex;
   gap: 20px;
 }
@@ -17,10 +17,11 @@
 }
 
 @media (max-width: 730px) {
-  .controlsBox {
-    justify-content: center;
+  .wrapper {
+    width: 100%;
+    justify-content: space-around;
+    gap: 0;
   }
-
   .musicImage {
     display: block;
   }
