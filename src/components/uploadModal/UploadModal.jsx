@@ -3,7 +3,6 @@ import styles from './UploadModal.module.css'
 import UploadForm from '../uploadForm/UploadForm'
 
 const UploadModal = memo(function ({ modal, setModal }) {
-  // console.log('render modal')
   return (
     <div
       onClick={() => setModal(!modal)}

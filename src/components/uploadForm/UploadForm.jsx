@@ -12,9 +12,6 @@ const UploadForm = function ({ setModal }) {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [addTrack, { loading }] = useMutation(ADD_TRACK)
-  // const updateTitle = useCallback((newValue) => setTitle(newValue), [])
-
-  // console.log('render form')
 
   const handleFileChange = async (event) => {
     const selectedFile = await event.target.files[0]

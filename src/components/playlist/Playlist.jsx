@@ -21,7 +21,12 @@ const Playlist = observer(() => {
 
   if (error) return <ErorrBlock />
 
-  if (loading) return <Loading />
+  if (loading)
+    return (
+      <div className={styles.loaderWrapper}>
+        <Loading />
+      </div>
+    )
 
   return (
     <section className={styles.playlist}>

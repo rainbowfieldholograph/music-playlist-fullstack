@@ -9,6 +9,10 @@
   padding: 20px;
 }
 
+.loaderWrapper {
+  height: 40vh;
+}
+
 .title {
   font-weight: 600;
   font-size: 1.4rem;
