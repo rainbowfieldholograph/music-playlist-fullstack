@@ -19,11 +19,16 @@ const Playlist = observer(() => {
 
   const [modal, setModal] = useState(false)
 
-  if (error) return <ErorrBlock />
+  if (error)
+    return (
+      <div className={styles.notLoadedWrapper}>
+        <ErorrBlock />
+      </div>
+    )
 
   if (loading)
     return (
-      <div className={styles.loaderWrapper}>
+      <div className={styles.notLoadedWrapper}>
         <Loading />
       </div>
     )
