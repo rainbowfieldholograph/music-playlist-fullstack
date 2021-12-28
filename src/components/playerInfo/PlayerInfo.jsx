@@ -1,4 +1,5 @@
 import styles from './PlayerInfo.module.css'
+import { Slider } from '@material-ui/core'
 
 const calcTime = (seconds) => {
   const minutes = Math.floor(seconds / 60)
@@ -8,7 +9,7 @@ const calcTime = (seconds) => {
   return `${m}:${s}`
 }
 
-const PlayerInfo = ({ track, duration, currentTime, handleProgress }) => {
+const PlayerInfo = ({ track, duration, currentTime, handleProgress, canChangeTime }) => {
   return (
     <div className={styles.info}>
       <div className={styles.infoInnerBox}>
@@ -19,11 +20,18 @@ const PlayerInfo = ({ track, duration, currentTime, handleProgress }) => {
         <h3 className={styles.title}>{track?.author}</h3>
         <p>{calcTime(currentTime)}</p>
       </div>
-      <input
+      {/* <input
         className={styles.progressBar}
         type="range"
+        disabled={canChangeTime ? false : true}
         onChange={handleProgress}
         value={duration ? Math.round((currentTime * 100) / duration) : 0}
+      /> */}
+      <Slider
+        // style={{ color: useStyle.theme }}
+        // className={'playback-completed'}
+        value={duration ? Math.round((currentTime * 100) / duration) : 0}
+        onChange={handleProgress}
       />
     </div>
   )

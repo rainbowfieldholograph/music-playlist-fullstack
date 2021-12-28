@@ -29,13 +29,21 @@ const Player = observer(() => {
   useEffect(() => {
     if (currentTrack) {
       audio.src = currentTrack.src
-      audio.ontimeupdate = () => setCurrentTime(audio.currentTime)
+      audio.ontimeupdate = (event) => {
+        console.log('update', event)
+        if (canChangeTime) setCurrentTime(audio.currentTime)
+      }
+      // setInterval(() => {
+      //   console.log('upd')
+      //   setCurrentTime(audio.currentTime)
+      // })
       audio.onloadeddata = () => {
         canChangeTime = true
         setDuration(audio.duration)
       }
       audio.onended = () => {
         canChangeTime = false
+        console.log('end')
         handleEnd()
       }
       toggleAudio()
@@ -56,9 +64,10 @@ const Player = observer(() => {
     }
   }
 
-  const handleProgress = (event) => {
+  const handleProgress = (event, newValue) => {
+    console.log('clicked')
     if (canChangeTime) {
-      const timeCompute = (event.target.value * duration) / 100
+      const timeCompute = (newValue * duration) / 100
       audio.currentTime = timeCompute
       setCurrentTime(timeCompute)
     }
@@ -74,24 +83,23 @@ const Player = observer(() => {
 
   return (
     <div className={styles.player}>
-      <>
-        <PlayerControls
-          toggleAudio={toggleAudio}
-          nextTrack={nextTrack}
-          prevTrack={prevTrack}
-          playing={playing}
-        />
-        <div className={styles.musicImage}>
-          <PlayerMusicImage />
-        </div>
-        <PlayerInfo
-          track={currentTrack}
-          duration={duration}
-          currentTime={currentTime}
-          handleProgress={handleProgress}
-        />
-        <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
-      </>
+      <PlayerControls
+        toggleAudio={toggleAudio}
+        nextTrack={nextTrack}
+        prevTrack={prevTrack}
+        playing={playing}
+      />
+      <div className={styles.musicImage}>
+        <PlayerMusicImage />
+      </div>
+      <PlayerInfo
+        track={currentTrack}
+        duration={duration}
+        currentTime={currentTime}
+        handleProgress={handleProgress}
+        canChangeTime={canChangeTime}
+      />
+      <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
     </div>
   )
 })
