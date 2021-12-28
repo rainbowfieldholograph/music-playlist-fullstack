@@ -29,16 +29,11 @@ const Player = observer(() => {
   useEffect(() => {
     if (currentTrack) {
       audio.src = currentTrack.src
-      audio.ontimeupdate = (event) => {
-        console.log('update', event)
-        if (canChangeTime) setCurrentTime(audio.currentTime)
-      }
-      // setInterval(() => {
-      //   console.log('upd')
-      //   setCurrentTime(audio.currentTime)
-      // })
+      audio.ontimeupdate = () => setCurrentTime(audio.currentTime)
       audio.onloadeddata = () => {
-        canChangeTime = true
+        setTimeout(() => {
+          canChangeTime = true
+        }, 500)
         setDuration(audio.duration)
       }
       audio.onended = () => {
@@ -64,10 +59,9 @@ const Player = observer(() => {
     }
   }
 
-  const handleProgress = (event, newValue) => {
-    console.log('clicked')
+  const handleProgress = (event) => {
     if (canChangeTime) {
-      const timeCompute = (newValue * duration) / 100
+      const timeCompute = (event.target.value * duration) / 100
       audio.currentTime = timeCompute
       setCurrentTime(timeCompute)
     }
