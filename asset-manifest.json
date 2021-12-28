@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/music-playlist-fullstack/static/css/main.65f393c9.chunk.css",
-    "main.js": "/music-playlist-fullstack/static/js/main.7917425e.chunk.js",
-    "main.js.map": "/music-playlist-fullstack/static/js/main.7917425e.chunk.js.map",
+    "main.css": "/music-playlist-fullstack/static/css/main.b5ea0107.chunk.css",
+    "main.js": "/music-playlist-fullstack/static/js/main.30a1ddaa.chunk.js",
+    "main.js.map": "/music-playlist-fullstack/static/js/main.30a1ddaa.chunk.js.map",
     "runtime-main.js": "/music-playlist-fullstack/static/js/runtime-main.25cf2ba5.js",
     "runtime-main.js.map": "/music-playlist-fullstack/static/js/runtime-main.25cf2ba5.js.map",
     "static/js/2.7c4bde08.chunk.js": "/music-playlist-fullstack/static/js/2.7c4bde08.chunk.js",
     "static/js/2.7c4bde08.chunk.js.map": "/music-playlist-fullstack/static/js/2.7c4bde08.chunk.js.map",
     "index.html": "/music-playlist-fullstack/index.html",
-    "static/css/main.65f393c9.chunk.css.map": "/music-playlist-fullstack/static/css/main.65f393c9.chunk.css.map",
+    "static/css/main.b5ea0107.chunk.css.map": "/music-playlist-fullstack/static/css/main.b5ea0107.chunk.css.map",
     "static/js/2.7c4bde08.chunk.js.LICENSE.txt": "/music-playlist-fullstack/static/js/2.7c4bde08.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.25cf2ba5.js",
     "static/js/2.7c4bde08.chunk.js",
-    "static/css/main.65f393c9.chunk.css",
-    "static/js/main.7917425e.chunk.js"
+    "static/css/main.b5ea0107.chunk.css",
+    "static/js/main.30a1ddaa.chunk.js"
   ]
 }
