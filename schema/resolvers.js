@@ -32,7 +32,7 @@ const resolvers = {
     addTrack: async (parent, { title, author, file }) => {
       const { createReadStream, filename, mimetype } = await file
       if (!mimetype.includes('audio/')) {
-        console.log('please download audio file.')
+        console.log('file type not include "audio"')
         return new Error('please download audio file.')
       }
       const { ext } = path.parse(filename)
@@ -41,7 +41,6 @@ const resolvers = {
       const pathName = path.join(__dirname, `../public/audio/${randomName}`)
       const out = fs.createWriteStream(pathName)
       try {
-        // await stream.pipe(out)
         await pipeline(stream, out)
         const uploadedFile = await uploadFileAWS(pathName, randomName)
         const track = new Tracks({
@@ -50,6 +49,13 @@ const resolvers = {
           src: uploadedFile.Location,
         })
         const savedTrack = await track.save()
+        fs.unlink(pathName, function (error) {
+          if (error) {
+            console.log(error)
+          } else {
+            console.log('file deleted')
+          }
+        })
         return savedTrack
       } catch (error) {
         console.log(error)
