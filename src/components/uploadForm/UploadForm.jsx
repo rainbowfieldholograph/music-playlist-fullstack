@@ -40,10 +40,10 @@ const UploadForm = function ({ setModal }) {
 
   if (loading)
     return (
-      <div>
+      <>
+        <p className={styles.loadingTitle}>Uploading track. Please wait.</p>
         <Loading />
-        <p className={styles.uploadTitle}>Uploading track. Please wait.</p>
-      </div>
+      </>
     )
 
   return (
