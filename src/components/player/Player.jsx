@@ -33,7 +33,7 @@ const Player = observer(() => {
       audio.onloadeddata = () => {
         setTimeout(() => {
           canChangeTime = true
-        }, 500)
+        }, 200)
         setDuration(audio.duration)
       }
       audio.onended = () => {
