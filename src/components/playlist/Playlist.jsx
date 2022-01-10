@@ -2,21 +2,13 @@ import { useState } from 'react'
 import Loading from '../loading/Loading'
 import TrackItem from '../trackItem/TrackItem'
 import styles from './Playlist.module.css'
-import PlayerStore from '../../mobx/PlayerStore'
 import { observer } from 'mobx-react-lite'
 import UploadModal from '../uploadModal/UploadModal'
-import { useQuery } from '@apollo/client'
-import { GET_ALL_TRACKS } from '../../graphql/tracks/query'
 import ErorrBlock from '../errorBlock/ErorrBlock'
+import { useTracksFetching } from '../../hooks/useTracksFetching'
 
 const Playlist = observer(() => {
-  const { setTracks, tracks } = PlayerStore
-  const { loading, error } = useQuery(GET_ALL_TRACKS, {
-    onCompleted: ({ getAllTracks }) => {
-      setTracks(getAllTracks)
-    },
-  })
-
+  const { tracks, loading, error } = useTracksFetching()
   const [modal, setModal] = useState(false)
 
   if (error)
