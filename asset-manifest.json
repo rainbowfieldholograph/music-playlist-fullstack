@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/music-playlist-fullstack/static/css/main.3e81c8b1.chunk.css",
-    "main.js": "/music-playlist-fullstack/static/js/main.b85e7d67.chunk.js",
-    "main.js.map": "/music-playlist-fullstack/static/js/main.b85e7d67.chunk.js.map",
+    "main.js": "/music-playlist-fullstack/static/js/main.de1ac3e0.chunk.js",
+    "main.js.map": "/music-playlist-fullstack/static/js/main.de1ac3e0.chunk.js.map",
     "runtime-main.js": "/music-playlist-fullstack/static/js/runtime-main.25cf2ba5.js",
     "runtime-main.js.map": "/music-playlist-fullstack/static/js/runtime-main.25cf2ba5.js.map",
     "static/js/2.dab649be.chunk.js": "/music-playlist-fullstack/static/js/2.dab649be.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.25cf2ba5.js",
     "static/js/2.dab649be.chunk.js",
     "static/css/main.3e81c8b1.chunk.css",
-    "static/js/main.b85e7d67.chunk.js"
+    "static/js/main.de1ac3e0.chunk.js"
   ]
 }
