@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "readme-md-generator": "^1.0.0"
   }
 }
