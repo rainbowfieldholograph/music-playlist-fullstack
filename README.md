@@ -11,17 +11,29 @@ Beta version.
 
 Fullstack приложение для прослушивания/добавления треков. Стек технологий:
 
--React -Create react app -MobX -Apollo client
+<h3>Frontend</h3>
+<ul>
+  <li>React</li>
+  <li>Create react app</li>
+  <li>MobX</li>
+  <li>Apollo client</li>
+</ul>
 
--MongoDB -NodeJS -Express -GraphQL -Apollo server -S3 buckets
+<h3>Backend</h3>
+<ul>
+  <li>MongoDB</li>
+  <li>NodeJS</li>
+  <li>Express</li>
+  <li>GraphQL</li>
+  <li>Apollo server</li>
+  <li>S3 buckets</li>
+</ul>
 
 Фронтенд задеплоен на github pages. Сервер на heroku.
 
 Имеется мобильная версия layout'а.
 
 Проект в процессе допиливания.
-
-todo list: -возможность создать свой аккаунт -удаление/редактирование треков -пофиксить some bugs x) -code cleanup -найти другое хранилище для файлов (бесплатное xd)
 
 ### 🏠 [Homepage](https://rainbowfieldholograph.github.io/music-playlist-fullstack/)
 
