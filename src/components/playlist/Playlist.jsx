@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import UploadModal from '../uploadModal/UploadModal'
 import ErorrBlock from '../errorBlock/ErorrBlock'
 import { useTracksFetching } from '../../hooks/useTracksFetching'
+import FullHeightBlock from '../fullHeightBlock/FullHeightBlock'
 
 const Playlist = observer(() => {
   const { tracks, loading, error } = useTracksFetching()
@@ -13,16 +14,16 @@ const Playlist = observer(() => {
 
   if (error)
     return (
-      <div className={styles.notLoadedWrapper}>
+      <FullHeightBlock>
         <ErorrBlock />
-      </div>
+      </FullHeightBlock>
     )
 
   if (loading)
     return (
-      <div className={styles.notLoadedWrapper}>
+      <FullHeightBlock>
         <Loading />
-      </div>
+      </FullHeightBlock>
     )
 
   return (

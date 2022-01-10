@@ -9,10 +9,6 @@
   padding: 20px;
 }
 
-.notLoadedWrapper {
-  height: calc(100vh - (var(--container-padding-block) + var(--container-margin-block)) * 2);
-}
-
 .title {
   font-weight: 600;
   font-size: 1.4rem;
