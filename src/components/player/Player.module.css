@@ -22,7 +22,8 @@
     margin-top: 0px;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 10px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     gap: 5px;
   }
 
