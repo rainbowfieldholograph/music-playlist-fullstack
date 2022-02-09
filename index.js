@@ -32,6 +32,6 @@ const startServer = async () => {
 
 const dbConnection = mongoose.connection
 dbConnection.on('error', (err) => console.log(`Connection error: ${err}`))
-dbConnection.once('open', () => console.log('Connected to DB!'))
+dbConnection.once('open', () => console.log('Connected to DB'))
 
 startServer()

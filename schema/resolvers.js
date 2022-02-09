@@ -33,7 +33,7 @@ const resolvers = {
       const { createReadStream, filename, mimetype } = await file
       if (!mimetype.includes('audio/')) {
         console.log('file type not include "audio"')
-        return new Error('please download audio file.')
+        return new Error('Please download audio file.')
       }
       const { ext } = path.parse(filename)
       const randomName = generateRandomString(12) + ext
