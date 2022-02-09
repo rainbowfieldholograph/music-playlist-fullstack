@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/music-playlist-fullstack/static/css/main.926779ce.chunk.css",
-    "main.js": "/music-playlist-fullstack/static/js/main.531262a3.chunk.js",
-    "main.js.map": "/music-playlist-fullstack/static/js/main.531262a3.chunk.js.map",
+    "main.css": "/music-playlist-fullstack/static/css/main.a0f55982.chunk.css",
+    "main.js": "/music-playlist-fullstack/static/js/main.1b141429.chunk.js",
+    "main.js.map": "/music-playlist-fullstack/static/js/main.1b141429.chunk.js.map",
     "runtime-main.js": "/music-playlist-fullstack/static/js/runtime-main.25cf2ba5.js",
     "runtime-main.js.map": "/music-playlist-fullstack/static/js/runtime-main.25cf2ba5.js.map",
-    "static/js/2.a3fe9dc8.chunk.js": "/music-playlist-fullstack/static/js/2.a3fe9dc8.chunk.js",
-    "static/js/2.a3fe9dc8.chunk.js.map": "/music-playlist-fullstack/static/js/2.a3fe9dc8.chunk.js.map",
+    "static/js/2.241578c4.chunk.js": "/music-playlist-fullstack/static/js/2.241578c4.chunk.js",
+    "static/js/2.241578c4.chunk.js.map": "/music-playlist-fullstack/static/js/2.241578c4.chunk.js.map",
     "index.html": "/music-playlist-fullstack/index.html",
-    "static/css/main.926779ce.chunk.css.map": "/music-playlist-fullstack/static/css/main.926779ce.chunk.css.map",
-    "static/js/2.a3fe9dc8.chunk.js.LICENSE.txt": "/music-playlist-fullstack/static/js/2.a3fe9dc8.chunk.js.LICENSE.txt"
+    "static/css/main.a0f55982.chunk.css.map": "/music-playlist-fullstack/static/css/main.a0f55982.chunk.css.map",
+    "static/js/2.241578c4.chunk.js.LICENSE.txt": "/music-playlist-fullstack/static/js/2.241578c4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.25cf2ba5.js",
-    "static/js/2.a3fe9dc8.chunk.js",
-    "static/css/main.926779ce.chunk.css",
-    "static/js/main.531262a3.chunk.js"
+    "static/js/2.241578c4.chunk.js",
+    "static/css/main.a0f55982.chunk.css",
+    "static/js/main.1b141429.chunk.js"
   ]
 }
