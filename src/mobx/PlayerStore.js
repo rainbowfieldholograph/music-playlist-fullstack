@@ -8,7 +8,7 @@ class PlayerStore {
   volume = 1
   currentTime = 0
   duration = 0
-  url = `${process.env.REACT_APP_SERVER_URL}/graphql`
+  url = `${import.meta.env.VITE_SERVER_URL}/graphql`
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true })
