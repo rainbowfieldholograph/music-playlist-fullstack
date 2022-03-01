@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import styles from './UploadForm.module.css'
-import Loading from '../loading/Loading'
 import { ADD_TRACK } from '../../graphql/tracks/mutation'
 import PlayerStore from '../../mobx/PlayerStore'
-import FormInput from '../formInput/FormInput'
+import { FormInput } from '../formInput/FormInput'
+import { Loading } from '../loading/Loading'
 
 const UploadForm = function ({ setModal }) {
   const { addToTracks } = PlayerStore

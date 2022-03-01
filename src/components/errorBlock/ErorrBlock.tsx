@@ -1,12 +1,9 @@
-import React from 'react'
 import styles from './ErrorBlock.module.css'
 
-const ErorrBlock = () => {
+export const ErorrBlock = (): JSX.Element => {
   return (
     <div>
       <p className={styles.title}>Connection Error</p>
     </div>
   )
 }
-
-export default ErorrBlock

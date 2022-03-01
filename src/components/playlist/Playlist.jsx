@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import Loading from '../loading/Loading'
 import TrackItem from '../trackItem/TrackItem'
 import styles from './Playlist.module.css'
 import { observer } from 'mobx-react-lite'
 import UploadModal from '../uploadModal/UploadModal'
-import ErorrBlock from '../errorBlock/ErorrBlock'
 import { useTracksFetching } from '../../hooks/useTracksFetching'
-import FullHeightBlock from '../fullHeightBlock/FullHeightBlock'
+import { ErorrBlock } from '../errorBlock/ErorrBlock'
+import { FullHeightBlock } from '../fullHeightBlock/FullHeightBlock'
+import { Loading } from '../loading/Loading'
 
 const Playlist = observer(() => {
   const { tracks, loading, error } = useTracksFetching()

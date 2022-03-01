@@ -1,11 +1,9 @@
 import styles from './Loading.module.css'
 
-const Loading = () => {
+export const Loading = (): JSX.Element => {
   return (
     <div className={styles.loadingWrapper}>
       <div className={styles.loading} />
     </div>
   )
 }
-
-export default Loading

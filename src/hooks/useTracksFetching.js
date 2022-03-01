@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { useState } from 'react'
+import { currentTrackIdVar } from '../graphql/apollo/apollo'
 import { GET_ALL_TRACKS } from '../graphql/tracks/query'
 import PlayerStore from '../mobx/PlayerStore'
 
