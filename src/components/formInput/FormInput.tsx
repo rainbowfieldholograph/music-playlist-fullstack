@@ -1,23 +1,28 @@
+import clsx from 'clsx'
 import { memo } from 'react'
 import styles from './FormInput.module.css'
 import { FormInputProps } from './FormInput.props'
 
 export const FormInput = memo(
-  ({ inputState, setInputState, label, id }: FormInputProps): JSX.Element => {
+  ({
+    inputState,
+    setInputState,
+    labelText,
+    className,
+    ...rest
+  }: FormInputProps): JSX.Element => {
     return (
-      <>
-        <label htmlFor={id}>
-          <h3>{label}</h3>
-        </label>
+      <label>
+        <h3>{labelText}</h3>
         <input
-          id={id}
           required
-          className={styles.input}
+          className={clsx(styles.input, className)}
           value={inputState}
           onChange={(event) => setInputState(event.target.value)}
           type="text"
+          {...rest}
         />
-      </>
+      </label>
     )
   }
 )

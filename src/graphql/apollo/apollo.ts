@@ -1,27 +1,48 @@
-import {
-  ApolloClient,
-  gql,
-  InMemoryCache,
-  makeVar,
-  NormalizedCacheObject,
-} from '@apollo/client'
+import { ApolloClient, InMemoryCache, NormalizedCacheObject, makeVar } from '@apollo/client'
 import { createUploadLink } from 'apollo-upload-client'
+import { ITrack } from '../../interfaces/track.interface'
 
-export const typeDefs = gql`
-  extend type Query {
-    currentTrackId: Int
-  }
-`
+export type CurrentTrack = ITrack | null
+export type IsPlaying = boolean
+export type Volume = number
+export type CurrentTime = number
+export type Duration = number
 
-export const currentTrackIdVar = makeVar<Number | null>(null)
+export const currentTrackVar = makeVar<CurrentTrack>(null)
+export const isPlayingVar = makeVar<IsPlaying>(false)
+export const volumeVar = makeVar<Volume>(1.0)
+export const currentTimeVar = makeVar<CurrentTime>(0)
+export const durationVar = makeVar<Duration>(0)
 
-const uriPath = `${import.meta.env.VITE_SERVER_URL}/graphql`
-const uploadLink = createUploadLink({ uri: uriPath })
+const uri = `${import.meta.env.VITE_SERVER_URL}/graphql`
+const link = createUploadLink({ uri })
+const cache: InMemoryCache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        currentTrack: {
+          read: () => currentTrackVar(),
+        },
+        isPlaying: {
+          read: () => isPlayingVar(),
+        },
+        volume: {
+          read: () => volumeVar(),
+        },
+        currentTime: {
+          read: () => currentTimeVar(),
+        },
+        duration: {
+          read: () => durationVar(),
+        },
+      },
+    },
+  },
+})
 
 const client = new ApolloClient<NormalizedCacheObject>({
-  link: uploadLink,
-  cache: new InMemoryCache(),
-  typeDefs: typeDefs,
+  link,
+  cache,
 })
 
 export default client

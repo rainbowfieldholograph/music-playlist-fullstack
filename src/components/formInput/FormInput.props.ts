@@ -1,8 +1,8 @@
-import { ChangeEventHandler } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes } from 'react'
 
-export interface FormInputProps {
+export interface FormInputProps
+  extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   inputState: string
   setInputState: (value: string) => void
-  label: string
-  id: string
+  labelText: string
 }
