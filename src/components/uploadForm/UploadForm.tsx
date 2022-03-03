@@ -18,7 +18,7 @@ export const UploadForm = function ({ setModal }: UploadFormProps) {
     if (selectedFile.type.includes('audio/')) {
       setFile(selectedFile)
     } else {
-      alert('выберите audio/mpeg файл')
+      alert('select audio/mpeg file')
     }
   }
 
@@ -35,7 +35,7 @@ export const UploadForm = function ({ setModal }: UploadFormProps) {
       setTitle('')
     } catch (error) {
       alert('Failed to upload track to server')
-      console.log('upload failed: ', error)
+      console.log('Upload failed: ', error)
     }
   }
 

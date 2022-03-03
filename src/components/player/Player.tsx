@@ -79,7 +79,6 @@ export const Player = (): JSX.Element | null => {
   }
 
   const handleProgress = (event: any) => {
-    console.log('handle')
     if (canChangeTime) {
       const timeCompute = (event.target.value * duration) / 100
       audio.currentTime = timeCompute
