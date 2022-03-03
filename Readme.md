@@ -23,7 +23,7 @@ Fullstack приложение для прослушивания/добавле�
   <li>Express</li>
   <li>GraphQL</li>
   <li>Apollo server</li>
-  <li>S3 buckets</li>
+  <li>AWS S3 buckets</li>
 </ul>
 
 Frontend задеплоен на Github Pages, а backend на Heroku.
