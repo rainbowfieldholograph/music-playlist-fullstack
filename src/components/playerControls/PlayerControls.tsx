@@ -6,7 +6,6 @@ import {
   faStepForward,
   faPauseCircle,
 } from '@fortawesome/free-solid-svg-icons'
-// import PlayerMusicImage from '../playerMusicImage/PlayerMusicImage'
 import { PlayerControlsProps } from './PlayerControls.props'
 import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage'
 
@@ -34,14 +33,14 @@ const PlayerControls = ({
           style={{ fontSize: '1.5rem' }}
           icon={faStepBackward}
           color="black"
-          onClick={() => prevTrack}
+          onClick={() => prevTrack()}
         />
         <FontAwesomeIcon
           className="clickable"
           style={{ fontSize: '1.5rem' }}
           icon={faStepForward}
           color="black"
-          onClick={() => nextTrack}
+          onClick={() => nextTrack()}
         />
       </div>
     </div>

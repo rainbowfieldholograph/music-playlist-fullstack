@@ -22,8 +22,8 @@ export const PlayerInfo = ({
       <input
         className={styles.progressBar}
         type="range"
-        disabled={canChangeTime ? false : true}
-        onChange={() => handleProgress}
+        disabled={!canChangeTime}
+        onChange={handleProgress}
         value={duration ? Math.round((currentTime * 100) / duration) : 0}
       />
     </div>

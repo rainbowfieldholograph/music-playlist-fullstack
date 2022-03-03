@@ -7,133 +7,115 @@ import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query'
 import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage'
 import { PlayerInfo } from '../playerInfo/PlayerInfo'
 import {
-  CurrentTrack,
+  currentTimeVar,
   currentTrackVar,
-  Duration,
   durationVar,
+  isPlayingVar,
+  volumeVar,
 } from '../../graphql/apollo/apollo'
+import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface'
 
 let audio = new Audio()
 let canChangeTime = true
+const DISABLE_TIME = 200 //ms
 
 export const Player = (): JSX.Element | null => {
   const duration = useReactiveVar(durationVar)
-  console.log(duration)
+  const currentTrack = useReactiveVar(currentTrackVar)
+  const currentTime = useReactiveVar(currentTimeVar)
+  const isPlaying = useReactiveVar(isPlayingVar)
+  const volume = useReactiveVar(volumeVar)
+  const { data } = useQuery<IGetAllTracks>(GET_ALL_TRACKS)
+  const tracks = data?.getAllTracks
 
   const prevTrack = () => {
-    console.log('prev')
-    // const currentIndex = this.tracks.indexOf(this.currentTrack)
-    // currentIndex === 0
-    //   ? this.setCurrentTrack(this.tracks[this.tracks.length - 1])
-    //   : this.setCurrentTrack(this.tracks[currentIndex - 1])
+    if (!tracks || !currentTrack) return
+    const currentIndex = tracks.indexOf(currentTrack)
+    currentIndex === 0
+      ? currentTrackVar(tracks[tracks.length - 1])
+      : currentTrackVar(tracks[currentIndex - 1])
   }
 
   const nextTrack = () => {
-    console.log('next')
-    // const currentIndex = this.tracks.indexOf(this.currentTrack)
-    // currentIndex === this.tracks.length - 1
-    //   ? this.setCurrentTrack(this.tracks[0])
-    //   : this.setCurrentTrack(this.tracks[currentIndex + 1])
+    if (!tracks || !currentTrack) return
+    const currentIndex = tracks.indexOf(currentTrack)
+    currentIndex === tracks.length - 1
+      ? currentTrackVar(tracks[0])
+      : currentTrackVar(tracks[currentIndex + 1])
   }
 
-  const handleEnd = () => {
-    nextTrack()
+  const handleEnd = () => nextTrack()
+
+  useEffect(() => {
+    if (currentTrack) {
+      audio.src = currentTrack.src
+      audio.ontimeupdate = () => currentTimeVar(audio.currentTime)
+      audio.onloadeddata = () => {
+        setTimeout(() => {
+          canChangeTime = true
+        }, DISABLE_TIME)
+        durationVar(audio.duration)
+      }
+      audio.onended = () => {
+        canChangeTime = false
+        handleEnd()
+      }
+      toggleAudio()
+    }
+  }, [currentTrack])
+
+  const toggleAudio = async () => {
+    if (audio.paused) {
+      isPlayingVar(true)
+      try {
+        await audio.play()
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      isPlayingVar(false)
+      audio.pause()
+    }
   }
 
-  // return <div onClick={() => durationVar(duration + 1)}>{duration}</div>
+  const handleProgress = (event: any) => {
+    console.log('handle')
+    if (canChangeTime) {
+      const timeCompute = (event.target.value * duration) / 100
+      audio.currentTime = timeCompute
+      currentTimeVar(timeCompute)
+    }
+  }
 
-  return null
+  const handleVolume = (event: any) => {
+    const volumeCompute = event.target.value / 100
+    volumeVar(volumeCompute)
+    audio.volume = volumeCompute
+  }
 
-  // const {
-  //   data: { currentTrackId },
-  // } = useQuery(GET_CURRENT_TRACK_ID)
-  // const { data, loading } = useQuery(GET_ALL_TRACKS)
-  // const {
-  //   data: { duration },
-  // } = useQuery(GET_DURATION)
-  // const {
-  //   data: { isPlaying },
-  // } = useQuery(IS_PLAYING)
-  // const {
-  //   data: { volume },
-  // } = useQuery(GET_VOLUME)
-  // const {
-  //   data: { currentTime },
-  // } = useQuery(GET_CURRENT_TIME)
+  if (!currentTrack) return null
 
-  // const allTrack = data?.getAllTracks
-
-  // const currentTrack = allTrack?.filter((track: any) => track.id === currentTrackId)
-
-  // useEffect(() => {
-  //   if (currentTrack) {
-  //     audio.src = currentTrack.src
-  //     audio.ontimeupdate = () => currentTimeVar(audio.currentTime)
-  //     audio.onloadeddata = () => {
-  //       setTimeout(() => {
-  //         canChangeTime = true
-  //       }, 200)
-  //       durationVar(audio.duration)
-  //     }
-  //     audio.onended = () => {
-  //       canChangeTime = false
-  //       handleEnd()
-  //     }
-  //     toggleAudio()
-  //   }
-  // }, [currentTrack])
-
-  // const toggleAudio = async () => {
-  //   if (audio.paused) {
-  //     isPlayingVar(true)
-  //     try {
-  //       await audio.play()
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   } else {
-  //     isPlayingVar(false)
-  //     audio.pause()
-  //   }
-  // }
-
-  // const handleProgress = (event: any) => {
-  //   if (canChangeTime) {
-  //     const timeCompute = (event.target.value * duration) / 100
-  //     audio.currentTime = timeCompute
-  //     currentTimeVar(timeCompute)
-  //   }
-  // }
-
-  // const handleVolume = (event: any) => {
-  //   const volumeCompute = event.target.value / 100
-  //   volumeVar(volumeCompute)
-  //   audio.volume = volumeCompute
-  // }
-
-  // if (!currentTrack) return null
-
-  // return (
-  //   <div className={styles.player}>
-  //     <PlayerControls
-  //       toggleAudio={toggleAudio}
-  //       nextTrack={nextTrack}
-  //       prevTrack={prevTrack}
-  //       playing={isPlaying}
-  //     />
-  //     <div className={styles.musicImage}>
-  //       <PlayerMusicImage />
-  //     </div>
-  //     <PlayerInfo
-  //       track={currentTrack}
-  //       duration={duration}
-  //       currentTime={currentTime}
-  //       handleProgress={handleProgress}
-  //       canChangeTime={canChangeTime}
-  //     />
-  //     <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
-  //   </div>
-  // )
+  return (
+    <div className={styles.player}>
+      <PlayerControls
+        toggleAudio={toggleAudio}
+        nextTrack={nextTrack}
+        prevTrack={prevTrack}
+        playing={isPlaying}
+      />
+      <div className={styles.musicImage}>
+        <PlayerMusicImage />
+      </div>
+      <PlayerInfo
+        track={currentTrack}
+        duration={duration}
+        currentTime={currentTime}
+        handleProgress={handleProgress}
+        canChangeTime={canChangeTime}
+      />
+      <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
+    </div>
+  )
 }
 
 /* <FontAwesomeIcon
