@@ -16,29 +16,7 @@ export const durationVar = makeVar<Duration>(0)
 
 const uri = `${import.meta.env.VITE_SERVER_URL}/graphql`
 const link = createUploadLink({ uri })
-const cache: InMemoryCache = new InMemoryCache({
-  typePolicies: {
-    Query: {
-      fields: {
-        currentTrack: {
-          read: () => currentTrackVar(),
-        },
-        isPlaying: {
-          read: () => isPlayingVar(),
-        },
-        volume: {
-          read: () => volumeVar(),
-        },
-        currentTime: {
-          read: () => currentTimeVar(),
-        },
-        duration: {
-          read: () => durationVar(),
-        },
-      },
-    },
-  },
-})
+const cache: InMemoryCache = new InMemoryCache()
 
 const client = new ApolloClient<NormalizedCacheObject>({
   link,

@@ -6,15 +6,19 @@ import { useQuery, useReactiveVar } from '@apollo/client'
 import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query'
 import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage'
 import { PlayerInfo } from '../playerInfo/PlayerInfo'
-import { CurrentTrack, currentTrackVar } from '../../graphql/apollo/apollo'
+import {
+  CurrentTrack,
+  currentTrackVar,
+  Duration,
+  durationVar,
+} from '../../graphql/apollo/apollo'
 
 let audio = new Audio()
 let canChangeTime = true
 
-const Player = (): JSX.Element | null => {
-  const playerState = useReactiveVar<CurrentTrack>(currentTrackVar)
-  // console.log('pl state', playerStateVar({ ...playerStateVar(), duration: 10 }))
-  // console.log('znxc', { ...playerStateVar(), duration: 20 })
+export const Player = (): JSX.Element | null => {
+  const duration = useReactiveVar(durationVar)
+  console.log(duration)
 
   const prevTrack = () => {
     console.log('prev')
@@ -36,7 +40,9 @@ const Player = (): JSX.Element | null => {
     nextTrack()
   }
 
-  return <div></div>
+  // return <div onClick={() => durationVar(duration + 1)}>{duration}</div>
+
+  return null
 
   // const {
   //   data: { currentTrackId },
@@ -144,5 +150,3 @@ const Player = (): JSX.Element | null => {
         icon={faRedo}
         onClick={toggleRepeat}
       /> */
-
-export default Player

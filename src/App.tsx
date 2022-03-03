@@ -1,7 +1,7 @@
 import './globalStyles.css'
 import './defaultStyles.css'
-import Player from './components/player/Player'
 import Playlist from './components/playlist/Playlist'
+import { Player } from './components/player/Player'
 
 const App = (): JSX.Element => {
   return (
