@@ -22,7 +22,7 @@ const PlayerControls = ({
       </div>
       <FontAwesomeIcon
         className="clickable"
-        onClick={() => toggleAudio}
+        onClick={() => toggleAudio()}
         style={{ fontSize: '2.5rem' }}
         icon={playing ? faPauseCircle : faPlayCircle}
         color="black"
