@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, EventHandler, useEffect } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 import styles from './Player.module.css'
 import PlayerControls from '../playerControls/PlayerControls'
 import PlayerVolume from '../playerVolume/PlayerVolume'
@@ -18,6 +18,7 @@ import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface'
 let audio = new Audio()
 let canChangeTime = true
 const DISABLE_TIME = 200 //ms
+const REWIND_STEP = 3
 
 export const Player = (): JSX.Element | null => {
   const duration = useReactiveVar(durationVar)
@@ -27,6 +28,29 @@ export const Player = (): JSX.Element | null => {
   const volume = useReactiveVar(volumeVar)
   const { data } = useQuery<IGetAllTracks>(GET_ALL_TRACKS)
   const tracks = data?.getAllTracks
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (!audio.src) return
+    switch (event.code) {
+      // case 'ArrowRight':
+      //   event.preventDefault()
+      //   audio.currentTime = audio.currentTime + REWIND_STEP
+      //   break
+      // case 'ArrowLeft':
+      //   event.preventDefault()
+      //   audio.currentTime = audio.currentTime - REWIND_STEP
+      //   break
+      case 'Space':
+        event.preventDefault()
+        toggleAudio()
+        break
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   const prevTrack = () => {
     if (!tracks || !currentTrack) return

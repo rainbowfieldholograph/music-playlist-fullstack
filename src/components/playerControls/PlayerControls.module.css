@@ -21,7 +21,7 @@
   height: 45px;
 }
 
-.button:focus,
+.button:focus-visible,
 .button:hover {
   opacity: 0.5;
 }
