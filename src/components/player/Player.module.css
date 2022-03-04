@@ -17,7 +17,7 @@
   background-color: #fff;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 760px) {
   .player {
     margin-top: 0px;
     flex-wrap: wrap;

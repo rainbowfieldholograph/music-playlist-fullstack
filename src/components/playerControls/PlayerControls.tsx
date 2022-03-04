@@ -20,28 +20,20 @@ const PlayerControls = ({
       <div className={styles.musicImage}>
         <PlayerMusicImage />
       </div>
-      <FontAwesomeIcon
-        className="clickable"
-        onClick={() => toggleAudio()}
-        style={{ fontSize: '2.5rem' }}
-        icon={playing ? faPauseCircle : faPlayCircle}
-        color="black"
-      />
+      <button className={styles.button} onClick={() => toggleAudio()}>
+        <FontAwesomeIcon
+          size="3x"
+          icon={playing ? faPauseCircle : faPlayCircle}
+          color="black"
+        />
+      </button>
       <div className={styles.rewindControls}>
-        <FontAwesomeIcon
-          className="clickable"
-          style={{ fontSize: '1.5rem' }}
-          icon={faStepBackward}
-          color="black"
-          onClick={() => prevTrack()}
-        />
-        <FontAwesomeIcon
-          className="clickable"
-          style={{ fontSize: '1.5rem' }}
-          icon={faStepForward}
-          color="black"
-          onClick={() => nextTrack()}
-        />
+        <button className={styles.button} onClick={() => prevTrack()}>
+          <FontAwesomeIcon size="2x" icon={faStepBackward} color="black" />
+        </button>
+        <button className={styles.button} onClick={() => nextTrack()}>
+          <FontAwesomeIcon size="2x" icon={faStepForward} color="black" />
+        </button>
       </div>
     </div>
   )

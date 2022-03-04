@@ -10,16 +10,6 @@
   box-sizing: border-box;
 }
 
-:focus,
-:active {
-  outline: none;
-}
-
-a:focus,
-a:active {
-  outline: none;
-}
-
 nav,
 footer,
 header,
@@ -73,4 +63,8 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+button {
+  background-color: transparent;
 }

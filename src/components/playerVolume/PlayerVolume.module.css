@@ -11,7 +11,7 @@
   font-size: 1.2em;
 }
 
-@media (max-width: 730px) {
+@media (max-width: 760px) {
   .box {
     width: 100%;
     justify-content: center;
