@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { ChangeEvent, ChangeEventHandler, EventHandler, useEffect } from 'react'
 import styles from './Player.module.css'
 import PlayerControls from '../playerControls/PlayerControls'
 import PlayerVolume from '../playerVolume/PlayerVolume'
@@ -78,16 +78,18 @@ export const Player = (): JSX.Element | null => {
     }
   }
 
-  const handleProgress = (event: any) => {
+  const handleProgress = (event: ChangeEvent<HTMLInputElement>) => {
+    const target = +event.target.value
     if (canChangeTime) {
-      const timeCompute = (event.target.value * duration) / 100
+      const timeCompute = (target * duration) / 100
       audio.currentTime = timeCompute
       currentTimeVar(timeCompute)
     }
   }
 
-  const handleVolume = (event: any) => {
-    const volumeCompute = event.target.value / 100
+  const handleVolume = (event: ChangeEvent<HTMLInputElement>) => {
+    const target = +event.target.value
+    const volumeCompute = target / 100
     volumeVar(volumeCompute)
     audio.volume = volumeCompute
   }
