@@ -20,6 +20,12 @@
   margin-bottom: 1em;
 }
 
+.uploadModal {
+  padding: 1rem;
+  max-width: 500px;
+  width: 100%;
+}
+
 .btn {
   padding: 1em;
   background-color: white;

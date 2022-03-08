@@ -9,6 +9,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   word-break: break-word;
+  min-width: 300px;
+  min-height: 250px;
 }
 
 .overlay {

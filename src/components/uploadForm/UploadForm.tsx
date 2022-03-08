@@ -25,13 +25,10 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
   const onSubmitUpload: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await addTrack({
+      await addTrack({
         variables: { title: title, author: author, file: file },
         refetchQueries: [{ query: GET_ALL_TRACKS }],
       });
-      // const newTrack = data?.addTrack;
-      // addToTracks(newTrack)
-      // console.log(newTrack);
       onSubmit();
       setAuthor('');
       setTitle('');
