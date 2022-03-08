@@ -1,43 +1,45 @@
-import { ChangeEvent, FormEventHandler, useState } from 'react'
-import { useMutation } from '@apollo/client'
-import styles from './UploadForm.module.css'
-import { ADD_TRACK } from '../../graphql/mutations/addTrack.mutation'
-import { FormInput } from '../formInput/FormInput'
-import { Loading } from '../loading/Loading'
-import { UploadFormProps } from './UplodaForm.props'
-import { Button } from '../button/Button'
-import { IAddTrack } from '../../graphql/mutations/addTrack.interface'
+import { ChangeEvent, FormEventHandler, useState } from 'react';
+import { useMutation } from '@apollo/client';
+import styles from './UploadForm.module.css';
+import { ADD_TRACK } from '../../graphql/mutations/addTrack.mutation';
+import { FormInput } from '../formInput/FormInput';
+import { Loading } from '../loading/Loading';
+import { UploadFormProps } from './UplodaForm.props';
+import { Button } from '../button/Button';
+import { IAddTrack } from '../../graphql/mutations/addTrack.interface';
+import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
 
 export const UploadForm = ({ onSubmit }: UploadFormProps) => {
-  const [file, setFile] = useState<File | null>(null)
-  const [title, setTitle] = useState<string>('')
-  const [author, setAuthor] = useState<string>('')
-  const [addTrack, { loading }] = useMutation<IAddTrack>(ADD_TRACK)
+  const [file, setFile] = useState<File | null>(null);
+  const [title, setTitle] = useState<string>('');
+  const [author, setAuthor] = useState<string>('');
+  const [addTrack, { loading }] = useMutation<IAddTrack>(ADD_TRACK);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0]
+    const selectedFile = event.target.files?.[0];
     selectedFile && selectedFile.type.includes('audio/')
       ? setFile(selectedFile)
-      : alert('Select audio/mpeg file')
-  }
+      : alert('Select audio/mpeg file');
+  };
 
   const onSubmitUpload: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
       const { data } = await addTrack({
         variables: { title: title, author: author, file: file },
-      })
-      const newTrack = data?.addTrack
+        refetchQueries: [{ query: GET_ALL_TRACKS }],
+      });
+      // const newTrack = data?.addTrack;
       // addToTracks(newTrack)
-      console.log(newTrack)
-      onSubmit()
-      setAuthor('')
-      setTitle('')
+      // console.log(newTrack);
+      onSubmit();
+      setAuthor('');
+      setTitle('');
     } catch (error) {
-      alert('An error occurred while uploading the track to the server')
-      console.log('Upload failed: ', error)
+      alert('An error occurred while uploading the track to the server');
+      console.log('Upload failed: ', error);
     }
-  }
+  };
 
   if (loading)
     return (
@@ -45,7 +47,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
         <p className={styles.loadingTitle}>Uploading track. Please wait.</p>
         <Loading />
       </>
-    )
+    );
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
@@ -60,5 +62,5 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
         Upload Track
       </Button>
     </form>
-  )
-}
+  );
+};

@@ -1,36 +1,36 @@
-import { ChangeEvent, useEffect } from 'react'
-import styles from './Player.module.css'
-import PlayerControls from '../playerControls/PlayerControls'
-import PlayerVolume from '../playerVolume/PlayerVolume'
-import { useQuery, useReactiveVar } from '@apollo/client'
-import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query'
-import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage'
-import { PlayerInfo } from '../playerInfo/PlayerInfo'
+import { ChangeEvent, useEffect } from 'react';
+import styles from './Player.module.css';
+import PlayerControls from '../playerControls/PlayerControls';
+import PlayerVolume from '../playerVolume/PlayerVolume';
+import { useQuery, useReactiveVar } from '@apollo/client';
+import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
+import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage';
+import { PlayerInfo } from '../playerInfo/PlayerInfo';
 import {
   currentTimeVar,
   currentTrackVar,
   durationVar,
   isPlayingVar,
   volumeVar,
-} from '../../graphql/apollo/apollo'
-import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface'
+} from '../../graphql/apollo/apollo';
+import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface';
 
-let audio = new Audio()
-let canChangeTime = true
-const DISABLE_TIME = 200 //ms
-const REWIND_STEP = 3
+let audio = new Audio();
+let canChangeTime = true;
+const DISABLE_TIME = 200; //ms
+// const REWIND_STEP = 3
 
 export const Player = (): JSX.Element | null => {
-  const duration = useReactiveVar(durationVar)
-  const currentTrack = useReactiveVar(currentTrackVar)
-  const currentTime = useReactiveVar(currentTimeVar)
-  const isPlaying = useReactiveVar(isPlayingVar)
-  const volume = useReactiveVar(volumeVar)
-  const { data } = useQuery<IGetAllTracks>(GET_ALL_TRACKS)
-  const tracks = data?.getAllTracks
+  const duration = useReactiveVar(durationVar);
+  const currentTrack = useReactiveVar(currentTrackVar);
+  const currentTime = useReactiveVar(currentTimeVar);
+  const isPlaying = useReactiveVar(isPlayingVar);
+  const volume = useReactiveVar(volumeVar);
+  const { data } = useQuery<IGetAllTracks>(GET_ALL_TRACKS);
+  const tracks = data?.getAllTracks;
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (!audio.src) return
+    if (!audio.src) return;
     switch (event.code) {
       // case 'ArrowRight':
       //   event.preventDefault()
@@ -41,84 +41,84 @@ export const Player = (): JSX.Element | null => {
       //   audio.currentTime = audio.currentTime - REWIND_STEP
       //   break
       case 'Space':
-        event.preventDefault()
-        toggleAudio()
-        break
+        event.preventDefault();
+        toggleAudio();
+        break;
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const prevTrack = () => {
-    if (!tracks || !currentTrack) return
-    const currentIndex = tracks.indexOf(currentTrack)
+    if (!tracks || !currentTrack) return;
+    const currentIndex = tracks.indexOf(currentTrack);
     currentIndex === 0
       ? currentTrackVar(tracks[tracks.length - 1])
-      : currentTrackVar(tracks[currentIndex - 1])
-  }
+      : currentTrackVar(tracks[currentIndex - 1]);
+  };
 
   const nextTrack = () => {
-    if (!tracks || !currentTrack) return
-    const currentIndex = tracks.indexOf(currentTrack)
+    if (!tracks || !currentTrack) return;
+    const currentIndex = tracks.indexOf(currentTrack);
     currentIndex === tracks.length - 1
       ? currentTrackVar(tracks[0])
-      : currentTrackVar(tracks[currentIndex + 1])
-  }
+      : currentTrackVar(tracks[currentIndex + 1]);
+  };
 
-  const handleEnd = () => nextTrack()
+  const handleEnd = () => nextTrack();
 
   useEffect(() => {
     if (currentTrack) {
-      audio.src = currentTrack.src
-      audio.ontimeupdate = () => currentTimeVar(audio.currentTime)
+      audio.src = currentTrack.src;
+      audio.ontimeupdate = () => currentTimeVar(audio.currentTime);
       audio.onloadeddata = () => {
         setTimeout(() => {
-          canChangeTime = true
-        }, DISABLE_TIME)
-        durationVar(audio.duration)
-      }
+          canChangeTime = true;
+        }, DISABLE_TIME);
+        durationVar(audio.duration);
+      };
       audio.onended = () => {
-        canChangeTime = false
-        handleEnd()
-      }
-      toggleAudio()
+        canChangeTime = false;
+        handleEnd();
+      };
+      toggleAudio();
     }
-  }, [currentTrack])
+  }, [currentTrack]);
 
   const toggleAudio = async () => {
     if (audio.paused) {
-      isPlayingVar(true)
+      isPlayingVar(true);
       try {
-        await audio.play()
+        await audio.play();
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     } else {
-      isPlayingVar(false)
-      audio.pause()
+      isPlayingVar(false);
+      audio.pause();
     }
-  }
+  };
 
   const handleProgress = (event: ChangeEvent<HTMLInputElement>) => {
-    const target = +event.target.value
+    const target = +event.target.value;
     if (canChangeTime) {
-      const timeCompute = (target * duration) / 100
-      audio.currentTime = timeCompute
-      currentTimeVar(timeCompute)
+      const timeCompute = (target * duration) / 100;
+      audio.currentTime = timeCompute;
+      currentTimeVar(timeCompute);
     }
-  }
+  };
 
   const handleVolume = (event: ChangeEvent<HTMLInputElement>) => {
-    const target = +event.target.value
-    const volumeCompute = target / 100
-    volumeVar(volumeCompute)
-    audio.volume = volumeCompute
-  }
+    const target = +event.target.value;
+    const volumeCompute = target / 100;
+    volumeVar(volumeCompute);
+    audio.volume = volumeCompute;
+  };
 
-  if (!currentTrack) return null
+  if (!currentTrack) return null;
 
   return (
     <div className={styles.player}>
@@ -140,8 +140,8 @@ export const Player = (): JSX.Element | null => {
       />
       <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
     </div>
-  )
-}
+  );
+};
 
 /* <FontAwesomeIcon
         className='clickable'
