@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Playlist.module.css';
 import { ErorrBlock } from '../errorBlock/ErorrBlock';
 import { FullHeightBlock } from '../fullHeightBlock/FullHeightBlock';
-import { Loading } from '../loading/Loading';
+import { Spinner } from '../loading/Spinner';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
 import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface';
@@ -25,8 +25,8 @@ const Playlist = (): JSX.Element => {
 
   if (loading || !tracks)
     return (
-      <FullHeightBlock>
-        <Loading />
+      <FullHeightBlock childsCenter>
+        <Spinner />
       </FullHeightBlock>
     );
 

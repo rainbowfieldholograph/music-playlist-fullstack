@@ -1,14 +1,7 @@
-.loadingWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
 .loading {
   width: 150px;
   height: 150px;
+  aspect-ratio: 1/1;
   border-radius: 50%;
   border: 10px solid rgba(27, 27, 27, 0.5);
   border-top: 10px solid black;

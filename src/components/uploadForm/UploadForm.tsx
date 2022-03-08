@@ -3,11 +3,12 @@ import { useMutation } from '@apollo/client';
 import styles from './UploadForm.module.css';
 import { ADD_TRACK } from '../../graphql/mutations/addTrack.mutation';
 import { FormInput } from '../formInput/FormInput';
-import { Loading } from '../loading/Loading';
+import { Spinner } from '../loading/Spinner';
 import { UploadFormProps } from './UplodaForm.props';
 import { Button } from '../button/Button';
 import { IAddTrack } from '../../graphql/mutations/addTrack.interface';
 import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
+import { UploadingBlock } from '../uploadingBlock/UploadingBlock';
 
 export const UploadForm = ({ onSubmit }: UploadFormProps) => {
   const [file, setFile] = useState<File | null>(null);
@@ -38,13 +39,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
     }
   };
 
-  if (loading)
-    return (
-      <>
-        <p className={styles.loadingTitle}>Uploading track. Please wait.</p>
-        <Loading />
-      </>
-    );
+  if (loading) return <UploadingBlock />;
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
