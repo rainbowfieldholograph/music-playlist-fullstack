@@ -1,3 +1,7 @@
+._lock {
+  overflow: hidden;
+}
+
 .modal {
   position: fixed;
   top: 50%;
