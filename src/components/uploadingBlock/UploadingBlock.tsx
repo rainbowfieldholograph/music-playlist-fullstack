@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Spinner } from '../loading/Spinner';
+import { Spinner } from '../spinner/Spinner';
 import styles from './UploadingBlock.module.css';
 import { UploadingBlockProps } from './UploadingBlock.props';
 

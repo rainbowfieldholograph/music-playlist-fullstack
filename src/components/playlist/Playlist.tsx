@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './Playlist.module.css';
 import { ErorrBlock } from '../errorBlock/ErorrBlock';
 import { FullHeightBlock } from '../fullHeightBlock/FullHeightBlock';
-import { Spinner } from '../loading/Spinner';
+import { Spinner } from '../spinner/Spinner';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
 import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface';
