@@ -1,7 +1,7 @@
-import './globalStyles.css'
-import './defaultStyles.css'
-import Playlist from './components/playlist/Playlist'
-import { Player } from './components/player/Player'
+import './globalStyles.css';
+import './defaultStyles.css';
+import Playlist from './components/playlist/Playlist';
+import { Player } from './components/player/Player';
 
 const App = (): JSX.Element => {
   return (
@@ -9,7 +9,7 @@ const App = (): JSX.Element => {
       <Player />
       <Playlist />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

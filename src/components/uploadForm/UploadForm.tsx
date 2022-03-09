@@ -3,7 +3,6 @@ import { useMutation } from '@apollo/client';
 import styles from './UploadForm.module.css';
 import { ADD_TRACK } from '../../graphql/mutations/addTrack.mutation';
 import { FormInput } from '../formInput/FormInput';
-import { Spinner } from '../loading/Spinner';
 import { UploadFormProps } from './UplodaForm.props';
 import { Button } from '../button/Button';
 import { IAddTrack } from '../../graphql/mutations/addTrack.interface';
@@ -39,7 +38,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
     }
   };
 
-  if (loading) return <UploadingBlock />;
+  if (true) return <UploadingBlock />;
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
