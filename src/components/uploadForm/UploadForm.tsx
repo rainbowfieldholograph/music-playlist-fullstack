@@ -38,7 +38,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
     }
   };
 
-  if (true) return <UploadingBlock />;
+  if (loading) return <UploadingBlock />;
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
