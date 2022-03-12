@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './Modal.module.css';
 import { ModalProps } from './Modal.props';
 import clsx from 'clsx';
