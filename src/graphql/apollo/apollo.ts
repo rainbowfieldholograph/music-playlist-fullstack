@@ -10,7 +10,7 @@ export type Duration = number;
 
 export const currentTrackVar = makeVar<CurrentTrack>(null);
 export const isPlayingVar = makeVar<IsPlaying>(false);
-export const volumeVar = makeVar<Volume>(0.8);
+export const volumeVar = makeVar<Volume>(0.5);
 export const currentTimeVar = makeVar<CurrentTime>(0);
 export const durationVar = makeVar<Duration>(0);
 
