@@ -1,0 +1,8 @@
+query GetAllTracks {
+  getAllTracks {
+    id
+    title
+    author
+    src
+  }
+}

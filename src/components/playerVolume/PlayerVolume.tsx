@@ -1,7 +1,7 @@
-import styles from './PlayerVolume.module.css'
-import { PlayerVolumeProps } from './PlayerVolume.props'
+import styles from './PlayerVolume.module.css';
+import { PlayerVolumeProps } from './PlayerVolume.props';
 
-const PlayerVolume = ({ volumeState, handleVolume }: PlayerVolumeProps) => {
+export const PlayerVolume = ({ volumeState, handleVolume }: PlayerVolumeProps) => {
   return (
     <div className={styles.box}>
       <p className={styles.title}>Volume: {Math.round(volumeState * 100)}%</p>
@@ -12,7 +12,5 @@ const PlayerVolume = ({ volumeState, handleVolume }: PlayerVolumeProps) => {
         onChange={(e) => handleVolume(e)}
       />
     </div>
-  )
-}
-
-export default PlayerVolume
+  );
+};

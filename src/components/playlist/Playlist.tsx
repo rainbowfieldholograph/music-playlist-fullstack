@@ -4,15 +4,14 @@ import { ErorrBlock } from '../errorBlock/ErorrBlock';
 import { FullHeightBlock } from '../fullHeightBlock/FullHeightBlock';
 import { Spinner } from '../spinner/Spinner';
 import { useQuery } from '@apollo/client';
-import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
-import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface';
 import { TracksList } from '../tracksList/TracksList';
 import { Button } from '../button/Button';
 import { Modal } from '../modal/Modal';
 import { UploadForm } from '../uploadForm/UploadForm';
+import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 
 const Playlist = (): JSX.Element => {
-  const { data, loading, error } = useQuery<IGetAllTracks>(GET_ALL_TRACKS);
+  const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const [modal, setModal] = useState<boolean>(false);
   const tracks = data?.getAllTracks;
 

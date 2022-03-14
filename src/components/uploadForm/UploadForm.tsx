@@ -1,19 +1,17 @@
 import { ChangeEvent, FormEventHandler, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import styles from './UploadForm.module.css';
-import { ADD_TRACK } from '../../graphql/mutations/addTrack.mutation';
 import { FormInput } from '../formInput/FormInput';
 import { UploadFormProps } from './UplodaForm.props';
 import { Button } from '../button/Button';
-import { IAddTrack } from '../../graphql/mutations/addTrack.interface';
-import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
 import { UploadingBlock } from '../uploadingBlock/UploadingBlock';
+import { AddTrackDocument, AddTrackMutation, GetAllTracksDocument } from '../../generated';
 
 export const UploadForm = ({ onSubmit }: UploadFormProps) => {
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [author, setAuthor] = useState<string>('');
-  const [addTrack, { loading }] = useMutation<IAddTrack>(ADD_TRACK);
+  const [addTrack, { loading }] = useMutation<AddTrackMutation>(AddTrackDocument);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -27,7 +25,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
     try {
       await addTrack({
         variables: { title: title, author: author, file: file },
-        refetchQueries: [{ query: GET_ALL_TRACKS }],
+        refetchQueries: [{ query: GetAllTracksDocument }],
       });
       onSubmit();
       setAuthor('');

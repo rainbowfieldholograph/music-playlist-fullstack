@@ -1,8 +1,8 @@
-import { ApolloProvider } from '@apollo/client'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-import client from './graphql/apollo/apollo'
+import { ApolloProvider } from '@apollo/client';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import client from './graphql/apollo';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,4 +11,4 @@ ReactDOM.render(
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
-)
+);

@@ -40,6 +40,12 @@ Layout адаптивен под мобильные устройства.
 npm install
 ```
 
+## ENV setup
+
+create .env file
+and setup
+VITE_SERVER_URL = your_url
+
 ## Usage
 
 ```sh

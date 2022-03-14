@@ -1,9 +1,8 @@
 import { ChangeEvent, useEffect } from 'react';
 import styles from './Player.module.css';
 import PlayerControls from '../playerControls/PlayerControls';
-import PlayerVolume from '../playerVolume/PlayerVolume';
+import { PlayerVolume } from '../playerVolume/PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';
-import { GET_ALL_TRACKS } from '../../graphql/queries/getAllTracks.query';
 import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage';
 import { PlayerInfo } from '../playerInfo/PlayerInfo';
 import {
@@ -12,8 +11,8 @@ import {
   durationVar,
   isPlayingVar,
   volumeVar,
-} from '../../graphql/apollo/apollo';
-import { IGetAllTracks } from '../../graphql/queries/getAllTracks.interface';
+} from '../../graphql/apollo';
+import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 
 let audio = new Audio();
 let canChangeTime = true;
@@ -26,7 +25,7 @@ export const Player = (): JSX.Element | null => {
   const currentTime = useReactiveVar(currentTimeVar);
   const isPlaying = useReactiveVar(isPlayingVar);
   const volume = useReactiveVar(volumeVar);
-  const { data } = useQuery<IGetAllTracks>(GET_ALL_TRACKS);
+  const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 
   const handleKeyDown = (event: KeyboardEvent) => {
