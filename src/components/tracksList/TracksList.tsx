@@ -3,12 +3,11 @@ import styles from './TracksList.module.css';
 import { TrackItem } from '../trackItem/TrackItem';
 import { currentTrackVar } from '../../graphql/apollo';
 import { useReactiveVar } from '@apollo/client';
-import { ITrack } from '../../interfaces/track.interface';
+import { Track } from '../../generated';
 
 export const TracksList = ({ data }: TracksListProps): JSX.Element => {
   const currentTrack = useReactiveVar(currentTrackVar);
-
-  const onClickTrack = (track: ITrack) => () => currentTrackVar(track);
+  const onClickTrack = (track: Track) => () => currentTrackVar(track);
 
   return (
     <ul className={styles.tracksBlock}>

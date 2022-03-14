@@ -1,8 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes, InputHTMLAttributes } from 'react'
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 export interface FormInputProps
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-  inputState: string
-  setInputState: (value: string) => void
-  labelText: string
+  inputState: string;
+  setInputState: (value: string) => void;
+  labelText: string;
 }

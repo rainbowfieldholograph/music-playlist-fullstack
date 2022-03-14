@@ -6,13 +6,15 @@ import { Spinner } from '../spinner/Spinner';
 import { useQuery } from '@apollo/client';
 import { TracksList } from '../tracksList/TracksList';
 import { Button } from '../button/Button';
-import { Modal } from '../modal/Modal';
-import { UploadForm } from '../uploadForm/UploadForm';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
+import { PlaylistProps } from './Playlist.props';
+import { UploadModal } from '../uploadModal/UploadModal';
 
-const Playlist = (): JSX.Element => {
+const Playlist = ({}: PlaylistProps): JSX.Element => {
   const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const [modal, setModal] = useState<boolean>(false);
+  const closeModal = () => setModal(false);
+  const openModal = () => setModal(true);
   const tracks = data?.getAllTracks;
 
   if (error)
@@ -29,19 +31,14 @@ const Playlist = (): JSX.Element => {
       </FullHeightBlock>
     );
 
-  const openModal = () => () => setModal(true);
-  const closeModal = () => () => setModal(false);
-
   return (
     <section className={styles.playlist}>
       <div className={styles.head}>
         <h1 className={styles.title}>{`Playlist: ${tracks.length}`}</h1>
-        <Button onClick={openModal()}>Add new track</Button>
+        <Button onClick={openModal}>Add new track</Button>
       </div>
       <TracksList data={tracks} />
-      <Modal className={styles.uploadModal} open={modal} onClose={closeModal()}>
-        <UploadForm onSubmit={closeModal()} />
-      </Modal>
+      <UploadModal isOpen={modal} onClose={closeModal} />
     </section>
   );
 };

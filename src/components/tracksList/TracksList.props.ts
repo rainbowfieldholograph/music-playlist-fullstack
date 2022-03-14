@@ -1,5 +1,5 @@
-import { ITrack } from '../../interfaces/track.interface'
+import { Track } from '../../generated';
 
 export interface TracksListProps {
-  data: ITrack[]
+  data: Track[];
 }

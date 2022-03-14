@@ -1,5 +1,5 @@
 export interface ModalProps {
-  className?: string
-  open: boolean
-  onClose: () => void
+  className?: string;
+  open: boolean;
+  onClose: Function;
 }

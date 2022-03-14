@@ -1,10 +1,10 @@
-import { ChangeEventHandler } from 'react'
-import { ITrack } from '../../interfaces/track.interface'
+import { ChangeEventHandler } from 'react';
+import { Track } from '../../generated';
 
 export interface PlayerInfoProps {
-  track: ITrack
-  duration: number
-  currentTime: number
-  handleProgress: ChangeEventHandler<HTMLInputElement>
-  canChangeTime: boolean
+  track: Track;
+  duration: number;
+  currentTime: number;
+  handleProgress: ChangeEventHandler<HTMLInputElement>;
+  canChangeTime: boolean;
 }

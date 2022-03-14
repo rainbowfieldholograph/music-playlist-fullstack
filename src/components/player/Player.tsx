@@ -13,13 +13,14 @@ import {
   volumeVar,
 } from '../../graphql/apollo';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
+import { PlayerProps } from './Player.props';
 
 let audio = new Audio();
 let canChangeTime = true;
 const DISABLE_TIME = 200; //ms
 // const REWIND_STEP = 3
 
-export const Player = (): JSX.Element | null => {
+export const Player = ({}: PlayerProps): JSX.Element | null => {
   const duration = useReactiveVar(durationVar);
   const currentTrack = useReactiveVar(currentTrackVar);
   const currentTime = useReactiveVar(currentTimeVar);
