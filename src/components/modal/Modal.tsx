@@ -20,7 +20,7 @@ export const Modal: FC<ModalProps> = ({ className, children, open, onClose }): J
 
   return createPortal(
     <FocusTrap>
-      <div onClick={onClose} className={styles.overlay}>
+      <div onClick={() => onClose()} className={styles.overlay}>
         <div
           onClick={(event) => event.stopPropagation()}
           role="dialog"
