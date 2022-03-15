@@ -11,7 +11,7 @@ import {
   durationVar,
   isPlayingVar,
   volumeVar,
-} from '../../graphql/apollo';
+} from '../../graphql/localState';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerProps } from './Player.props';
 
