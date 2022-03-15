@@ -18,8 +18,10 @@
   cursor: pointer;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 790px) {
   .info {
     width: 100%;
+    grid-row: 2;
+    grid-column: 1 / 4;
   }
 }

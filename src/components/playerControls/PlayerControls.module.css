@@ -1,19 +1,7 @@
-.wrapper {
-  max-width: 100%;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 20px;
-}
-
 .rewindControls {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   gap: 10px;
-}
-
-.musicImage {
-  display: none;
 }
 
 .button {
@@ -26,13 +14,12 @@
   opacity: 0.5;
 }
 
-@media (max-width: 760px) {
-  .wrapper {
-    width: 100%;
-    justify-content: space-around;
-    gap: 0;
+@media (max-width: 790px) {
+  .toggleButton {
+    grid-row: 1;
   }
-  .musicImage {
-    display: block;
+  .rewindControls {
+    grid-row: 1;
+    grid-column: 3;
   }
 }

@@ -1,13 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './PlayerControls.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './PlayerControls.module.css';
 import {
   faPlayCircle,
   faStepBackward,
   faStepForward,
   faPauseCircle,
-} from '@fortawesome/free-solid-svg-icons'
-import { PlayerControlsProps } from './PlayerControls.props'
-import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage'
+} from '@fortawesome/free-solid-svg-icons';
+import { PlayerControlsProps } from './PlayerControls.props';
+import clsx from 'clsx';
 
 const PlayerControls = ({
   toggleAudio,
@@ -16,11 +16,11 @@ const PlayerControls = ({
   playing,
 }: PlayerControlsProps): JSX.Element => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.musicImage}>
-        <PlayerMusicImage />
-      </div>
-      <button className={styles.button} onClick={() => toggleAudio()}>
+    <>
+      <button
+        className={clsx(styles.button, styles.toggleButton)}
+        onClick={() => toggleAudio()}
+      >
         <FontAwesomeIcon
           size="3x"
           icon={playing ? faPauseCircle : faPlayCircle}
@@ -35,8 +35,8 @@ const PlayerControls = ({
           <FontAwesomeIcon size="2x" icon={faStepForward} color="black" />
         </button>
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};
 
-export default PlayerControls
+export default PlayerControls;

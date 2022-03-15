@@ -1,33 +1,32 @@
 .player {
-  max-width: 800px;
   width: 100%;
+  max-width: 800px;
   min-height: 100px;
   margin: 0 auto;
   border-radius: 5px;
   border: 1px solid gainsboro;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-bottom: 30px;
+  padding: 0 20px;
   position: sticky;
   top: 0;
   background-color: #fff;
   z-index: 1;
+  gap: 1rem;
+  margin-bottom: 30px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 790px) {
   .player {
     margin-top: 0px;
-    flex-wrap: wrap;
-    justify-content: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    gap: 5px;
+    grid-template-rows: 3 auto;
+    justify-items: center;
   }
-
   .musicImage {
-    display: none;
+    grid-row: 1;
+    grid-column: 1;
   }
 }
