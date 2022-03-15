@@ -1,6 +1,6 @@
-import clsx from 'clsx'
-import styles from './TrackItem.module.css'
-import { TrackItemProps } from './TrackItem.props'
+import clsx from 'clsx';
+import styles from './TrackItem.module.css';
+import { TrackItemProps } from './TrackItem.props';
 
 export const TrackItem = ({
   title,
@@ -15,13 +15,13 @@ export const TrackItem = ({
     >
       <div className={styles.trackBox} />
       <div className={styles.info}>
-        <div className={styles.innerBox}>
+        <span>
           <h2 className={styles.text}>{title}</h2>
-        </div>
-        <div className={styles.innerBox}>
+        </span>
+        <div>
           <h3 className={styles.text}>{subtitle}</h3>
         </div>
       </div>
     </button>
-  )
-}
+  );
+};
