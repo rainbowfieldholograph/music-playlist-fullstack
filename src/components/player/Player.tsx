@@ -48,6 +48,7 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   };
 
   useEffect(() => {
+    audio.volume = volume;
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
