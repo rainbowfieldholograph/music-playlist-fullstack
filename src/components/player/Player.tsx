@@ -143,18 +143,3 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     </div>
   );
 };
-
-/* <FontAwesomeIcon
-        className='clickable'
-        style={random ? { fontSize: '2.5rem' } : { fontSize: '2rem' }}
-        color={random ? 'purple' : 'black'}
-        icon={faRandom}
-        onClick={toggleRandom}
-      />
-      <FontAwesomeIcon
-        className='clickable'
-        style={repeat ? { fontSize: '2.2rem' } : { fontSize: '1.7rem' }}
-        color={repeat ? 'purple' : 'black'}
-        icon={faRedo}
-        onClick={toggleRepeat}
-      /> */

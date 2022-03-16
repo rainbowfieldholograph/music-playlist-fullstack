@@ -1,13 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './PlayerControls.module.css';
-import {
-  faPlayCircle,
-  faStepBackward,
-  faStepForward,
-  faPauseCircle,
-} from '@fortawesome/free-solid-svg-icons';
 import { PlayerControlsProps } from './PlayerControls.props';
 import clsx from 'clsx';
+import playIcon from '../../img/playIcon.svg';
+import arrowIcon from '../../img/arrowIcon.svg';
+import pauseIcon from '../../img/pauseIcon.svg';
 
 const PlayerControls = ({
   toggleAudio,
@@ -21,18 +17,14 @@ const PlayerControls = ({
         className={clsx(styles.button, styles.toggleButton)}
         onClick={() => toggleAudio()}
       >
-        <FontAwesomeIcon
-          size="3x"
-          icon={playing ? faPauseCircle : faPlayCircle}
-          color="black"
-        />
+        <img src={playing ? pauseIcon : playIcon} alt="play" />
       </button>
       <div className={styles.rewindControls}>
         <button className={styles.button} onClick={() => prevTrack()}>
-          <FontAwesomeIcon size="2x" icon={faStepBackward} color="black" />
+          <img className={clsx(styles.arrow, styles.inverse)} src={arrowIcon} alt="back" />
         </button>
         <button className={styles.button} onClick={() => nextTrack()}>
-          <FontAwesomeIcon size="2x" icon={faStepForward} color="black" />
+          <img className={styles.arrow} src={arrowIcon} alt="forward" />
         </button>
       </div>
     </>
