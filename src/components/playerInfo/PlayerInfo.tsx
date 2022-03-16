@@ -1,9 +1,11 @@
 import { formatTime } from '../../helpers/formatTime';
-import styles from './PlayerInfo.module.css';
 import { PlayerInfoProps } from './PlayerInfo.props';
+import styles from './PlayerInfo.module.css';
 
 const computeDuration = (currentTime: number, duration: number): number => {
-  return duration ? Math.round((currentTime * 100) / duration) : 0;
+  const result = Math.round((currentTime * 100) / duration);
+  if (!result) return 0;
+  return Math.round((currentTime * 100) / duration);
 };
 
 export const PlayerInfo = ({

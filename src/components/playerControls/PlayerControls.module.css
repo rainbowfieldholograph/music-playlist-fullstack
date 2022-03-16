@@ -27,8 +27,12 @@
   }
 }
 
-.arrow {
-  width: 50%;
+.toggleIcon {
+  font-size: 45px;
+}
+
+.arrowIcon {
+  font-size: 25px;
 }
 
 .inverse {

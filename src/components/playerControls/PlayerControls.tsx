@@ -1,9 +1,9 @@
 import styles from './PlayerControls.module.css';
 import { PlayerControlsProps } from './PlayerControls.props';
 import clsx from 'clsx';
-import playIcon from '../../img/playIcon.svg';
-import arrowIcon from '../../img/arrowIcon.svg';
-import pauseIcon from '../../img/pauseIcon.svg';
+import { ReactComponent as PauseIcon } from '../../img/pause-icon.svg';
+import { ReactComponent as PlayIcon } from '../../img/play-icon.svg';
+import { ReactComponent as ArrowIcon } from '../../img/arrow-icon.svg';
 
 const PlayerControls = ({
   toggleAudio,
@@ -17,14 +17,18 @@ const PlayerControls = ({
         className={clsx(styles.button, styles.toggleButton)}
         onClick={() => toggleAudio()}
       >
-        <img src={playing ? pauseIcon : playIcon} alt="play" />
+        {playing ? (
+          <PauseIcon className={styles.toggleIcon} />
+        ) : (
+          <PlayIcon className={styles.toggleIcon} />
+        )}
       </button>
       <div className={styles.rewindControls}>
         <button className={styles.button} onClick={() => prevTrack()}>
-          <img className={clsx(styles.arrow, styles.inverse)} src={arrowIcon} alt="back" />
+          <ArrowIcon className={clsx(styles.arrowIcon, styles.inverse)} />
         </button>
         <button className={styles.button} onClick={() => nextTrack()}>
-          <img className={styles.arrow} src={arrowIcon} alt="forward" />
+          <ArrowIcon className={styles.arrowIcon} />
         </button>
       </div>
     </>
