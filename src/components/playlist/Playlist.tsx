@@ -32,14 +32,14 @@ const Playlist = ({}: PlaylistProps): JSX.Element => {
     );
 
   return (
-    <section className={styles.playlist}>
+    <div className={styles.playlist}>
       <div className={styles.head}>
         <h1 className={styles.title}>{`Playlist: ${tracks.length}`}</h1>
         <Button onClick={openModal}>Add new track</Button>
       </div>
       <TracksList data={tracks} />
       <UploadModal isOpen={modal} onClose={closeModal} />
-    </section>
+    </div>
   );
 };
 

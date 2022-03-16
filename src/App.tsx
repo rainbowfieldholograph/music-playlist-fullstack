@@ -6,8 +6,12 @@ import { Player } from './components/player/Player';
 const App = (): JSX.Element => {
   return (
     <div className="container">
-      <Player />
-      <Playlist />
+      <header>
+        <Player />
+      </header>
+      <main>
+        <Playlist />
+      </main>
     </div>
   );
 };

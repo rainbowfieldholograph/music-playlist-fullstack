@@ -2,6 +2,10 @@ import { formatTime } from '../../helpers/formatTime';
 import styles from './PlayerInfo.module.css';
 import { PlayerInfoProps } from './PlayerInfo.props';
 
+const computeDuration = (currentTime: number, duration: number): number => {
+  return duration ? Math.round((currentTime * 100) / duration) : 0;
+};
+
 export const PlayerInfo = ({
   track,
   duration,
@@ -11,20 +15,19 @@ export const PlayerInfo = ({
 }: PlayerInfoProps): JSX.Element => {
   return (
     <div className={styles.info}>
-      <div className={styles.infoInnerBox}>
+      <div className={styles.box}>
         <h2 className={styles.title}>{track?.title}</h2>
         <p>{formatTime(duration)}</p>
       </div>
-      <div className={styles.infoInnerBox}>
+      <div className={styles.box}>
         <h3 className={styles.title}>{track?.author}</h3>
         <p>{formatTime(currentTime)}</p>
       </div>
       <input
-        className={styles.progressBar}
         type="range"
         disabled={!canChangeTime}
         onChange={handleProgress}
-        value={duration ? Math.round((currentTime * 100) / duration) : 0}
+        value={computeDuration(currentTime, duration)}
       />
     </div>
   );

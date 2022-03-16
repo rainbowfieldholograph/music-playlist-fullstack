@@ -1,4 +1,6 @@
+import { Volume } from '../../graphql/localState';
+
 export interface PlayerVolumeProps {
-  volumeState: number
-  handleVolume: Function
+  volumeState: Volume;
+  handleVolume: Function;
 }

@@ -9,7 +9,6 @@ const portalRootElement = document.getElementById('modal');
 
 export const Modal: FC<ModalProps> = ({ className, children, open, onClose }): JSX.Element => {
   const onClickEsc = (event: KeyboardEvent) => {
-    console.log('click');
     if (event.key === 'Esc' || event.key === 'Escape') onClose();
   };
 

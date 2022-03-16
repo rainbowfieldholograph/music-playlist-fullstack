@@ -129,9 +129,7 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
         prevTrack={prevTrack}
         playing={isPlaying}
       />
-      <div className={styles.musicImage}>
-        <PlayerMusicImage />
-      </div>
+      <PlayerMusicImage />
       <PlayerInfo
         track={currentTrack}
         duration={duration}
