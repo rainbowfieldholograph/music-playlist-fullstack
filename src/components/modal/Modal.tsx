@@ -8,12 +8,21 @@ import FocusTrap from 'focus-trap-react';
 const portalRootElement = document.getElementById('modal');
 
 export const Modal: FC<ModalProps> = ({ className, children, open, onClose }): JSX.Element => {
+  const onClickEsc = (event: KeyboardEvent) => {
+    console.log('click');
+    if (event.key === 'Esc' || event.key === 'Escape') onClose();
+  };
+
   useEffect(() => {
     document.body.classList.add(styles._lock);
   }, []);
 
   useEffect(() => {
     document.body.classList.toggle(styles._lock);
+    if (open) {
+      window.addEventListener('keydown', onClickEsc);
+      return () => window.removeEventListener('keydown', onClickEsc);
+    }
   }, [open]);
 
   if (!open || !portalRootElement) return <></>;
