@@ -1,6 +1,7 @@
 .box {
+  --box-size: 60px;
   background-color: gainsboro;
-  width: 60px;
+  width: var(--box-size, 60px);
   aspect-ratio: 1 / 1;
   border-radius: 0.4rem;
   display: flex;
@@ -8,6 +9,6 @@
   align-items: center;
 }
 
-.image {
-  width: 50%;
+.icon {
+  font-size: calc(var(--box-size, 60px) / 2);
 }

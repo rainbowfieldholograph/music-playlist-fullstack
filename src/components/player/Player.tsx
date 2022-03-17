@@ -3,7 +3,7 @@ import styles from './Player.module.css';
 import PlayerControls from '../playerControls/PlayerControls';
 import { PlayerVolume } from '../playerVolume/PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';
-import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage';
+import { PlayerMusicImage } from '../playerMusicImage/MusicBox';
 import { PlayerInfo } from '../playerInfo/PlayerInfo';
 import PlayerStore from '../../graphql/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
@@ -61,8 +61,6 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   }, [currentTrack]);
 
   if (!currentTrack) return null;
-
-  console.log('render player');
 
   return (
     <div className={styles.player}>
