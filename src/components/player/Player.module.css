@@ -22,7 +22,6 @@
 
 @media (max-width: 790px) {
   .player {
-    margin-top: 0px;
     padding-top: 1rem;
     padding-bottom: 1rem;
     grid-template-rows: 3 auto;

@@ -2,7 +2,7 @@
   display: grid;
   width: 100%;
   padding: 0.5rem;
-  transition: all 0.1s linear;
+  transition: all 0.2s linear;
 
   grid-template-columns: auto 1fr;
   align-items: stretch;
@@ -10,11 +10,23 @@
 }
 
 .track:hover,
-.track:focus-visible {
-  -webkit-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
-  -moz-box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
-  box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+.track:focus {
+  box-shadow: var(--box-shadow-active);
   outline: none;
+}
+
+@supports selector(:focus-visible) {
+  .track:focus {
+    box-shadow: none;
+  }
+
+  .track:hover {
+    box-shadow: var(--box-shadow-active);
+  }
+
+  .track:focus-visible {
+    box-shadow: var(--box-shadow-active);
+  }
 }
 
 .info {
@@ -37,11 +49,13 @@
   border: 3px solid purple;
   transform: scale(1.05);
   transition: all 0.2s linear;
-  box-shadow: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
+  box-shadow: var(--box-shadow-active);
 }
 
 .trackBox {
-  width: 65px;
+  --box-size: 65px;
+  width: var(--box-size, 65px);
+  height: var(--box-size, 65px);
   aspect-ratio: 1/1;
   background-color: purple;
   border-radius: 15%;

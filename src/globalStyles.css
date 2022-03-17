@@ -2,6 +2,8 @@
 html {
   --container-padding-block: 1.5rem;
   --container-margin-block: 1rem;
+
+  --box-shadow-active: 0px 0px 13px 10px rgba(128, 0, 255, 0.22);
 }
 
 body {
