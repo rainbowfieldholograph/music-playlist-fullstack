@@ -15,7 +15,6 @@ const {
   audio,
   durationVar,
   currentTrackVar,
-  volumeVar,
   currentTimeVar,
   canChangeTimeVar,
   nextTrack,
@@ -24,7 +23,6 @@ const {
 
 export const Player = ({}: PlayerProps): JSX.Element | null => {
   const currentTrack = useReactiveVar(currentTrackVar);
-  const volume = useReactiveVar(volumeVar);
 
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
@@ -40,7 +38,6 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   };
 
   useEffect(() => {
-    audio.volume = volume;
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
@@ -63,10 +60,6 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     }
   }, [currentTrack]);
 
-  useEffect(() => {
-    audio.volume = volume;
-  }, [volume]);
-
   if (!currentTrack) return null;
 
   console.log('render player');
@@ -75,8 +68,8 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     <div className={styles.player}>
       <PlayerControls />
       <PlayerMusicImage className={styles.musicImage} />
-      <PlayerInfo track={currentTrack} />
-      <PlayerVolume volumeState={volume} />
+      <PlayerInfo />
+      <PlayerVolume />
     </div>
   );
 };
