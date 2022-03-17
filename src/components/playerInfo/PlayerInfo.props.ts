@@ -1,11 +1,6 @@
-import { ChangeEventHandler } from 'react';
 import { Track } from '../../generated';
-import { CurrentTime, Duration } from '../../graphql/localState';
+import { Duration } from '../../graphql/PlayerStore';
 
 export interface PlayerInfoProps {
   track: Track;
-  duration: Duration;
-  currentTime: CurrentTime;
-  handleProgress: ChangeEventHandler<HTMLInputElement>;
-  canChangeTime: boolean;
 }

@@ -1,45 +1,37 @@
-import { ChangeEvent, useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from './Player.module.css';
 import PlayerControls from '../playerControls/PlayerControls';
 import { PlayerVolume } from '../playerVolume/PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerMusicImage } from '../playerMusicImage/PlayerMusicImage';
 import { PlayerInfo } from '../playerInfo/PlayerInfo';
-import {
-  currentTimeVar,
-  currentTrackVar,
-  durationVar,
-  isPlayingVar,
-  volumeVar,
-} from '../../graphql/localState';
+import PlayerStore from '../../graphql/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerProps } from './Player.props';
 
-let audio = new Audio();
-let canChangeTime = true;
-const DISABLE_TIME = 200; //ms
-// const REWIND_STEP = 3
+const DISABLE_TIME = 200;
+
+const {
+  audio,
+  durationVar,
+  currentTrackVar,
+  volumeVar,
+  currentTimeVar,
+  canChangeTimeVar,
+  nextTrack,
+  toggleAudio,
+} = PlayerStore;
 
 export const Player = ({}: PlayerProps): JSX.Element | null => {
-  const duration = useReactiveVar(durationVar);
   const currentTrack = useReactiveVar(currentTrackVar);
-  const currentTime = useReactiveVar(currentTimeVar);
-  const isPlaying = useReactiveVar(isPlayingVar);
   const volume = useReactiveVar(volumeVar);
+
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (!audio.src) return;
     switch (event.code) {
-      // case 'ArrowRight':
-      //   event.preventDefault()
-      //   audio.currentTime = audio.currentTime + REWIND_STEP
-      //   break
-      // case 'ArrowLeft':
-      //   event.preventDefault()
-      //   audio.currentTime = audio.currentTime - REWIND_STEP
-      //   break
       case 'Space':
         event.preventDefault();
         toggleAudio();
@@ -53,91 +45,38 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const prevTrack = () => {
-    if (!tracks || !currentTrack) return;
-    const currentIndex = tracks.indexOf(currentTrack);
-    currentIndex === 0
-      ? currentTrackVar(tracks[tracks.length - 1])
-      : currentTrackVar(tracks[currentIndex - 1]);
-  };
-
-  const nextTrack = () => {
-    if (!tracks || !currentTrack) return;
-    const currentIndex = tracks.indexOf(currentTrack);
-    currentIndex === tracks.length - 1
-      ? currentTrackVar(tracks[0])
-      : currentTrackVar(tracks[currentIndex + 1]);
-  };
-
-  const handleEnd = () => nextTrack();
-
   useEffect(() => {
     if (currentTrack) {
       audio.src = currentTrack.src;
       audio.ontimeupdate = () => currentTimeVar(audio.currentTime);
       audio.onloadeddata = () => {
         setTimeout(() => {
-          canChangeTime = true;
+          canChangeTimeVar(true);
         }, DISABLE_TIME);
         durationVar(audio.duration);
       };
       audio.onended = () => {
-        canChangeTime = false;
-        handleEnd();
+        canChangeTimeVar(false);
+        nextTrack(tracks);
       };
       toggleAudio();
     }
   }, [currentTrack]);
 
-  const toggleAudio = async () => {
-    if (audio.paused) {
-      isPlayingVar(true);
-      try {
-        await audio.play();
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      isPlayingVar(false);
-      audio.pause();
-    }
-  };
-
-  const handleProgress = (event: ChangeEvent<HTMLInputElement>) => {
-    const target = +event.target.value;
-    if (canChangeTime) {
-      const timeCompute = (target * duration) / 100;
-      audio.currentTime = timeCompute;
-      currentTimeVar(timeCompute);
-    }
-  };
-
-  const handleVolume = (event: ChangeEvent<HTMLInputElement>) => {
-    const target = +event.target.value;
-    const volumeCompute = target / 100;
-    volumeVar(volumeCompute);
-    audio.volume = volumeCompute;
-  };
+  useEffect(() => {
+    audio.volume = volume;
+  }, [volume]);
 
   if (!currentTrack) return null;
 
+  console.log('render player');
+
   return (
     <div className={styles.player}>
-      <PlayerControls
-        toggleAudio={toggleAudio}
-        nextTrack={nextTrack}
-        prevTrack={prevTrack}
-        playing={isPlaying}
-      />
-      <PlayerMusicImage />
-      <PlayerInfo
-        track={currentTrack}
-        duration={duration}
-        currentTime={currentTime}
-        handleProgress={handleProgress}
-        canChangeTime={canChangeTime}
-      />
-      <PlayerVolume volumeState={volume} handleVolume={handleVolume} />
+      <PlayerControls />
+      <PlayerMusicImage className={styles.musicImage} />
+      <PlayerInfo track={currentTrack} />
+      <PlayerVolume volumeState={volume} />
     </div>
   );
 };

@@ -25,8 +25,8 @@
     grid-template-rows: 3 auto;
     justify-items: center;
   }
-  /* .musicImage {
+  .musicImage {
     grid-row: 1;
     grid-column: 1;
-  } */
+  }
 }
