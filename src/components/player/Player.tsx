@@ -5,7 +5,7 @@ import { PlayerVolume } from '../playerVolume/PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerMusicImage } from '../playerMusicImage/MusicBox';
 import { PlayerInfo } from '../playerInfo/PlayerInfo';
-import PlayerStore from '../../graphql/PlayerStore';
+import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerProps } from './Player.props';
 

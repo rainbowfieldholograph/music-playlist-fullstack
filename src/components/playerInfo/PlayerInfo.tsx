@@ -2,7 +2,7 @@ import { formatTime } from '../../helpers/formatTime';
 import { PlayerInfoProps } from './PlayerInfo.props';
 import styles from './PlayerInfo.module.css';
 import { useReactiveVar } from '@apollo/client';
-import PlayerStore from '../../graphql/PlayerStore';
+import { PlayerStore } from '../../store/PlayerStore';
 import { ChangeEvent } from 'react';
 
 const { currentTimeVar, canChangeTimeVar, audio, durationVar, currentTrackVar } = PlayerStore;

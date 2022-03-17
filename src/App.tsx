@@ -6,9 +6,7 @@ import { Player } from './components/player/Player';
 const App = (): JSX.Element => {
   return (
     <div className="container">
-      <header>
-        <Player />
-      </header>
+      <Player />
       <main>
         <Playlist />
       </main>

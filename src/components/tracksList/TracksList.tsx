@@ -3,7 +3,7 @@ import styles from './TracksList.module.css';
 import { TrackItem } from '../trackItem/TrackItem';
 import { useReactiveVar } from '@apollo/client';
 import { Track } from '../../generated';
-import PlayerStore from '../../graphql/PlayerStore';
+import { PlayerStore } from '../../store/PlayerStore';
 
 export const TracksList = ({ data }: TracksListProps): JSX.Element => {
   const { currentTrackVar } = PlayerStore;

@@ -1,15 +1,14 @@
 import { makeVar } from '@apollo/client';
-import { Track } from '../generated';
-
-export type CurrentTrack = Track | null;
-export type IsPlaying = boolean;
-export type CanChangeTime = boolean;
-export type Volume = number;
-export type CurrentTime = number;
-export type Duration = number;
-
-type SwitchTrackActions = 'NEXT' | 'PREV';
-type Playlist = Track[] | undefined;
+import {
+  CurrentTrack,
+  IsPlaying,
+  CanChangeTime,
+  Volume,
+  CurrentTime,
+  Duration,
+  Playlist,
+  SwitchTrackActions,
+} from './PlayerStore.d';
 
 class PlayerStore {
   audio = new Audio();
@@ -60,4 +59,6 @@ class PlayerStore {
   };
 }
 
-export default new PlayerStore();
+const PlayerStoreInstance = new PlayerStore();
+
+export { PlayerStoreInstance as PlayerStore };
