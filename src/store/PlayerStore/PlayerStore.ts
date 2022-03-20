@@ -11,6 +11,9 @@ import {
 } from './PlayerStore.d';
 
 class PlayerStore {
+  private DISABLE_TIME: number = 200;
+  private DEFAULT_VOLUME: number = 0.2;
+
   audio = new Audio();
 
   currentTrackVar = makeVar<CurrentTrack>(null);
@@ -18,7 +21,7 @@ class PlayerStore {
   isPlayingVar = makeVar<IsPlaying>(false);
   canChangeTimeVar = makeVar<CanChangeTime>(true);
 
-  volumeVar = makeVar<Volume>(0.5);
+  volumeVar = makeVar<Volume>(this.DEFAULT_VOLUME);
   currentTimeVar = makeVar<CurrentTime>(0);
   durationVar = makeVar<Duration>(0);
 
@@ -56,6 +59,22 @@ class PlayerStore {
       this.isPlayingVar(false);
       this.audio.pause();
     }
+  };
+
+  initializeAudio = (audioSrc: string, playlist: Playlist) => {
+    this.audio.src = audioSrc;
+    this.audio.ontimeupdate = () => this.currentTimeVar(this.audio.currentTime);
+    this.audio.onloadeddata = () => {
+      setTimeout(() => {
+        this.canChangeTimeVar(true);
+      }, this.DISABLE_TIME);
+      this.durationVar(this.audio.duration);
+    };
+    this.audio.onended = () => {
+      this.canChangeTimeVar(false);
+      this.nextTrack(playlist);
+    };
+    this.audio.volume = this.DEFAULT_VOLUME;
   };
 }
 

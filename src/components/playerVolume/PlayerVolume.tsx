@@ -17,16 +17,12 @@ export const PlayerVolume = ({}: PlayerVolumeProps) => {
 
   useEffect(() => {
     audio.volume = volume;
-  }, []);
-
-  useEffect(() => {
-    audio.volume = volume;
   }, [volume]);
 
   return (
     <div className={styles.box}>
       <p className={styles.title}>Volume: {computedVolume}%</p>
-      <input type="range" value={computedVolume} onChange={(e) => handleVolume(e)} />
+      <input type="range" value={computedVolume} onChange={handleVolume} />
     </div>
   );
 };

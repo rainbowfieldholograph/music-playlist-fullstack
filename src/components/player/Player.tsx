@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import styles from './Player.module.css';
-import PlayerControls from '../playerControls/PlayerControls';
+import { useEffect } from 'react';
+import { PlayerControls } from '../playerControls/PlayerControls';
 import { PlayerVolume } from '../playerVolume/PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerMusicImage } from '../playerMusicImage/MusicBox';
@@ -9,17 +9,7 @@ import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerProps } from './Player.props';
 
-const DISABLE_TIME = 200;
-
-const {
-  audio,
-  durationVar,
-  currentTrackVar,
-  currentTimeVar,
-  canChangeTimeVar,
-  nextTrack,
-  toggleAudio,
-} = PlayerStore;
+const { audio, currentTrackVar, toggleAudio, initializeAudio } = PlayerStore;
 
 export const Player = ({}: PlayerProps): JSX.Element | null => {
   const currentTrack = useReactiveVar(currentTrackVar);
@@ -44,18 +34,7 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
 
   useEffect(() => {
     if (currentTrack) {
-      audio.src = currentTrack.src;
-      audio.ontimeupdate = () => currentTimeVar(audio.currentTime);
-      audio.onloadeddata = () => {
-        setTimeout(() => {
-          canChangeTimeVar(true);
-        }, DISABLE_TIME);
-        durationVar(audio.duration);
-      };
-      audio.onended = () => {
-        canChangeTimeVar(false);
-        nextTrack(tracks);
-      };
+      initializeAudio(currentTrack.src, tracks);
       toggleAudio();
     }
   }, [currentTrack]);

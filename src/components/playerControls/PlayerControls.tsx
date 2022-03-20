@@ -10,10 +10,19 @@ import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 
 const { prevTrack, nextTrack, toggleAudio, isPlayingVar } = PlayerStore;
 
-const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
+export const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
+
   const isPlaying = useReactiveVar(isPlayingVar);
+
+  const showCorrectIcon = (isPlaying: boolean) => {
+    return isPlaying ? (
+      <PauseIcon className={styles.toggleIcon} />
+    ) : (
+      <PlayIcon className={styles.toggleIcon} />
+    );
+  };
 
   return (
     <>
@@ -21,11 +30,7 @@ const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
         className={clsx(styles.button, styles.toggleButton)}
         onClick={() => toggleAudio()}
       >
-        {isPlaying ? (
-          <PauseIcon className={styles.toggleIcon} />
-        ) : (
-          <PlayIcon className={styles.toggleIcon} />
-        )}
+        {showCorrectIcon(isPlaying)}
       </button>
       <div className={styles.rewindControls}>
         <button className={styles.button} onClick={() => prevTrack(tracks)}>
@@ -38,5 +43,3 @@ const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
     </>
   );
 };
-
-export default PlayerControls;

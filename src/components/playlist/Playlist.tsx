@@ -12,10 +12,11 @@ import { UploadModal } from '../uploadModal/UploadModal';
 
 const Playlist = ({}: PlaylistProps): JSX.Element => {
   const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
+  const tracks = data?.getAllTracks;
+
   const [modal, setModal] = useState<boolean>(false);
   const closeModal = () => setModal(false);
   const openModal = () => setModal(true);
-  const tracks = data?.getAllTracks;
 
   if (error)
     return (
