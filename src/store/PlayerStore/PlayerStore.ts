@@ -74,7 +74,7 @@ class PlayerStore {
       this.canChangeTimeVar(false);
       this.nextTrack(playlist);
     };
-    this.audio.volume = this.DEFAULT_VOLUME;
+    this.audio.volume = this.volumeVar();
   };
 }
 
