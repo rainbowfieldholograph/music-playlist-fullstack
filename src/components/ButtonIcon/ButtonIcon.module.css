@@ -1,0 +1,31 @@
+.button {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --button-opacity: 0.5;
+}
+
+.button:focus,
+.button:hover {
+  opacity: var(--button-opacity);
+}
+
+@supports selector(:focus-visible) {
+  .button:focus {
+    opacity: 1;
+  }
+
+  .button:hover {
+    opacity: var(--button-opacity);
+  }
+
+  .button:focus-visible {
+    opacity: var(--button-opacity);
+  }
+}
+
+.icon {
+  font-size: inherit;
+}

@@ -1,29 +1,20 @@
 import { makeVar } from '@apollo/client';
-import {
-  CurrentTrack,
-  IsPlaying,
-  CanChangeTime,
-  Volume,
-  CurrentTime,
-  Duration,
-  Playlist,
-  SwitchTrackActions,
-} from './PlayerStore.d';
+import { Track } from '../../generated';
+import { Playlist, SwitchTrackActions } from './PlayerStore.d';
+import { IPlayerStore } from './PlayerStore.interface';
 
-class PlayerStore {
+class PlayerStore implements IPlayerStore {
   private DISABLE_TIME: number = 200;
   private DEFAULT_VOLUME: number = 0.2;
 
   audio = new Audio();
 
-  currentTrackVar = makeVar<CurrentTrack>(null);
-
-  isPlayingVar = makeVar<IsPlaying>(false);
-  canChangeTimeVar = makeVar<CanChangeTime>(true);
-
-  volumeVar = makeVar<Volume>(this.DEFAULT_VOLUME);
-  currentTimeVar = makeVar<CurrentTime>(0);
-  durationVar = makeVar<Duration>(0);
+  currentTrackVar = makeVar<Track | null>(null);
+  isPlayingVar = makeVar<boolean>(false);
+  canChangeTimeVar = makeVar<boolean>(true);
+  volumeVar = makeVar<number>(this.DEFAULT_VOLUME);
+  currentTimeVar = makeVar<number>(0);
+  durationVar = makeVar<number>(0);
 
   switchTrack = (playlist: Playlist, action: SwitchTrackActions) => {
     const currentTrack = this.currentTrackVar();
@@ -44,7 +35,6 @@ class PlayerStore {
   };
 
   prevTrack = (playlist: Playlist) => this.switchTrack(playlist, 'PREV');
-
   nextTrack = (playlist: Playlist) => this.switchTrack(playlist, 'NEXT');
 
   toggleAudio = async () => {
@@ -61,8 +51,8 @@ class PlayerStore {
     }
   };
 
-  initializeAudio = (audioSrc: string, playlist: Playlist) => {
-    this.audio.src = audioSrc;
+  initializeAudio = (src: string, playlist: Playlist) => {
+    this.audio.src = src;
     this.audio.ontimeupdate = () => this.currentTimeVar(this.audio.currentTime);
     this.audio.onloadeddata = () => {
       setTimeout(() => {

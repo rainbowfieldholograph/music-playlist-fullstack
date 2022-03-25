@@ -7,6 +7,7 @@ import { ReactComponent as ArrowIcon } from '../../img/arrow-icon.svg';
 import { PlayerStore } from '../../store/PlayerStore';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
+import { ButtonIcon } from '../ButtonIcon';
 
 const { prevTrack, nextTrack, toggleAudio, isPlayingVar } = PlayerStore;
 
@@ -16,29 +17,26 @@ export const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
 
   const isPlaying = useReactiveVar(isPlayingVar);
 
-  const showCorrectIcon = (isPlaying: boolean) => {
-    return isPlaying ? (
-      <PauseIcon className={styles.toggleIcon} />
-    ) : (
-      <PlayIcon className={styles.toggleIcon} />
-    );
-  };
+  const showCorrectIcon = (isPlaying: boolean) => (isPlaying ? PauseIcon : PlayIcon);
 
   return (
     <>
-      <button
-        className={clsx(styles.button, styles.toggleButton)}
+      <ButtonIcon
+        className={styles.toggle}
         onClick={() => toggleAudio()}
-      >
-        {showCorrectIcon(isPlaying)}
-      </button>
+        SvgIcon={showCorrectIcon(isPlaying)}
+      />
       <div className={styles.rewindControls}>
-        <button className={styles.button} onClick={() => prevTrack(tracks)}>
-          <ArrowIcon className={clsx(styles.arrowIcon, styles.inverse)} />
-        </button>
-        <button className={styles.button} onClick={() => nextTrack(tracks)}>
-          <ArrowIcon className={styles.arrowIcon} />
-        </button>
+        <ButtonIcon
+          SvgIcon={ArrowIcon}
+          className={clsx(styles.arrow, styles.inverse)}
+          onClick={() => prevTrack(tracks)}
+        />
+        <ButtonIcon
+          SvgIcon={ArrowIcon}
+          className={styles.arrow}
+          onClick={() => nextTrack(tracks)}
+        />
       </div>
     </>
   );

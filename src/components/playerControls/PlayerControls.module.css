@@ -4,50 +4,18 @@
   gap: 10px;
 }
 
-.button {
-  width: 45px;
-  height: 45px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  --button-opacity: 0.5;
-}
-
-.button:focus,
-.button:hover {
-  opacity: var(--button-opacity);
-}
-
-@supports selector(:focus-visible) {
-  .button:focus {
-    opacity: 1;
-  }
-
-  .button:hover {
-    opacity: var(--button-opacity);
-  }
-
-  .button:focus-visible {
-    opacity: var(--button-opacity);
-  }
-}
-
 @media (max-width: 790px) {
-  .toggleButton {
-    grid-row: 1;
-  }
   .rewindControls {
     grid-row: 1;
     grid-column: 3;
   }
 }
 
-.toggleIcon {
+.toggle {
   font-size: 45px;
 }
 
-.arrowIcon {
+.arrow {
   font-size: 25px;
 }
 
