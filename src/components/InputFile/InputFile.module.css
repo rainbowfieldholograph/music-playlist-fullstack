@@ -9,6 +9,12 @@
   border-radius: 0.5rem;
   display: block;
   transition: 0.2s border ease;
+
+  max-width: 300px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .label:hover {

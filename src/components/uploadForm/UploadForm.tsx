@@ -45,7 +45,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
       <FormInput inputState={author} setInputState={setAuthor} labelText="Author" />
       <FormInput inputState={title} setInputState={setTitle} labelText="Title" />
       <InputFile
-        text="Chose Audio File"
+        text={file?.name ?? 'Chose Audio File'}
         className={styles.fileInput}
         required
         onChange={handleFileChange}
