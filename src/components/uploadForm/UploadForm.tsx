@@ -6,6 +6,7 @@ import { UploadFormProps } from './UplodaForm.props';
 import { Button } from '../button/Button';
 import { UploadingBlock } from '../uploadingBlock/UploadingBlock';
 import { AddTrackDocument, AddTrackMutation, GetAllTracksDocument } from '../../generated';
+import { InputFile } from '../InputFile';
 
 export const UploadForm = ({ onSubmit }: UploadFormProps) => {
   const [file, setFile] = useState<File | null>(null);
@@ -43,10 +44,12 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
       <h1>Upload Track</h1>
       <FormInput inputState={author} setInputState={setAuthor} labelText="Author" />
       <FormInput inputState={title} setInputState={setTitle} labelText="Title" />
-      <label>
-        <h1 className={styles.uploadTitle}>Upload audio File</h1>
-        <input required type="file" accept="audio/*" onChange={handleFileChange} />
-      </label>
+      <InputFile
+        text="Chose Audio File"
+        className={styles.fileInput}
+        required
+        onChange={handleFileChange}
+      />
       <Button className={styles.btn} type="submit">
         Upload Track
       </Button>

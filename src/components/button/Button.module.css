@@ -1,7 +1,8 @@
 .button {
   padding: 1em;
   background-color: white;
-  border: 2px solid black;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 0.5rem;
   transition: all 0.2s linear;
 }
 
