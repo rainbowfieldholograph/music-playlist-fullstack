@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEventHandler, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import styles from './UploadForm.module.css';
-import { FormInput } from '../formInput/FormInput';
+import { FormInput } from '../FormInput';
 import { UploadFormProps } from './UplodaForm.props';
-import { Button } from '../button/Button';
-import { UploadingBlock } from '../uploadingBlock/UploadingBlock';
+import { Button } from '../Button';
+import { UploadingBlock } from '../UploadingBlock';
 import { AddTrackDocument, AddTrackMutation, GetAllTracksDocument } from '../../generated';
 import { InputFile } from '../InputFile';
 

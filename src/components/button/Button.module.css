@@ -1,5 +1,5 @@
 .button {
-  padding: 1em;
+  padding: 1rem;
   background-color: white;
   border: 1px solid var(--color-ghost-border);
   border-radius: 0.5rem;

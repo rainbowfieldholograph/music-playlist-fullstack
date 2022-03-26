@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import styles from './Playlist.module.css';
-import { ErorrBlock } from '../errorBlock/ErorrBlock';
-import { FullHeightBlock } from '../fullHeightBlock/FullHeightBlock';
-import { Spinner } from '../spinner/Spinner';
+import { ErorrBlock } from '../ErrorBlock';
+import { FullHeightBlock } from '../FullHeightBlock';
+import { Spinner } from '../Spinner';
 import { useQuery } from '@apollo/client';
-import { TracksList } from '../tracksList/TracksList';
+import { TracksList } from '../TracksList';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlaylistProps } from './Playlist.props';
 import { AddNewTrack } from '../AddNewTrack';
@@ -14,9 +14,10 @@ const findTextMatches = (firstText: string, secondText: string) => {
   return firstText.toLowerCase().includes(secondText.toLowerCase());
 };
 
-const Playlist = ({}: PlaylistProps): JSX.Element => {
+export const Playlist = ({}: PlaylistProps): JSX.Element => {
   const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   let tracks = data?.getAllTracks;
+  // if (tracks) tracks = [...tracks].reverse();
 
   const [search, setSearch] = useState<string>('');
 
@@ -58,5 +59,3 @@ const Playlist = ({}: PlaylistProps): JSX.Element => {
     </div>
   );
 };
-
-export default Playlist;

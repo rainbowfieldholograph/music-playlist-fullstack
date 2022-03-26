@@ -1,10 +1,10 @@
 import styles from './Player.module.css';
 import { useEffect } from 'react';
-import { PlayerControls } from '../playerControls/PlayerControls';
-import { PlayerVolume } from '../playerVolume/PlayerVolume';
+import { PlayerControls } from '../PlayerControls';
+import { PlayerVolume } from '../PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';
-import { PlayerMusicImage } from '../playerMusicImage/MusicBox';
-import { PlayerInfo } from '../playerInfo/PlayerInfo';
+import { PlayerMusicImage } from '../MusicBox';
+import { PlayerInfo } from '../PlayerInfo';
 import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerProps } from './Player.props';

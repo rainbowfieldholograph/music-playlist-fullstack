@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client';
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent } from 'react';
 import { PlayerStore } from '../../store/PlayerStore';
 import styles from './PlayerVolume.module.css';
 import { PlayerVolumeProps } from './PlayerVolume.props';

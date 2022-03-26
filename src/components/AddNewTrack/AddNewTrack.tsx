@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '../button/Button';
-import { UploadModal } from '../uploadModal/UploadModal';
+import { Button } from '../Button';
+import { UploadModal } from '../UploadModal';
 import { AddNewTrackProps } from './AddNewTrack.props';
 
 export const AddNewTrack = ({}: AddNewTrackProps): JSX.Element => {
