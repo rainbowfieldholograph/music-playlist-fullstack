@@ -21,7 +21,7 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     if (!audio.src) return;
     switch (event.code) {
       case 'Space':
-        event.preventDefault();
+        // event.preventDefault();
         toggleAudio();
         break;
     }

@@ -5,7 +5,7 @@
   padding: 1rem;
   background-color: rgb(245, 245, 245);
   cursor: pointer;
-  border: 1px solid rgb(219, 219, 219);
+  border: 1px solid var(--color-ghost-border);
   border-radius: 0.5rem;
   display: block;
   transition: 0.2s border ease;

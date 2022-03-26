@@ -1,0 +1,32 @@
+.wrapper {
+  --search-input-space: 0.5rem;
+  --transition-duration: 0.1s;
+
+  display: flex;
+  align-items: center;
+  gap: var(--search-input-space);
+  border: 1px solid var(--color-ghost-border);
+  transition: outline var(--transition-duration) ease;
+  border-radius: 0.5rem;
+  padding: var(--search-input-space);
+  cursor: text;
+}
+
+.icon {
+  transition: all var(--transition-duration) ease;
+  font-size: 25px;
+}
+
+.input {
+  outline: none;
+  flex-grow: 1;
+}
+
+.wrapper:focus-within {
+  outline: 2px solid var(--color-primary);
+}
+
+.wrapper:focus-within > .icon {
+  color: var(--color-primary);
+  transform: scale(1.05);
+}

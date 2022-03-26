@@ -4,6 +4,7 @@
   --container-margin-block: 1rem;
 
   --color-primary: rgb(116, 74, 182);
+  --color-ghost-border: rgb(219, 219, 219);
   --box-shadow-active: 0px 0px 5px 5px var(--color-primary);
 }
 
