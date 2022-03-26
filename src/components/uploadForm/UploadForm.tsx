@@ -32,7 +32,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
       setAuthor('');
       setTitle('');
     } catch (error) {
-      alert('An error occurred while uploading the track to the server');
+      alert('An error occurred while uploading the file to the server');
       console.log('Upload failed: ', error);
     }
   };
@@ -41,7 +41,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
-      <h1>Upload Track</h1>
+      <h1>Upload audio file</h1>
       <FormInput inputState={author} setInputState={setAuthor} labelText="Author" />
       <FormInput inputState={title} setInputState={setTitle} labelText="Title" />
       <InputFile
@@ -51,7 +51,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
         onChange={handleFileChange}
       />
       <Button className={styles.btn} type="submit">
-        Upload Track
+        Upload
       </Button>
     </form>
   );

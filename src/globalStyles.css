@@ -1,5 +1,5 @@
 /* variables */
-html {
+:root {
   --container-padding-block: 1.5rem;
   --container-margin-block: 1rem;
 
@@ -7,11 +7,11 @@ html {
   --box-shadow-active: 0px 0px 5px 5px var(--color-primary);
 }
 
-body {
+html {
   font-family: 'Oxygen', 'Roboto', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', Arial,
     'Ubuntu', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Cantarell', 'Open Sans',
     'Helvetica Neue', sans-serif;
-  font-size: 25px;
+  font-size: 16px;
   line-height: 1.2;
 }
 

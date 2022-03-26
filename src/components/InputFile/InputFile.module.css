@@ -1,6 +1,6 @@
 .label {
   --focus-bg-color: rgb(237, 237, 237);
-  --focus-border-color: rgb(122, 122, 122);
+  --focus-border-color: var(--color-primary);
 
   padding: 1rem;
   background-color: rgb(245, 245, 245);
