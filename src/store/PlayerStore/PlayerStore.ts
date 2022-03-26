@@ -66,6 +66,11 @@ class PlayerStore implements IPlayerStore {
     };
     this.audio.volume = this.volumeVar();
   };
+
+  changeVolume = (newValue: number) => {
+    this.audio.volume = newValue;
+    this.volumeVar(newValue);
+  };
 }
 
 const PlayerStoreInstance = new PlayerStore();

@@ -22,7 +22,7 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     switch (event.code) {
       case 'Space':
         // event.preventDefault();
-        toggleAudio();
+        // toggleAudio();
         break;
     }
   };

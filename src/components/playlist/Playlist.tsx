@@ -17,7 +17,6 @@ const findTextMatches = (firstText: string, secondText: string) => {
 const Playlist = ({}: PlaylistProps): JSX.Element => {
   const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   let tracks = data?.getAllTracks;
-  if (tracks) tracks = [...tracks].reverse();
 
   const [search, setSearch] = useState<string>('');
 

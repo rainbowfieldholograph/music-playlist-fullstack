@@ -16,4 +16,5 @@ export interface IPlayerStore {
   nextTrack: (playlist: Playlist) => void;
   toggleAudio: () => Promise<void>;
   initializeAudio: (src: string, playlist: Playlist) => void;
+  changeVolume: (newVolume: number) => void;
 }
