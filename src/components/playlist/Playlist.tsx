@@ -22,7 +22,11 @@ const Playlist = ({}: PlaylistProps): JSX.Element => {
   const [search, setSearch] = useState<string>('');
 
   const filteredSongs = useMemo(
-    () => tracks?.filter((track) => findTextMatches(track.title, search)),
+    () =>
+      tracks?.filter(
+        (track) =>
+          findTextMatches(track.title, search) || findTextMatches(track.author, search)
+      ),
     [search]
   );
 
