@@ -15,8 +15,8 @@ export const TrackItem = ({
     >
       <div className={styles.trackBox} />
       <div className={styles.info}>
-        <h2 className={styles.text}>{title}</h2>
-        <h3 className={styles.text}>{subtitle}</h3>
+        <p className={styles.text}>{title}</p>
+        <p className={styles.text}>{subtitle}</p>
       </div>
     </button>
   );

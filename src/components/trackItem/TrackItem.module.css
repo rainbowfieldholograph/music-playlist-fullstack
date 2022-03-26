@@ -39,6 +39,7 @@
 .text {
   max-width: 100%;
   font-size: 1.3rem;
+  font-weight: 600;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -46,7 +47,7 @@
 }
 
 .active {
-  border: 3px solid purple;
+  border: 3px solid var(--color-primary);
   transform: scale(1.05);
   transition: all 0.2s linear;
   box-shadow: var(--box-shadow-active);
@@ -57,6 +58,6 @@
   width: var(--box-size, 65px);
   height: var(--box-size, 65px);
   aspect-ratio: 1/1;
-  background-color: purple;
+  background-color: var(--color-primary);
   border-radius: 15%;
 }
