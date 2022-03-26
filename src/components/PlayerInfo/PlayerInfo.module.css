@@ -1,0 +1,31 @@
+.info {
+  overflow: hidden;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+}
+
+.title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 80%;
+}
+
+@media (max-width: 790px) {
+  .info {
+    width: 100%;
+    grid-row: 2;
+    grid-column: 1 / 4;
+  }
+  .box {
+    width: 100%;
+  }
+  .title {
+    width: 100%;
+  }
+}

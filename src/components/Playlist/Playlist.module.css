@@ -1,0 +1,26 @@
+.playlist {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid gainsboro;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+}
+
+.search {
+  margin-bottom: 2rem;
+  width: 100%;
+}
