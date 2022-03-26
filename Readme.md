@@ -42,9 +42,11 @@ npm install
 
 ## ENV setup
 
-create .env file
-and setup
-VITE_SERVER_URL = your_url
+create .env file and setup
+
+```sh
+VITE_SERVER_URL = your_server_url
+```
 
 ## Usage
 
