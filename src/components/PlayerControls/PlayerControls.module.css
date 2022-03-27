@@ -1,18 +1,14 @@
-.rewindControls {
+.controls {
   display: grid;
   grid-auto-flow: column;
   gap: 10px;
 }
 
 @media (max-width: 790px) {
-  .rewindControls {
+  .controls {
     grid-row: 1;
     grid-column: 3;
   }
-}
-
-.toggle {
-  font-size: 45px;
 }
 
 .arrow {

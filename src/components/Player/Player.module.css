@@ -20,6 +20,10 @@
   gap: 1rem;
 }
 
+.player:focus {
+  outline: 2px solid var(--color-primary);
+}
+
 @media (max-width: 790px) {
   .player {
     padding-top: 1rem;

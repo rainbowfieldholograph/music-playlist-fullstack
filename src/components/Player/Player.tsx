@@ -1,5 +1,5 @@
 import styles from './Player.module.css';
-import { useEffect } from 'react';
+import { KeyboardEvent, useEffect, useRef } from 'react';
 import { PlayerControls } from '../PlayerControls';
 import { PlayerVolume } from '../PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';
@@ -8,8 +8,9 @@ import { PlayerInfo } from '../PlayerInfo';
 import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerProps } from './Player.props';
+import { PlayerToggleButton } from '../PlayerToggleButton';
 
-const { audio, currentTrackVar, toggleAudio, initializeAudio } = PlayerStore;
+const { currentTrackVar, toggleAudio, initializeAudio } = PlayerStore;
 
 export const Player = ({}: PlayerProps): JSX.Element | null => {
   const currentTrack = useReactiveVar(currentTrackVar);
@@ -18,19 +19,13 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   const tracks = data?.getAllTracks;
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (!audio.src) return;
     switch (event.code) {
       case 'Space':
-        // event.preventDefault();
-        // toggleAudio();
+        event.preventDefault();
+        toggleAudio();
         break;
     }
   };
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   useEffect(() => {
     if (currentTrack) {
@@ -42,7 +37,8 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   if (!currentTrack) return null;
 
   return (
-    <div className={styles.player}>
+    <div tabIndex={0} className={styles.player} onKeyDown={handleKeyDown}>
+      <PlayerToggleButton />
       <PlayerControls />
       <PlayerMusicImage className={styles.musicImage} />
       <PlayerInfo />
