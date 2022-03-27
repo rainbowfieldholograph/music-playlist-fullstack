@@ -17,7 +17,12 @@ export const PlayerVolume = ({}: PlayerVolumeProps) => {
   return (
     <div className={styles.box}>
       <p className={styles.title}>Volume: {computedVolume}%</p>
-      <input type="range" value={computedVolume} onChange={onChangeRange} />
+      <input
+        aria-label="audio volume"
+        type="range"
+        value={computedVolume}
+        onChange={onChangeRange}
+      />
     </div>
   );
 };

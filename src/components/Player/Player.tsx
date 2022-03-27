@@ -37,7 +37,12 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   if (!currentTrack) return null;
 
   return (
-    <div tabIndex={0} className={styles.player} onKeyDown={handleKeyDown}>
+    <div
+      aria-label="audio player"
+      tabIndex={0}
+      className={styles.player}
+      onKeyDown={handleKeyDown}
+    >
       <PlayerToggleButton />
       <PlayerControls />
       <PlayerMusicImage className={styles.musicImage} />

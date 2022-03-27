@@ -16,11 +16,13 @@ export const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
   return (
     <div className={styles.controls}>
       <ButtonIcon
+        aria-label="previous audio"
         SvgIcon={ArrowIcon}
         className={clsx(styles.arrow, styles.inverse)}
         onClick={() => prevTrack(tracks)}
       />
       <ButtonIcon
+        aria-label="next audio"
         SvgIcon={ArrowIcon}
         className={styles.arrow}
         onClick={() => nextTrack(tracks)}

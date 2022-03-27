@@ -17,6 +17,7 @@ export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
   const canChangeTime = useReactiveVar(canChangeTimeVar);
   const duration = useReactiveVar(durationVar);
   const currentTrack = useReactiveVar(currentTrackVar);
+  const currentTime = useReactiveVar(currentTimeVar);
 
   const handleProgress = (event: ChangeEvent<HTMLInputElement>) => {
     if (canChangeTime) {
@@ -26,7 +27,6 @@ export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
     }
   };
 
-  const currentTime = useReactiveVar(currentTimeVar);
   return (
     <div className={styles.info}>
       <div className={styles.box}>
@@ -38,6 +38,7 @@ export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
         <p>{formatTime(currentTime)}</p>
       </div>
       <input
+        aria-label="audio current time"
         type="range"
         disabled={!canChangeTime}
         onChange={handleProgress}

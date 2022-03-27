@@ -14,6 +14,7 @@ export const PlayerToggleButton = ({}: PlayerToggleButtonProps) => {
 
   return (
     <ButtonIcon
+      aria-label="toggle audio playing"
       className={styles.toggle}
       onClick={() => toggleAudio()}
       SvgIcon={showCorrectIcon(isPlaying)}

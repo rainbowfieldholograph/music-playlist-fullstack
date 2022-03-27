@@ -1,12 +1,13 @@
 .info {
   overflow: hidden;
+  width: 300px;
 }
 
 .box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  width: 100%;
 }
 
 .title {
