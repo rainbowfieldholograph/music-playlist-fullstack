@@ -1,4 +1,4 @@
 export interface UploadModalProps {
-  onClose: Function;
+  onClose: () => void;
   isOpen: boolean;
 }

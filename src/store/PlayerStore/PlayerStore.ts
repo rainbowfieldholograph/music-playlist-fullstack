@@ -4,8 +4,8 @@ import { Playlist, SwitchTrackActions } from './PlayerStore.d';
 import { IPlayerStore } from './PlayerStore.interface';
 
 class PlayerStore implements IPlayerStore {
-  private DISABLE_TIME: number = 200;
-  private DEFAULT_VOLUME: number = 0.2;
+  private DISABLE_TIME = 200;
+  private DEFAULT_VOLUME = 0.2;
 
   audio = new Audio();
 

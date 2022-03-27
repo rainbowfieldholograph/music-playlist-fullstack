@@ -1,5 +1,5 @@
 import styles from './Player.module.css';
-import { KeyboardEvent, useEffect, useRef } from 'react';
+import { KeyboardEvent, useEffect } from 'react';
 import { PlayerControls } from '../PlayerControls';
 import { PlayerVolume } from '../PlayerVolume';
 import { useQuery, useReactiveVar } from '@apollo/client';

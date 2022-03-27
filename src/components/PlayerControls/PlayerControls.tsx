@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { ButtonIcon } from '../ButtonIcon';
 
-const { prevTrack, nextTrack, isPlayingVar } = PlayerStore;
+const { prevTrack, nextTrack } = PlayerStore;
 
 export const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);

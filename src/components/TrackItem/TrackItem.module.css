@@ -50,7 +50,7 @@
   border: 3px solid var(--color-primary);
   transform: scale(1.05);
   transition: all 0.2s linear;
-  box-shadow: var(--box-shadow-active);
+  box-shadow: var(--box-shadow-active) !important;
 }
 
 .trackBox {

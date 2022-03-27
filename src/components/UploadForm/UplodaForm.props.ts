@@ -1,3 +1,3 @@
 export interface UploadFormProps {
-  onSubmit: Function
+  onSubmit: () => void;
 }
