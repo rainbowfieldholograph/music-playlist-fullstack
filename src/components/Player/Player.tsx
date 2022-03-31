@@ -10,7 +10,8 @@ import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerProps } from './Player.props';
 import { PlayerToggleButton } from '../PlayerToggleButton';
 
-const { currentTrackVar, toggleAudio, initializeAudio } = PlayerStore;
+const { currentTrackVar, toggleAudio, initializeAudio, changeCurrentTime, currentTimeVar } =
+  PlayerStore;
 
 export const Player = ({}: PlayerProps): JSX.Element | null => {
   const currentTrack = useReactiveVar(currentTrackVar);
@@ -24,13 +25,20 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
         event.preventDefault();
         toggleAudio();
         break;
+      case 'ArrowRight':
+        event.preventDefault();
+        changeCurrentTime(currentTimeVar() + 5);
+        break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        changeCurrentTime(currentTimeVar() - 5);
+        break;
     }
   };
 
   useEffect(() => {
     if (currentTrack) {
       initializeAudio(currentTrack.src, tracks);
-      toggleAudio();
     }
   }, [currentTrack]);
 

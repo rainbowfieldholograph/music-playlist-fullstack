@@ -32,6 +32,7 @@ export const UploadForm = ({ onSubmit }: UploadFormProps) => {
       setAuthor('');
       setTitle('');
     } catch (error) {
+      setFile(null);
       alert('An error occurred while uploading the file to the server');
       console.log('Upload failed: ', error);
     }

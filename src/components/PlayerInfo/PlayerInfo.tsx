@@ -5,12 +5,12 @@ import { useReactiveVar } from '@apollo/client';
 import { PlayerStore } from '../../store/PlayerStore';
 import { ChangeEvent } from 'react';
 
-const { currentTimeVar, canChangeTimeVar, audio, durationVar, currentTrackVar } = PlayerStore;
+const { currentTimeVar, canChangeTimeVar, durationVar, currentTrackVar, changeCurrentTime } =
+  PlayerStore;
 
 const computeDuration = (currentTime: number, duration: number): number => {
   const result = Math.round((currentTime * 100) / duration);
-  if (!result) return 0;
-  return Math.round((currentTime * 100) / duration);
+  return isNaN(result) ? 0 : result;
 };
 
 export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
@@ -20,11 +20,8 @@ export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
   const currentTime = useReactiveVar(currentTimeVar);
 
   const handleProgress = (event: ChangeEvent<HTMLInputElement>) => {
-    if (canChangeTime) {
-      const timeCompute = (+event.target.value * duration) / 100;
-      currentTimeVar(timeCompute);
-      audio.currentTime = timeCompute;
-    }
+    const timeCompute = (+event.target.value * duration) / 100;
+    changeCurrentTime(timeCompute);
   };
 
   return (
