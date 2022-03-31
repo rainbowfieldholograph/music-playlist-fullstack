@@ -20,7 +20,7 @@
   gap: 1rem;
 }
 
-.player:focus {
+.player:focus-within {
   outline: 2px solid var(--color-primary);
 }
 
