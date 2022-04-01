@@ -4,6 +4,7 @@ import styles from './PlayerInfo.module.css';
 import { useReactiveVar } from '@apollo/client';
 import { PlayerStore } from '../../store/PlayerStore';
 import { ChangeEvent } from 'react';
+import { Slider } from '../Slider';
 
 const { currentTimeVar, canChangeTimeVar, durationVar, currentTrackVar, changeCurrentTime } =
   PlayerStore;
@@ -34,9 +35,9 @@ export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
         <h3 className={styles.title}>{currentTrack?.author}</h3>
         <p>{formatTime(currentTime)}</p>
       </div>
-      <input
+      <Slider
+        tabIndex={-1}
         aria-label="audio current time"
-        type="range"
         disabled={!canChangeTime}
         onChange={handleProgress}
         value={computeDuration(currentTime, duration)}

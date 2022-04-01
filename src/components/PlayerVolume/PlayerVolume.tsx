@@ -1,6 +1,7 @@
 import { useReactiveVar } from '@apollo/client';
 import { ChangeEvent } from 'react';
 import { PlayerStore } from '../../store/PlayerStore';
+import { Slider } from '../Slider';
 import styles from './PlayerVolume.module.css';
 import { PlayerVolumeProps } from './PlayerVolume.props';
 
@@ -17,9 +18,9 @@ export const PlayerVolume = ({}: PlayerVolumeProps) => {
   return (
     <div className={styles.box}>
       <p className={styles.title}>Volume: {computedVolume}%</p>
-      <input
+      <Slider
+        tabIndex={-1}
         aria-label="audio volume"
-        type="range"
         value={computedVolume}
         onChange={onChangeRange}
       />

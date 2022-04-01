@@ -34,8 +34,3 @@ html {
 .clickable {
   cursor: pointer;
 }
-
-input[type='range'] {
-  cursor: pointer;
-  width: 100%;
-}

@@ -11,7 +11,7 @@ class PlayerStore implements IPlayerStore {
 
   currentTrackVar = makeVar<Track | null>(null);
   isPlayingVar = makeVar<boolean>(false);
-  canChangeTimeVar = makeVar<boolean>(true);
+  canChangeTimeVar = makeVar<boolean>(false);
   volumeVar = makeVar<number>(this.DEFAULT_VOLUME);
   currentTimeVar = makeVar<number>(0);
   durationVar = makeVar<number>(0);
@@ -39,18 +39,31 @@ class PlayerStore implements IPlayerStore {
   };
 
   changeCurrentTime = (newValue: number) => {
-    if (this.canChangeTimeVar()) {
-      this.currentTimeVar(newValue);
-      this.audio.currentTime = newValue;
-    }
+    if (!this.canChangeTimeVar() || !this.currentTrackVar()) return;
+    let actualNewValue = newValue;
+    if (newValue < 0) actualNewValue = 0;
+    if (newValue > this.audio.duration) actualNewValue = this.audio.duration;
+
+    this.currentTimeVar(actualNewValue);
+    this.audio.currentTime = actualNewValue;
   };
 
   changeVolume = (newValue: number) => {
-    this.audio.volume = newValue;
-    this.volumeVar(newValue);
+    if (!this.currentTrackVar()) return;
+
+    let actualNewValue = newValue;
+    if (newValue < 0) actualNewValue = 0;
+    if (newValue > 1) actualNewValue = 1;
+
+    this.volumeVar(actualNewValue);
+    this.audio.volume = actualNewValue;
   };
 
-  changePlaying = (play: boolean) => (play ? this.audio.play() : this.audio.pause());
+  changePlaying = (play: boolean) => {
+    if (!this.currentTrackVar()) return;
+
+    play ? this.audio.play() : this.audio.pause();
+  };
 
   toggleAudio = () => this.changePlaying(!this.isPlayingVar());
 
