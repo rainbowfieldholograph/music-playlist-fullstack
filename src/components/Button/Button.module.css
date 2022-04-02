@@ -11,17 +11,3 @@
   box-shadow: var(--box-shadow-active);
   outline: none;
 }
-
-@supports selector(:focus-visible) {
-  .button:focus {
-    box-shadow: none;
-  }
-
-  .button:hover {
-    box-shadow: var(--box-shadow-active);
-  }
-
-  .button:focus-visible {
-    box-shadow: var(--box-shadow-active);
-  }
-}

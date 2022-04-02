@@ -29,16 +29,16 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     const eventTarget = event.target as HTMLElement;
-    if (
-      !currentTrackVar() ||
-      event.ctrlKey ||
-      event.metaKey ||
-      event.altKey ||
-      eventTarget === playerRef.current ||
-      eventTarget.tagName !== 'BODY'
-    ) {
-      return;
-    }
+    const checkIsValidKey =
+      (!!currentTrackVar() &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey &&
+        eventTarget.tagName === 'BODY') ||
+      eventTarget === playerRef.current;
+
+    if (!checkIsValidKey) return;
+
     switch (event.code) {
       case 'Space':
         event.preventDefault();

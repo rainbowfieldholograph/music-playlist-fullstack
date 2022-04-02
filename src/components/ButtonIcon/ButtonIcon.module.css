@@ -12,20 +12,6 @@
   opacity: var(--button-opacity);
 }
 
-@supports selector(:focus-visible) {
-  .button:focus {
-    opacity: 1;
-  }
-
-  .button:hover {
-    opacity: var(--button-opacity);
-  }
-
-  .button:focus-visible {
-    opacity: var(--button-opacity);
-  }
-}
-
 .icon {
   font-size: inherit;
 }
