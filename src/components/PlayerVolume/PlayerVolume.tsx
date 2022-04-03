@@ -18,12 +18,7 @@ export const PlayerVolume = ({}: PlayerVolumeProps) => {
   return (
     <div className={styles.box}>
       <p className={styles.title}>Volume: {computedVolume}%</p>
-      <Slider
-        tabIndex={-1}
-        aria-label="audio volume"
-        value={computedVolume}
-        onChange={onChangeRange}
-      />
+      <Slider aria-label="audio volume" value={computedVolume} onChange={onChangeRange} />
     </div>
   );
 };
