@@ -28,7 +28,7 @@ Fullstack приложение для прослушивания/добавле�
 
 Frontend задеплоен на Github Pages, а backend на Heroku.
 
-Layout адаптивен под мобильные устройства.
+Layout адаптивен под мобильные устройства и доступен с клавиатуры.
 
 Проект в процессе допиливания.
 
@@ -40,12 +40,12 @@ Layout адаптивен под мобильные устройства.
 npm install
 ```
 
-## ENV setup
+## ENV configure
 
-create .env file and setup
+Create .env file and setup
 
 ```sh
-VITE_SERVER_URL = your_server_url
+VITE_SERVER_URL = your_graphql_server_url
 ```
 
 ## Usage
@@ -54,6 +54,16 @@ VITE_SERVER_URL = your_server_url
 npm run dev
 ```
 
+## Generate types for GraphQL
+
+Configure codegen.yaml
+
+```sh
+schema: your_graphql_server_url
+```
+
 ## Author
 
 - Github: https://github.com/rainbowfieldholograph
+- Matrix: https://matrix.to/#/@survivalstrategy:matrix.org
+- Telegram: https://t.me/duvetduvet
