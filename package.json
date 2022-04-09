@@ -11,7 +11,7 @@
     "generate": "graphql-codegen"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.9",
+    "@apollo/client": "^3.5.10",
     "apollo-upload-client": "^17.0.0",
     "clsx": "^1.1.1",
     "focus-trap-react": "^8.9.2",

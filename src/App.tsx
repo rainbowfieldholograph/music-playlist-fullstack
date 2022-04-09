@@ -2,6 +2,7 @@ import './globalStyles.css';
 import './defaultStyles.css';
 import { Playlist } from './components/Playlist';
 import { Player } from './components/Player';
+import { BackToTopButton } from './components/BackToTopButton';
 
 export const App = (): JSX.Element => {
   return (
@@ -10,6 +11,7 @@ export const App = (): JSX.Element => {
       <main>
         <Playlist />
       </main>
+      <BackToTopButton />
     </div>
   );
 };
