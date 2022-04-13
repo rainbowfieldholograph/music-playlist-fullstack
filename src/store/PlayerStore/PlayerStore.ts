@@ -1,9 +1,8 @@
 import { makeVar } from '@apollo/client';
 import { Track } from '../../generated';
 import { Playlist, SwitchTrackActions } from './PlayerStore.d';
-import { IPlayerStore } from './PlayerStore.interface';
 
-class PlayerStore implements IPlayerStore {
+class PlayerStore {
   private DISABLE_TIME = 500; // optimal value 500+
   private DEFAULT_VOLUME = 0.2; //can be only 0.0 -> 1.0
   private prevTimerId: null | number = null;
@@ -77,9 +76,7 @@ class PlayerStore implements IPlayerStore {
       this.audio.play();
 
       if (this.prevTimerId) clearTimeout(this.prevTimerId);
-      this.prevTimerId = setTimeout(() => {
-        this.canChangeTimeVar(true);
-      }, this.DISABLE_TIME);
+      this.prevTimerId = setTimeout(() => this.canChangeTimeVar(true), this.DISABLE_TIME);
     };
     this.audio.onloadedmetadata = () => {
       this.durationVar(this.audio.duration);
