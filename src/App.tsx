@@ -1,5 +1,5 @@
-import './globalStyles.css';
-import './defaultStyles.css';
+import './styles/globals.css';
+import './styles/base.css';
 import { Playlist } from './components/Playlist';
 import { Player } from './components/Player';
 import { BackToTopButton } from './components/BackToTopButton';
