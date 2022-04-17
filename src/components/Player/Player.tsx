@@ -29,13 +29,15 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     const eventTarget = event.target as HTMLElement;
+
     const checkIsValidKey =
       (!!currentTrackVar() &&
         !event.ctrlKey &&
         !event.metaKey &&
         !event.altKey &&
         eventTarget.tagName === 'BODY') ||
-      eventTarget === playerRef.current;
+      eventTarget === playerRef.current ||
+      playerRef.current?.contains(eventTarget);
 
     if (!checkIsValidKey) return;
 
