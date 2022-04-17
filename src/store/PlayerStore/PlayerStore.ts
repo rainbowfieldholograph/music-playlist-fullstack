@@ -4,16 +4,19 @@ import { Playlist, SwitchTrackActions } from './PlayerStore.d';
 
 class PlayerStore {
   private DISABLE_TIME = 500; // optimal value 500+
-  private DEFAULT_VOLUME = 0.2; //can be only 0.0 -> 1.0
+  private DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
   private prevTimerId: null | number = null;
   private audio = new Audio();
 
+  //Apollo reactive variables
   currentTrackVar = makeVar<Track | null>(null);
   isPlayingVar = makeVar<boolean>(false);
   canChangeTimeVar = makeVar<boolean>(false);
   volumeVar = makeVar<number>(this.DEFAULT_VOLUME);
   currentTimeVar = makeVar<number>(0);
   durationVar = makeVar<number>(0);
+
+  //TODO. Add currentPlaylist variable
 
   switchTrack = (playlist: Playlist, action: SwitchTrackActions) => {
     const currentTrack = this.currentTrackVar();
@@ -39,6 +42,7 @@ class PlayerStore {
 
   changeCurrentTime = (newValue: number) => {
     if (!this.canChangeTimeVar() || !this.currentTrackVar()) return;
+
     let actualNewValue = newValue;
     if (newValue < 0) actualNewValue = 0;
     if (newValue > this.audio.duration) actualNewValue = this.audio.duration;
@@ -75,7 +79,7 @@ class PlayerStore {
     this.audio.onloadeddata = () => {
       this.audio.play();
 
-      if (this.prevTimerId) clearTimeout(this.prevTimerId);
+      if (this.prevTimerId) clearTimeout(this.prevTimerId); // if the previous timer is still running, we turn it off
       this.prevTimerId = setTimeout(() => this.canChangeTimeVar(true), this.DISABLE_TIME);
     };
     this.audio.onloadedmetadata = () => {

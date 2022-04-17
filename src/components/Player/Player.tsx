@@ -31,7 +31,7 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     const eventTarget = event.target as HTMLElement;
 
     const checkIsValidKey =
-      (!!currentTrackVar() &&
+      (!!currentTrackVar() && // idk why but we can't use reactive var currentTrack here
         !event.ctrlKey &&
         !event.metaKey &&
         !event.altKey &&
