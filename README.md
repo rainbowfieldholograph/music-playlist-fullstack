@@ -62,6 +62,8 @@ Configure codegen.yaml
 schema: your_graphql_server_url
 ```
 
+And you can run
+
 ```sh
 npm run generate-types
 ```
