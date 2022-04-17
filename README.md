@@ -62,6 +62,10 @@ Configure codegen.yaml
 schema: your_graphql_server_url
 ```
 
+```sh
+npm run generate-types
+```
+
 ## Author
 
 - Github: https://github.com/rainbowfieldholograph
