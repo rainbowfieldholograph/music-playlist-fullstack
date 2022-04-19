@@ -36,7 +36,8 @@ export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
         <p>{formatTime(currentTime)}</p>
       </div>
       <Slider
-        aria-label="audio current time"
+        aria-label="Audio current time handler"
+        title="Audio current time handler"
         disabled={!canChangeTime}
         onChange={handleProgress}
         value={computeDuration(currentTime, duration)}

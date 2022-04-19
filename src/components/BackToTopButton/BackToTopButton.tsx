@@ -28,8 +28,8 @@ export const BackToTopButton = ({}: BackToTopButtonProps): JSX.Element | null =>
 
   return (
     <ButtonIcon
-      title="scroll to top"
-      aria-label="scroll to top"
+      title="Scroll to top"
+      aria-label="Scroll to top"
       SvgIcon={UpIcon}
       className={styles.button}
       onClick={scrollUp}

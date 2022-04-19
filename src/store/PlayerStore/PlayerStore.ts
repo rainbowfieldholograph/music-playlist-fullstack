@@ -3,8 +3,8 @@ import { Track } from '../../generated';
 import { Playlist, SwitchTrackActions } from './PlayerStore.d';
 
 class PlayerStore {
-  private DISABLE_TIME = 500; // optimal value 500+
-  private DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
+  private readonly DISABLE_TIME = 500; // optimal value 500+
+  private readonly DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
   private prevTimerId: null | number = null;
   private audio = new Audio();
 

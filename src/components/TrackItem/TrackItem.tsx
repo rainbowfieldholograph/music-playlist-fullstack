@@ -4,19 +4,20 @@ import { TrackItemProps } from './TrackItem.props';
 
 export const TrackItem = ({
   title,
-  active,
-  subtitle,
+  isActive,
+  author,
   onClick,
 }: TrackItemProps): JSX.Element => {
   return (
     <button
+      aria-label={`Play audio: ${author} - ${title}`}
       onClick={() => onClick()}
-      className={clsx(styles.track, { [styles.active]: active })}
+      className={clsx(styles.track, { [styles.active]: isActive })}
     >
       <div className={styles.trackBox} />
       <div className={styles.info}>
         <p className={styles.text}>{title}</p>
-        <p className={styles.text}>{subtitle}</p>
+        <p className={styles.text}>{author}</p>
       </div>
     </button>
   );

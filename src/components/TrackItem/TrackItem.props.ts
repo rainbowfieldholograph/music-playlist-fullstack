@@ -1,6 +1,6 @@
 export interface TrackItemProps {
   title: string;
-  active: boolean;
-  subtitle: string;
+  author: string;
+  isActive: boolean;
   onClick: () => void;
 }

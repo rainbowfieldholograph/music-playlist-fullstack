@@ -79,7 +79,7 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   if (!currentTrack) return null;
 
   return (
-    <div aria-label="audio player" tabIndex={0} className={styles.player} ref={playerRef}>
+    <div aria-label="Audio player" tabIndex={0} className={styles.player} ref={playerRef}>
       <PlayerToggleButton />
       <PlayerControls />
       <PlayerMusicImage className={styles.musicImage} />

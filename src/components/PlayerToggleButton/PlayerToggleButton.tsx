@@ -11,10 +11,12 @@ const { toggleAudio, isPlayingVar } = PlayerStore;
 export const PlayerToggleButton = ({}: PlayerToggleButtonProps) => {
   const isPlaying = useReactiveVar(isPlayingVar);
   const showCorrectIcon = (isPlaying: boolean) => (isPlaying ? PauseIcon : PlayIcon);
+  const buttonTitle = isPlaying ? 'Pause audio' : 'Play audio';
 
   return (
     <ButtonIcon
-      aria-label="toggle audio playing"
+      aria-label={buttonTitle}
+      title={buttonTitle}
       className={styles.toggle}
       onClick={() => toggleAudio()}
       SvgIcon={showCorrectIcon(isPlaying)}

@@ -15,10 +15,10 @@ export const TracksList = ({ data }: TracksListProps): JSX.Element => {
       {data.map((track) => (
         <li key={track.id}>
           <TrackItem
-            active={track.id === currentTrack?.id}
+            isActive={track.id === currentTrack?.id}
             onClick={onClickTrack(track)}
             title={track.title}
-            subtitle={track.author}
+            author={track.author}
           />
         </li>
       ))}
