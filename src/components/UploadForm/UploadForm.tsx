@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEventHandler, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import styles from './UploadForm.module.css';
 import { FormInput } from '../FormInput';
-import { UploadFormProps } from './UplodaForm.props';
 import { Button } from '../Button';
 import { UploadingBlock } from '../UploadingBlock';
 import { AddTrackDocument, AddTrackMutation, GetAllTracksDocument } from '../../generated';
 import { InputFile } from '../InputFile';
+import { UploadFormProps } from './UplodaForm.props';
+import styles from './UploadForm.module.css';
 
 export const UploadForm = ({ onSubmit }: UploadFormProps) => {
   const [file, setFile] = useState<File | null>(null);

@@ -1,9 +1,9 @@
 import { createPortal } from 'react-dom';
 import { FC, useEffect } from 'react';
-import styles from './Modal.module.css';
-import { ModalProps } from './Modal.props';
 import clsx from 'clsx';
 import FocusTrap from 'focus-trap-react';
+import styles from './Modal.module.css';
+import { ModalProps } from './Modal.props';
 
 const portalRootElement = document.getElementById('modal');
 

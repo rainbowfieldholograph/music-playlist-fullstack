@@ -1,11 +1,11 @@
-import styles from './PlayerControls.module.css';
-import { PlayerControlsProps } from './PlayerControls.props';
 import clsx from 'clsx';
+import { useQuery } from '@apollo/client';
 import { ReactComponent as ArrowIcon } from '../../img/arrow-icon.svg';
 import { PlayerStore } from '../../store/PlayerStore';
-import { useQuery } from '@apollo/client';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { ButtonIcon } from '../ButtonIcon';
+import { PlayerControlsProps } from './PlayerControls.props';
+import styles from './PlayerControls.module.css';
 
 const { prevTrack, nextTrack } = PlayerStore;
 

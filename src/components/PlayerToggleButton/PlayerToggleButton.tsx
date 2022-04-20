@@ -1,10 +1,10 @@
+import { useReactiveVar } from '@apollo/client';
 import { ButtonIcon } from '../ButtonIcon';
-import styles from './PlayerToggleButton.module.css';
 import { PlayerStore } from '../../store/PlayerStore';
 import { ReactComponent as PauseIcon } from '../../img/pause-icon.svg';
 import { ReactComponent as PlayIcon } from '../../img/play-icon.svg';
+import styles from './PlayerToggleButton.module.css';
 import { PlayerToggleButtonProps } from './PlayerToggleButton.props';
-import { useReactiveVar } from '@apollo/client';
 
 const { toggleAudio, isPlayingVar } = PlayerStore;
 

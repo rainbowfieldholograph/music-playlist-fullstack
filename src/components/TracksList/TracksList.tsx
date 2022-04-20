@@ -1,9 +1,9 @@
-import { TracksListProps } from './TracksList.props';
-import styles from './TracksList.module.css';
-import { TrackItem } from '../TrackItem';
 import { useReactiveVar } from '@apollo/client';
+import { TrackItem } from '../TrackItem';
 import { Track } from '../../generated';
 import { PlayerStore } from '../../store/PlayerStore';
+import styles from './TracksList.module.css';
+import { TracksListProps } from './TracksList.props';
 
 export const TracksList = ({ data }: TracksListProps): JSX.Element => {
   const { currentTrackVar } = PlayerStore;

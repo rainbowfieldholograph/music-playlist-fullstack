@@ -1,7 +1,7 @@
-import { ButtonProps } from './Button.props';
-import styles from './Button.module.css';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { ButtonProps } from './Button.props';
+import styles from './Button.module.css';
 
 export const Button: FC<ButtonProps> = ({ children, className, ...rest }) => {
   return (

@@ -1,14 +1,14 @@
 import { useMemo, useState } from 'react';
-import styles from './Playlist.module.css';
+import { useQuery } from '@apollo/client';
 import { ErorrBlock } from '../ErrorBlock';
 import { FullHeightBlock } from '../FullHeightBlock';
 import { Spinner } from '../Spinner';
-import { useQuery } from '@apollo/client';
 import { TracksList } from '../TracksList';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
-import { PlaylistProps } from './Playlist.props';
 import { AddNewTrack } from '../AddNewTrack';
 import { SearchInput } from '../SearchInput';
+import { PlaylistProps } from './Playlist.props';
+import styles from './Playlist.module.css';
 
 const findTextMatches = (firstText: string, secondText: string) => {
   return firstText.toLowerCase().includes(secondText.toLowerCase());

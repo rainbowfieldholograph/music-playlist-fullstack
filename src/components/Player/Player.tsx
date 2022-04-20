@@ -1,14 +1,14 @@
-import styles from './Player.module.css';
 import { useEffect, useRef } from 'react';
+import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerControls } from '../PlayerControls';
 import { PlayerVolume } from '../PlayerVolume';
-import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerMusicImage } from '../MusicBox';
 import { PlayerInfo } from '../PlayerInfo';
 import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
-import { PlayerProps } from './Player.props';
 import { PlayerToggleButton } from '../PlayerToggleButton';
+import { PlayerProps } from './Player.props';
+import styles from './Player.module.css';
 
 const {
   currentTrackVar,
@@ -42,26 +42,26 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     if (!checkIsValidKey) return;
 
     switch (event.code) {
-      case 'Space':
-        event.preventDefault();
-        toggleAudio();
-        break;
-      case 'ArrowRight':
-        event.preventDefault();
-        changeCurrentTime(currentTimeVar() + 5);
-        break;
-      case 'ArrowLeft':
-        event.preventDefault();
-        changeCurrentTime(currentTimeVar() - 5);
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        changeVolume(volumeVar() + 0.05);
-        break;
-      case 'ArrowDown':
-        event.preventDefault();
-        changeVolume(volumeVar() - 0.05);
-        break;
+    case 'Space':
+      event.preventDefault();
+      toggleAudio();
+      break;
+    case 'ArrowRight':
+      event.preventDefault();
+      changeCurrentTime(currentTimeVar() + 5);
+      break;
+    case 'ArrowLeft':
+      event.preventDefault();
+      changeCurrentTime(currentTimeVar() - 5);
+      break;
+    case 'ArrowUp':
+      event.preventDefault();
+      changeVolume(volumeVar() + 0.05);
+      break;
+    case 'ArrowDown':
+      event.preventDefault();
+      changeVolume(volumeVar() - 0.05);
+      break;
     }
   };
 
