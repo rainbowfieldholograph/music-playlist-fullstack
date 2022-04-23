@@ -7,14 +7,13 @@ import { TracksList } from '../TracksList';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { AddNewTrack } from '../AddNewTrack';
 import { SearchInput } from '../SearchInput';
-import { PlaylistProps } from './Playlist.props';
 import styles from './Playlist.module.css';
 
 const findTextMatches = (firstText: string, secondText: string) => {
   return firstText.toLowerCase().includes(secondText.toLowerCase());
 };
 
-export const Playlist = ({}: PlaylistProps): JSX.Element => {
+export const Playlist = (): JSX.Element => {
   const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 

@@ -3,7 +3,6 @@ import { ChangeEvent } from 'react';
 import { formatTime } from '../../helpers/formatTime';
 import { PlayerStore } from '../../store/PlayerStore';
 import { Slider } from '../Slider';
-import { PlayerInfoProps } from './PlayerInfo.props';
 import styles from './PlayerInfo.module.css';
 
 const { currentTimeVar, canChangeTimeVar, durationVar, currentTrackVar, changeCurrentTime } =
@@ -14,7 +13,7 @@ const computeDuration = (currentTime: number, duration: number): number => {
   return isNaN(result) ? 0 : result;
 };
 
-export const PlayerInfo = ({}: PlayerInfoProps): JSX.Element => {
+export const PlayerInfo = (): JSX.Element => {
   const canChangeTime = useReactiveVar(canChangeTimeVar);
   const duration = useReactiveVar(durationVar);
   const currentTrack = useReactiveVar(currentTrackVar);

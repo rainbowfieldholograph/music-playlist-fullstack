@@ -4,14 +4,13 @@ import { PlayerStore } from '../../store/PlayerStore';
 import { ReactComponent as PauseIcon } from '../../img/pause-icon.svg';
 import { ReactComponent as PlayIcon } from '../../img/play-icon.svg';
 import styles from './PlayerToggleButton.module.css';
-import { PlayerToggleButtonProps } from './PlayerToggleButton.props';
 
 const { toggleAudio, isPlayingVar } = PlayerStore;
 
-export const PlayerToggleButton = ({}: PlayerToggleButtonProps) => {
+export const PlayerToggleButton = () => {
   const isPlaying = useReactiveVar(isPlayingVar);
   const showCorrectIcon = (isPlaying: boolean) => (isPlaying ? PauseIcon : PlayIcon);
-  const buttonTitle = isPlaying ? 'Pause audio' : 'Play audio';
+  const buttonTitle = isPlaying ? 'Pause audio (Space)' : 'Play audio (Space)';
 
   return (
     <ButtonIcon

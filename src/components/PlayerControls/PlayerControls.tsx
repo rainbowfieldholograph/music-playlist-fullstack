@@ -4,12 +4,11 @@ import { ReactComponent as ArrowIcon } from '../../img/arrow-icon.svg';
 import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { ButtonIcon } from '../ButtonIcon';
-import { PlayerControlsProps } from './PlayerControls.props';
 import styles from './PlayerControls.module.css';
 
 const { prevTrack, nextTrack } = PlayerStore;
 
-export const PlayerControls = ({}: PlayerControlsProps): JSX.Element => {
+export const PlayerControls = (): JSX.Element => {
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 

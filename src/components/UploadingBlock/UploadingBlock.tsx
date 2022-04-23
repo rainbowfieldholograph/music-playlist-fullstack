@@ -4,7 +4,7 @@ import styles from './UploadingBlock.module.css';
 import { UploadingBlockProps } from './UploadingBlock.props';
 
 export const UploadingBlock = ({
-  title = 'Uploading track. Please wait.',
+  title = 'Uploading audio file. Please wait.',
   className,
 }: UploadingBlockProps): JSX.Element => {
   return (

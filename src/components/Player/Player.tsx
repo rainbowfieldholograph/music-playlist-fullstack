@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { KeyboardEvent as ReactKeyBoardEvent, useEffect, useRef } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerControls } from '../PlayerControls';
 import { PlayerVolume } from '../PlayerVolume';
@@ -7,27 +7,27 @@ import { PlayerInfo } from '../PlayerInfo';
 import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerToggleButton } from '../PlayerToggleButton';
-import { PlayerProps } from './Player.props';
 import styles from './Player.module.css';
 
 const {
-  currentTrackVar,
   toggleAudio,
   initializeAudio,
   changeCurrentTime,
   changeVolume,
+  currentTrackVar,
   currentTimeVar,
   volumeVar,
 } = PlayerStore;
 
-export const Player = ({}: PlayerProps): JSX.Element | null => {
+export const Player = (): JSX.Element | null => {
   const currentTrack = useReactiveVar(currentTrackVar);
   const playerRef = useRef<null | HTMLDivElement>(null);
 
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  // global keys
+  const handleWindowKeyDown = (event: KeyboardEvent) => {
     const eventTarget = event.target as HTMLElement;
 
     const checkIsValidKey =
@@ -42,26 +42,32 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
     if (!checkIsValidKey) return;
 
     switch (event.code) {
-    case 'Space':
-      event.preventDefault();
-      toggleAudio();
-      break;
-    case 'ArrowRight':
-      event.preventDefault();
-      changeCurrentTime(currentTimeVar() + 5);
-      break;
-    case 'ArrowLeft':
-      event.preventDefault();
-      changeCurrentTime(currentTimeVar() - 5);
-      break;
-    case 'ArrowUp':
-      event.preventDefault();
-      changeVolume(volumeVar() + 0.05);
-      break;
-    case 'ArrowDown':
-      event.preventDefault();
-      changeVolume(volumeVar() - 0.05);
-      break;
+      case 'Space':
+        event.preventDefault();
+        toggleAudio();
+        break;
+      case 'ArrowRight':
+        event.preventDefault();
+        changeCurrentTime(currentTimeVar() + 5);
+        break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        changeCurrentTime(currentTimeVar() - 5);
+        break;
+    }
+  };
+
+  // local keys
+  const handlePlayerKeyDown = (event: ReactKeyBoardEvent) => {
+    switch (event.code) {
+      case 'ArrowUp':
+        event.preventDefault();
+        changeVolume(volumeVar() + 0.05);
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        changeVolume(volumeVar() - 0.05);
+        break;
     }
   };
 
@@ -72,14 +78,20 @@ export const Player = ({}: PlayerProps): JSX.Element | null => {
   }, [currentTrack]);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleWindowKeyDown);
+    return () => window.removeEventListener('keydown', handleWindowKeyDown);
   }, []);
 
   if (!currentTrack) return null;
 
   return (
-    <div aria-label="Audio player" tabIndex={0} className={styles.player} ref={playerRef}>
+    <div
+      onKeyDown={handlePlayerKeyDown}
+      aria-label="Audio player"
+      tabIndex={0}
+      className={styles.player}
+      ref={playerRef}
+    >
       <PlayerToggleButton />
       <PlayerControls />
       <PlayerMusicImage className={styles.musicImage} />
