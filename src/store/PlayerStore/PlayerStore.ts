@@ -1,5 +1,6 @@
 import { makeVar } from '@apollo/client';
 import { Track } from '../../generated';
+import { getRandomInteger } from '../../helpers/randomInteger';
 import { Playlist, SwitchTrackActions } from './PlayerStore.d';
 
 class PlayerStore {
@@ -8,17 +9,19 @@ class PlayerStore {
   private prevTimerId: null | number = null;
   private audio = new Audio();
 
-  //Apollo reactive variables
+  // Apollo reactive variables
   currentTrackVar = makeVar<Track | null>(null);
   isPlayingVar = makeVar<boolean>(false);
+  // isRepeatVar = makeVar<boolean>(false);
+  isRandomVar = makeVar<boolean>(false);
   canChangeTimeVar = makeVar<boolean>(false);
   volumeVar = makeVar<number>(this.DEFAULT_VOLUME);
   currentTimeVar = makeVar<number>(0);
   durationVar = makeVar<number>(0);
 
-  //TODO. Add currentPlaylist variable
+  // TODO: Add currentPlaylist variable
 
-  switchTrack = (playlist: Playlist, action: SwitchTrackActions) => {
+  private switchTrack = (playlist: Playlist, action: SwitchTrackActions) => {
     const currentTrack = this.currentTrackVar();
 
     if (!playlist || !currentTrack) return;
@@ -37,6 +40,8 @@ class PlayerStore {
           ? this.currentTrackVar(playlist[playlistLastIndex])
           : this.currentTrackVar(playlist[currentIndex - 1]);
         break;
+      case 'RANDOM':
+        this.currentTrackVar(playlist[getRandomInteger(0, playlistLastIndex)]);
     }
   };
 
@@ -70,8 +75,17 @@ class PlayerStore {
 
   toggleAudio = () => this.changePlaying(!this.isPlayingVar());
 
-  prevTrack = (playlist: Playlist) => this.switchTrack(playlist, 'PREV');
-  nextTrack = (playlist: Playlist) => this.switchTrack(playlist, 'NEXT');
+  toggleRandom = () => this.isRandomVar(!this.isRandomVar());
+
+  prevTrack = (playlist: Playlist) => {
+    if (this.isRandomVar()) return this.switchTrack(playlist, 'RANDOM');
+    this.switchTrack(playlist, 'PREV');
+  };
+
+  nextTrack = (playlist: Playlist) => {
+    if (this.isRandomVar()) return this.switchTrack(playlist, 'RANDOM');
+    this.switchTrack(playlist, 'NEXT');
+  };
 
   initializeAudio = (src: string, playlist: Playlist) => {
     this.audio.src = src;

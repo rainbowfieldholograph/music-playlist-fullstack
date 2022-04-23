@@ -10,7 +10,6 @@ export const SearchInput = ({ className, value, onChange }: SearchInputProps): J
         value={value}
         onChange={onChange}
         placeholder="Search..."
-        id=""
         type="search"
         className={clsx(styles.input)}
       />

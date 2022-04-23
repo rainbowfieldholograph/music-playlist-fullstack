@@ -1,0 +1,7 @@
+.toggle {
+  font-size: 45px;
+}
+
+.active {
+  color: var(--color-primary);
+}

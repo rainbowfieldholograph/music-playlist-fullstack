@@ -8,9 +8,12 @@ export const TrackItem = ({
   author,
   onClick,
 }: TrackItemProps): JSX.Element => {
+  const trackLabel = `Play audio: ${author} - ${title}`;
+
   return (
     <button
-      aria-label={`Play audio: ${author} - ${title}`}
+      aria-label={trackLabel}
+      title={trackLabel}
       onClick={() => onClick()}
       className={clsx(styles.track, { [styles.active]: isActive })}
     >

@@ -6,7 +6,7 @@ import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { ButtonIcon } from '../ButtonIcon';
 import styles from './PlayerControls.module.css';
 
-const { prevTrack, nextTrack } = PlayerStore;
+const { nextTrack, prevTrack } = PlayerStore;
 
 export const PlayerControls = (): JSX.Element => {
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);

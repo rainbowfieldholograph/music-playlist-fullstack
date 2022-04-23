@@ -7,6 +7,7 @@ import { TracksListProps } from './TracksList.props';
 
 export const TracksList = ({ data }: TracksListProps): JSX.Element => {
   const { currentTrackVar } = PlayerStore;
+
   const currentTrack = useReactiveVar(currentTrackVar);
   const onClickTrack = (track: Track) => () => currentTrackVar(track);
 

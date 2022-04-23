@@ -6,7 +6,8 @@ import { PlayerMusicImage } from '../MusicBox';
 import { PlayerInfo } from '../PlayerInfo';
 import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
-import { PlayerToggleButton } from '../PlayerToggleButton';
+import { PlayerPlayingToggle } from '../PlayerTogglePlaying';
+import { PlayerToggleRandom } from '../PlayerToggleRandom/PlayerToggleRandom';
 import styles from './Player.module.css';
 
 const {
@@ -19,6 +20,8 @@ const {
   volumeVar,
 } = PlayerStore;
 
+// TODO: Update styles for toggle random
+
 export const Player = (): JSX.Element | null => {
   const currentTrack = useReactiveVar(currentTrackVar);
   const playerRef = useRef<null | HTMLDivElement>(null);
@@ -27,6 +30,7 @@ export const Player = (): JSX.Element | null => {
   const tracks = data?.getAllTracks;
 
   // global keys
+  //TODO: Add hotkey for toggle random
   const handleWindowKeyDown = (event: KeyboardEvent) => {
     const eventTarget = event.target as HTMLElement;
 
@@ -92,11 +96,12 @@ export const Player = (): JSX.Element | null => {
       className={styles.player}
       ref={playerRef}
     >
-      <PlayerToggleButton />
+      <PlayerPlayingToggle />
       <PlayerControls />
       <PlayerMusicImage className={styles.musicImage} />
       <PlayerInfo />
       <PlayerVolume />
+      <PlayerToggleRandom />
     </div>
   );
 };
