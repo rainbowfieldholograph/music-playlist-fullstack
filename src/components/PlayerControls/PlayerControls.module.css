@@ -4,10 +4,10 @@
   gap: 10px;
 }
 
-@media (max-width: 790px) {
+@media (max-width: 850px) {
   .controls {
     grid-row: 1;
-    grid-column: 3;
+    grid-column: 4;
   }
 }
 

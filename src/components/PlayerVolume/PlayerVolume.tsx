@@ -15,7 +15,7 @@ export const PlayerVolume = () => {
   const computedVolume = Math.round(volume * 100);
 
   return (
-    <div className={styles.box}>
+    <div className={styles.wrapper}>
       <p className={styles.title}>Volume: {computedVolume}%</p>
       <Slider
         aria-label="Audio volume handler"

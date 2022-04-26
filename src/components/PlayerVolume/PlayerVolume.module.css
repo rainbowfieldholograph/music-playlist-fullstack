@@ -1,4 +1,4 @@
-.box {
+.wrapper {
   max-width: 100%;
   height: 100%;
   width: 100%;
@@ -12,11 +12,17 @@
   font-size: 1.2rem;
 }
 
-@media (max-width: 790px) {
-  .box {
+@media (max-width: 850px) {
+  .wrapper {
     width: 100%;
     justify-content: center;
     grid-row: 3;
+    grid-column: 1 / 5;
+  }
+}
+
+@media (max-width: 400px) {
+  .wrapper {
     grid-column: 1 / 4;
   }
 }
