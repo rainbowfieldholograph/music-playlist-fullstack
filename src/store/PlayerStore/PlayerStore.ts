@@ -1,15 +1,15 @@
 import { makeVar } from '@apollo/client';
 import { Track } from '../../generated';
 import { getRandomInteger } from '../../helpers/randomInteger';
-import { Playlist, SwitchTrackActions } from './PlayerStore.d';
+import { SwitchTrackActions } from './PlayerStore.d';
 
 class PlayerStore {
   private readonly DISABLE_TIME = 500; // optimal value 500+
   private readonly DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
   private prevTimerId: null | number = null;
   private audio = new Audio();
+  private currentPlaylist: Track[] | null = null;
 
-  // Apollo reactive variables
   currentTrackVar = makeVar<Track | null>(null);
   isPlayingVar = makeVar<boolean>(false);
   // isRepeatVar = makeVar<boolean>(false);
@@ -19,10 +19,11 @@ class PlayerStore {
   currentTimeVar = makeVar<number>(0);
   durationVar = makeVar<number>(0);
 
-  // TODO: Add currentPlaylist variable
+  // private currentPlaylist = makeVar<Track[] | null>(null);
 
-  private switchTrack = (playlist: Playlist, action: SwitchTrackActions) => {
+  private switchTrack = (action: SwitchTrackActions) => {
     const currentTrack = this.currentTrackVar();
+    const playlist = this.currentPlaylist;
 
     if (!playlist || !currentTrack) return;
 
@@ -42,6 +43,7 @@ class PlayerStore {
         break;
       case 'RANDOM':
         this.currentTrackVar(playlist[getRandomInteger(0, playlistLastIndex)]);
+        break;
     }
   };
 
@@ -73,27 +75,39 @@ class PlayerStore {
     play ? this.audio.play() : this.audio.pause();
   };
 
-  toggleAudio = () => this.changePlaying(!this.isPlayingVar());
+  toggleAudio = () => {
+    if (!this.currentTrackVar()) return;
 
-  toggleRandom = () => this.isRandomVar(!this.isRandomVar());
-
-  prevTrack = (playlist: Playlist) => {
-    if (this.isRandomVar()) return this.switchTrack(playlist, 'RANDOM');
-    this.switchTrack(playlist, 'PREV');
+    this.changePlaying(!this.isPlayingVar());
   };
 
-  nextTrack = (playlist: Playlist) => {
-    if (this.isRandomVar()) return this.switchTrack(playlist, 'RANDOM');
-    this.switchTrack(playlist, 'NEXT');
+  toggleRandom = () => {
+    if (!this.currentTrackVar()) return;
+
+    this.isRandomVar(!this.isRandomVar());
   };
 
-  initializeAudio = (src: string, playlist: Playlist) => {
+  prevTrack = () => {
+    if (this.isRandomVar()) return this.switchTrack('RANDOM');
+
+    this.switchTrack('PREV');
+  };
+
+  nextTrack = () => {
+    if (this.isRandomVar()) return this.switchTrack('RANDOM');
+
+    this.switchTrack('NEXT');
+  };
+
+  initializeAudio = (src: string, playlist: Track[]) => {
     this.audio.src = src;
+    this.currentPlaylist = [...playlist];
+
     this.audio.ontimeupdate = () => this.currentTimeVar(this.audio.currentTime);
     this.audio.onloadeddata = () => {
       this.audio.play();
 
-      if (this.prevTimerId) clearTimeout(this.prevTimerId); // if the previous timer is still running, we turn it off
+      if (this.prevTimerId) clearTimeout(this.prevTimerId);
       this.prevTimerId = setTimeout(() => this.canChangeTimeVar(true), this.DISABLE_TIME);
     };
     this.audio.onloadedmetadata = () => {
@@ -101,7 +115,7 @@ class PlayerStore {
     };
     this.audio.onended = () => {
       this.canChangeTimeVar(false);
-      this.nextTrack(playlist);
+      this.nextTrack();
     };
     this.audio.onplay = () => this.isPlayingVar(true);
     this.audio.onpause = () => this.isPlayingVar(false);

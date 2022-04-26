@@ -7,7 +7,7 @@ import { PlayerInfo } from '../PlayerInfo';
 import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerPlayingToggle } from '../PlayerTogglePlaying';
-import { PlayerToggleRandom } from '../PlayerToggleRandom/PlayerToggleRandom';
+import { PlayerToggleRandom } from '../PlayerToggleRandom';
 import styles from './Player.module.css';
 
 const {
@@ -30,7 +30,7 @@ export const Player = (): JSX.Element | null => {
   const tracks = data?.getAllTracks;
 
   // global keys
-  //TODO: Add hotkey for toggle random
+  // TODO: Add hotkey for toggle random
   const handleWindowKeyDown = (event: KeyboardEvent) => {
     const eventTarget = event.target as HTMLElement;
 
@@ -76,10 +76,10 @@ export const Player = (): JSX.Element | null => {
   };
 
   useEffect(() => {
-    if (currentTrack) {
+    if (currentTrack && tracks) {
       initializeAudio(currentTrack.src, tracks);
     }
-  }, [currentTrack]);
+  }, [currentTrack, tracks]);
 
   useEffect(() => {
     window.addEventListener('keydown', handleWindowKeyDown);
