@@ -7,6 +7,12 @@
 @media (max-width: 850px) {
   .controls {
     grid-row: 1;
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 400px) {
+  .controls {
     grid-column: 4;
   }
 }
