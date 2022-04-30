@@ -1,4 +1,4 @@
-@import '../../styles/player-vars.scss';
+@use '../Player/Player.module';
 
 .wrapper {
   max-width: 100%;
@@ -8,14 +8,14 @@
   flex-direction: column;
   justify-content: center;
 
-  @media (max-width: $player-breakpoint-1) {
+  @media (max-width: Player.$breakpoint-1) {
     width: 100%;
     justify-content: center;
     grid-row: 3;
     grid-column: 1 / 5;
   }
 
-  @media (max-width: $player-breakpoint-2) {
+  @media (max-width: Player.$breakpoint-2) {
     grid-column: 1 / 4;
   }
 }

@@ -1,11 +1,11 @@
-@import '../../styles/player-vars.scss';
+$breakpoint-1: 56rem;
+$breakpoint-2: 26rem;
 
 .player {
   width: 100%;
   max-width: 60rem;
   min-height: 6.6rem;
   margin: 0 auto;
-  // padding-inline: 1.3rem;
   padding-left: 1.3rem;
   padding-right: 1.3rem;
 
@@ -28,7 +28,7 @@
     outline: 2px solid var(--color-primary);
   }
 
-  @media (max-width: $player-breakpoint-1) {
+  @media (max-width: $breakpoint-1) {
     padding-top: 1rem;
     padding-bottom: 1rem;
     justify-items: center;

@@ -1,10 +1,10 @@
-@import '../../styles/player-vars.scss';
+@use '../Player/Player.module';
 
 .info {
   overflow: hidden;
   width: 20rem;
 
-  @media (max-width: $player-breakpoint-1) {
+  @media (max-width: Player.$breakpoint-1) {
     width: 100%;
     grid-row: 2;
     grid-column: 1 / 5;
@@ -17,7 +17,7 @@
   align-items: center;
   width: 100%;
 
-  @media (max-width: $player-breakpoint-1) {
+  @media (max-width: Player.$breakpoint-1) {
     width: 100%;
   }
 }
@@ -28,7 +28,7 @@
   overflow: hidden;
   width: 80%;
 
-  @media (max-width: $player-breakpoint-1) {
+  @media (max-width: Player.$breakpoint-1) {
     width: 100%;
   }
 }
