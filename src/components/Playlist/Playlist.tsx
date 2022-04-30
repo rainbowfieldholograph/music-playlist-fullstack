@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { ErorrBlock } from '../ErrorBlock';
 import { FullHeightBlock } from '../FullHeightBlock';
@@ -13,7 +13,7 @@ const findTextMatches = (firstText: string, secondText: string) => {
   return firstText.toLowerCase().includes(secondText.toLowerCase());
 };
 
-export const Playlist = (): JSX.Element => {
+export const Playlist: FC = () => {
   const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 

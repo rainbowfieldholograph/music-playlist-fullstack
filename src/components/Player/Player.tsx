@@ -1,4 +1,4 @@
-import { KeyboardEvent as ReactKeyBoardEvent, useEffect, useRef } from 'react';
+import { FC, KeyboardEvent as ReactKeyBoardEvent, useEffect, useRef } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerControls } from '../PlayerControls';
 import { PlayerVolume } from '../PlayerVolume';
@@ -22,7 +22,7 @@ const {
 
 // TODO: Update styles for toggle random
 
-export const Player = (): JSX.Element | null => {
+export const Player: FC = () => {
   const currentTrack = useReactiveVar(currentTrackVar);
   const playerRef = useRef<null | HTMLDivElement>(null);
 

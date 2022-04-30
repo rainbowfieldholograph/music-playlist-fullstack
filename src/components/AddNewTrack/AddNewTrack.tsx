@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { Button } from '../Button';
 import { UploadModal } from '../UploadModal';
 
-export const AddNewTrack = (): JSX.Element => {
+export const AddNewTrack: FC = () => {
   const [modal, setModal] = useState<boolean>(false);
   const closeModal = () => setModal(false);
   const openModal = () => setModal(true);

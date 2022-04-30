@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEventHandler, useState } from 'react';
+import { ChangeEvent, FC, FormEventHandler, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { FormInput } from '../FormInput';
 import { Button } from '../Button';
@@ -8,7 +8,7 @@ import { InputFile } from '../InputFile';
 import { UploadFormProps } from './UplodaForm.props';
 import styles from './UploadForm.module.scss';
 
-export const UploadForm = ({ onSubmit }: UploadFormProps) => {
+export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [author, setAuthor] = useState<string>('');

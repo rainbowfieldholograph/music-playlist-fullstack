@@ -7,7 +7,7 @@ import { ModalProps } from './Modal.props';
 
 const portalRootElement = document.getElementById('modal');
 
-export const Modal: FC<ModalProps> = ({ className, children, open, onClose }): JSX.Element => {
+export const Modal: FC<ModalProps> = ({ className, children, open, onClose }) => {
   const onClickEsc = (event: KeyboardEvent) => {
     if (event.key === 'Esc' || event.key === 'Escape') onClose();
   };
@@ -24,7 +24,7 @@ export const Modal: FC<ModalProps> = ({ className, children, open, onClose }): J
     }
   }, [open]);
 
-  if (!open || !portalRootElement) return <></>;
+  if (!open || !portalRootElement) return null;
 
   return createPortal(
     <FocusTrap>

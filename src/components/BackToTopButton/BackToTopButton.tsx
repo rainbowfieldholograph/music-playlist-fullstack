@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ButtonIcon } from '../ButtonIcon';
 import { ReactComponent as UpIcon } from '../../img/up-icon.svg';
 import styles from './BackToTopButton.module.scss';
 
 const SHOW_BUTTON_DISTANCE = 800;
 
-export const BackToTopButton = (): JSX.Element | null => {
+export const BackToTopButton: FC = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
 
   const scrollHandler = () => {

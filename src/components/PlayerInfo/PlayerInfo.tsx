@@ -1,5 +1,5 @@
 import { useReactiveVar } from '@apollo/client';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { formatTime } from '../../helpers/formatTime';
 import { PlayerStore } from '../../store/PlayerStore';
 import { Slider } from '../Slider';
@@ -13,7 +13,7 @@ const computeDuration = (currentTime: number, duration: number): number => {
   return isNaN(result) ? 0 : result;
 };
 
-export const PlayerInfo = (): JSX.Element => {
+export const PlayerInfo: FC = () => {
   const canChangeTime = useReactiveVar(canChangeTimeVar);
   const duration = useReactiveVar(durationVar);
   const currentTrack = useReactiveVar(currentTrackVar);

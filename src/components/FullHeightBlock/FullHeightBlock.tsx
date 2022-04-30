@@ -8,7 +8,7 @@ export const FullHeightBlock: FC<FullHeightBlockProps> = ({
   className,
   childsCenter,
   ...rest
-}): JSX.Element => (
+}) => (
   <div className={clsx(styles.block, className, { [styles.center]: childsCenter })} {...rest}>
     {children}
   </div>

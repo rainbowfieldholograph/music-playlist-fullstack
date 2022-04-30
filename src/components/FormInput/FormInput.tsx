@@ -1,14 +1,15 @@
 import clsx from 'clsx';
+import { FC } from 'react';
 import styles from './FormInput.module.scss';
 import { FormInputProps } from './FormInput.props';
 
-export const FormInput = ({
+export const FormInput: FC<FormInputProps> = ({
   inputState,
   setInputState,
   labelText,
   className,
   ...rest
-}: FormInputProps): JSX.Element => {
+}) => {
   return (
     <label>
       <h3>{labelText}</h3>

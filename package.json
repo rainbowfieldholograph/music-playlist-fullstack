@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
-    "generate-types": "graphql-codegen"
+    "generate-types": "graphql-codegen",
+    "lint": "eslint src --ext .ts,.js,.tsx,.jsx"
   },
   "dependencies": {
     "@apollo/client": "^3.6.1",
