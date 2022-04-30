@@ -16,24 +16,19 @@
 
   word-break: break-word;
 
-  min-width: 300px;
-  min-height: 250px;
+  min-width: 20rem;
+  min-height: 16rem;
   max-height: 100%;
+
+  @supports (hyphens: auto) {
+    hyphens: auto;
+  }
 }
 
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   z-index: 9;
 
   background-color: rgba(0, 0, 0, 0.7);
-}
-
-@supports (hyphens: auto) {
-  .modal {
-    hyphens: auto;
-  }
 }

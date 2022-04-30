@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 import { formatTime } from '../../helpers/formatTime';
 import { PlayerStore } from '../../store/PlayerStore';
 import { Slider } from '../Slider';
-import styles from './PlayerInfo.module.css';
+import styles from './PlayerInfo.module.scss';
 
 const { currentTimeVar, canChangeTimeVar, durationVar, currentTrackVar, changeCurrentTime } =
   PlayerStore;

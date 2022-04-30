@@ -4,10 +4,10 @@
   border: 1px solid var(--color-ghost-border);
   border-radius: 0.5rem;
   transition: all 0.2s linear;
-}
 
-.button:hover,
-.button:focus {
-  box-shadow: var(--box-shadow-active);
-  outline: none;
+  &:hover,
+  &:focus {
+    box-shadow: var(--box-shadow-active);
+    outline: none;
+  }
 }

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { ReactComponent as SearchIcon } from '../../img/search-icon.svg';
 import { SearchInputProps } from './SearchInput.props';
-import styles from './SearchInput.module.css';
+import styles from './SearchInput.module.scss';
 
 export const SearchInput = ({ className, value, onChange }: SearchInputProps): JSX.Element => {
   return (

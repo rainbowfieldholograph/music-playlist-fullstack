@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { ReactComponent as MusicIcon } from '../../img/music-icon.svg';
-import styles from './MusicBox.module.css';
+import styles from './MusicBox.module.scss';
 import { PlayerMusicImageProps } from './MusicBox.props';
 
 export const PlayerMusicImage = ({

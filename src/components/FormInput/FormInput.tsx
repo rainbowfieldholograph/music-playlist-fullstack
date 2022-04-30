@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import styles from './FormInput.module.css';
+import styles from './FormInput.module.scss';
 import { FormInputProps } from './FormInput.props';
 
 export const FormInput = ({

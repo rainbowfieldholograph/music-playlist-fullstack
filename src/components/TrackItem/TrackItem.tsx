@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import styles from './TrackItem.module.css';
+import styles from './TrackItem.module.scss';
 import { TrackItemProps } from './TrackItem.props';
 
 export const TrackItem = ({

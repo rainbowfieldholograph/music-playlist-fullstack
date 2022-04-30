@@ -1,9 +1,0 @@
-.toggle {
-  font-size: 45px;
-}
-
-@media (max-width: 400px) {
-  .toggle {
-    grid-column: 2 / 4;
-  }
-}

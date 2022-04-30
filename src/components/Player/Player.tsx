@@ -8,7 +8,7 @@ import { PlayerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerPlayingToggle } from '../PlayerTogglePlaying';
 import { PlayerToggleRandom } from '../PlayerToggleRandom';
-import styles from './Player.module.css';
+import styles from './Player.module.scss';
 
 const {
   toggleAudio,

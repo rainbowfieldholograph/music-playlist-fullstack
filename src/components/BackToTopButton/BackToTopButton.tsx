@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ButtonIcon } from '../ButtonIcon';
 import { ReactComponent as UpIcon } from '../../img/up-icon.svg';
-import styles from './BackToTopButton.module.css';
+import styles from './BackToTopButton.module.scss';
 
 const SHOW_BUTTON_DISTANCE = 800;
 

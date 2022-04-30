@@ -1,15 +1,18 @@
+$box-size: 4rem;
+
 .box {
-  --box-size: 60px;
   background-color: gainsboro;
-  width: var(--box-size, 60px);
-  height: var(--box-size, 60px);
+
+  width: $box-size;
+  height: $box-size;
   aspect-ratio: 1 / 1;
   border-radius: 0.4rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .icon {
-  font-size: calc(var(--box-size, 60px) / 2);
+  font-size: ($box-size / 2);
 }

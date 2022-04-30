@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { InputFileProps } from './InputFile.props';
-import styles from './InputFile.module.css';
+import styles from './InputFile.module.scss';
 
 export const InputFile = ({
   text,

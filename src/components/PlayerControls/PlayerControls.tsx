@@ -1,9 +1,8 @@
 import clsx from 'clsx';
-import { useQuery } from '@apollo/client';
 import { ReactComponent as ArrowIcon } from '../../img/arrow-icon.svg';
 import { PlayerStore } from '../../store/PlayerStore';
 import { ButtonIcon } from '../ButtonIcon';
-import styles from './PlayerControls.module.css';
+import styles from './PlayerControls.module.scss';
 
 const { nextTrack, prevTrack } = PlayerStore;
 

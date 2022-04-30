@@ -10,23 +10,23 @@
   display: block;
   transition: 0.2s border ease;
 
-  max-width: 300px;
+  max-width: 20rem;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
 
-.label:hover {
-  background-color: var(--focus-bg-color);
-  border-color: var(--focus-border-color);
-}
+  &:hover {
+    background-color: var(--focus-bg-color);
+    border-color: var(--focus-border-color);
+  }
 
-.label:focus-within {
-  background-color: var(--focus-bg-color);
-  border-color: var(--focus-border-color);
-  outline: 1px solid var(--focus-border-color);
-  outline-offset: 2px;
+  &:focus-within {
+    background-color: var(--focus-bg-color);
+    border-color: var(--focus-border-color);
+    outline: 1px solid var(--focus-border-color);
+    outline-offset: 2px;
+  }
 }
 
 .input {

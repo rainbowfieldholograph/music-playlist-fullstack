@@ -10,23 +10,23 @@
   border-radius: 0.5rem;
   padding: var(--search-input-space);
   cursor: text;
+
+  &:focus-within {
+    outline: 2px solid var(--color-primary);
+  }
+
+  &:focus-within > .icon {
+    color: var(--color-primary);
+    transform: scale(1.05);
+  }
 }
 
 .icon {
   transition: all var(--transition-duration) ease;
-  font-size: 25px;
+  font-size: 1.6rem;
 }
 
 .input {
   outline: none;
   flex-grow: 1;
-}
-
-.wrapper:focus-within {
-  outline: 2px solid var(--color-primary);
-}
-
-.wrapper:focus-within > .icon {
-  color: var(--color-primary);
-  transform: scale(1.05);
 }

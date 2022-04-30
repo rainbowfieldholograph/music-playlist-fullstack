@@ -1,0 +1,16 @@
+.button {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:focus,
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.icon {
+  font-size: inherit;
+}

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Spinner } from '../Spinner';
-import styles from './UploadingBlock.module.css';
+import styles from './UploadingBlock.module.scss';
 import { UploadingBlockProps } from './UploadingBlock.props';
 
 export const UploadingBlock = ({

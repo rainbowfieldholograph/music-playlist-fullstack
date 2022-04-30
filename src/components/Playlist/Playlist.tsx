@@ -7,7 +7,7 @@ import { TracksList } from '../TracksList';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { AddNewTrack } from '../AddNewTrack';
 import { SearchInput } from '../SearchInput';
-import styles from './Playlist.module.css';
+import styles from './Playlist.module.scss';
 
 const findTextMatches = (firstText: string, secondText: string) => {
   return firstText.toLowerCase().includes(secondText.toLowerCase());

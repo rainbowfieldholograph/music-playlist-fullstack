@@ -2,7 +2,7 @@ import { useReactiveVar } from '@apollo/client';
 import { ChangeEvent } from 'react';
 import { PlayerStore } from '../../store/PlayerStore';
 import { Slider } from '../Slider';
-import styles from './PlayerVolume.module.css';
+import styles from './PlayerVolume.module.scss';
 
 const { volumeVar, changeVolume } = PlayerStore;
 

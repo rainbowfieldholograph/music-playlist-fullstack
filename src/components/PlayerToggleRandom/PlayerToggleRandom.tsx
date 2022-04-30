@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { ButtonIcon } from '../ButtonIcon';
 import { ReactComponent as RandomIcon } from '../../img/random-icon.svg';
 import { PlayerStore } from '../../store/PlayerStore';
-import styles from './PlayerToggleRandom.module.css';
+import styles from './PlayerToggleRandom.module.scss';
 
 const { isRandomVar, toggleRandom } = PlayerStore;
 

@@ -7,12 +7,12 @@
   grid-template-columns: auto 1fr;
   align-items: stretch;
   gap: 1rem;
-}
 
-.track:hover,
-.track:focus {
-  box-shadow: var(--box-shadow-active);
-  outline: none;
+  &:hover,
+  &:focus {
+    box-shadow: var(--box-shadow-active);
+    outline: none;
+  }
 }
 
 .info {
@@ -40,10 +40,11 @@
 }
 
 .trackBox {
-  --box-size: 65px;
-  width: var(--box-size, 65px);
-  height: var(--box-size, 65px);
-  aspect-ratio: 1/1;
+  $box-size: 4rem;
+
+  width: $box-size;
+  height: $box-size;
+  aspect-ratio: 1 / 1;
   background-color: var(--color-primary);
   border-radius: 15%;
 }

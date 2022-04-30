@@ -1,0 +1,39 @@
+@import '../../styles/player-vars.scss';
+
+.player {
+  width: 100%;
+  max-width: 60rem;
+  min-height: 6.6rem;
+  margin: 0 auto;
+  padding-inline: 1.3rem;
+
+  margin-bottom: 2rem;
+
+  position: sticky;
+  z-index: 1;
+  top: 0;
+
+  border-radius: 0.3rem;
+  border: 1px solid gainsboro;
+  background-color: #fff;
+
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 1rem;
+
+  &:focus-within {
+    outline: 2px solid var(--color-primary);
+  }
+
+  @media (max-width: $player-breakpoint-1) {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    justify-items: center;
+
+    .musicImage {
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
+}
