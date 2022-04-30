@@ -14,5 +14,5 @@ $box-size: 4rem;
 }
 
 .icon {
-  font-size: ($box-size / 2);
+  font-size: calc($box-size / 2);
 }
