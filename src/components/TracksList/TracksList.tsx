@@ -7,10 +7,13 @@ import styles from './TracksList.module.scss';
 import { TracksListProps } from './TracksList.props';
 
 export const TracksList: FC<TracksListProps> = ({ data }) => {
-  const { currentTrackVar } = PlayerStore;
+  const { currentTrackVar, changePlaying } = PlayerStore;
 
   const currentTrack = useReactiveVar(currentTrackVar);
-  const onClickTrack = (track: Track) => () => currentTrackVar(track);
+  const onClickTrack = (track: Track) => () => {
+    currentTrackVar(track);
+    changePlaying(true);
+  };
 
   return (
     <ul className={styles.tracksBlock}>

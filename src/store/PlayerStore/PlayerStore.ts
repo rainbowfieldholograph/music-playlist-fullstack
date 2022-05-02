@@ -19,8 +19,6 @@ class PlayerStore {
   currentTimeVar = makeVar<number>(0);
   durationVar = makeVar<number>(0);
 
-  // private currentPlaylist = makeVar<Track[] | null>(null);
-
   private switchTrack = (action: SwitchTrackActions) => {
     const currentTrack = this.currentTrackVar();
     const playlist = this.currentPlaylist;
@@ -72,7 +70,13 @@ class PlayerStore {
   changePlaying = (play: boolean) => {
     if (!this.currentTrackVar()) return;
 
-    play ? this.audio.play() : this.audio.pause();
+    if (play) {
+      this.isPlayingVar(true);
+      this.audio.play();
+    } else {
+      this.isPlayingVar(false);
+      this.audio.pause();
+    }
   };
 
   toggleAudio = () => {
@@ -105,20 +109,24 @@ class PlayerStore {
 
     this.audio.ontimeupdate = () => this.currentTimeVar(this.audio.currentTime);
     this.audio.onloadeddata = () => {
-      this.audio.play();
+      if (this.isPlayingVar()) {
+        this.audio.play();
+        this.isPlayingVar(true);
+      }
 
       if (this.prevTimerId) clearTimeout(this.prevTimerId);
       this.prevTimerId = setTimeout(() => this.canChangeTimeVar(true), this.DISABLE_TIME);
     };
+
     this.audio.onloadedmetadata = () => {
       this.durationVar(this.audio.duration);
     };
+
     this.audio.onended = () => {
       this.canChangeTimeVar(false);
       this.nextTrack();
     };
-    this.audio.onplay = () => this.isPlayingVar(true);
-    this.audio.onpause = () => this.isPlayingVar(false);
+
     this.audio.volume = this.volumeVar();
   };
 }
