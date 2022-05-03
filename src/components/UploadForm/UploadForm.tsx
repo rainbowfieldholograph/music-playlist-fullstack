@@ -42,7 +42,6 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
-      <h1>Upload audio file</h1>
       <FormInput inputState={author} setInputState={setAuthor} labelText="Author" />
       <FormInput inputState={title} setInputState={setTitle} labelText="Title" />
       <InputFile
