@@ -1,3 +1,5 @@
+@use '../../styles/mixins.scss' as mixins;
+
 $breakpoint-1: 56rem;
 $breakpoint-2: 26rem;
 
@@ -25,7 +27,7 @@ $breakpoint-2: 26rem;
   gap: 1rem;
 
   &:focus-within {
-    outline: 2px solid var(--color-primary);
+    @include mixins.default-outline();
   }
 
   @media (max-width: $breakpoint-1) {

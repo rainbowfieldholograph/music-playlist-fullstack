@@ -1,13 +1,20 @@
+@use '../../styles/mixins.scss';
+
 .button {
   padding: 1rem;
   background-color: white;
   border: 1px solid var(--color-ghost-border);
   border-radius: 0.5rem;
-  transition: all 0.2s linear;
+  transition-property: color, border;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 
-  &:hover,
-  &:focus {
-    box-shadow: var(--box-shadow-active);
-    outline: none;
+  &:is(:hover, :focus) {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    @include mixins.default-outline(true);
   }
 }

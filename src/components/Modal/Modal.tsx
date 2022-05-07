@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { FC, useEffect } from 'react';
 import clsx from 'clsx';
-import FocusTrap from 'focus-trap-react';
+import FocusLock from 'react-focus-lock';
 import styles from './Modal.module.scss';
 import { ModalProps } from './Modal.props';
 
@@ -27,7 +27,7 @@ export const Modal: FC<ModalProps> = ({ className, children, open, onClose }) =>
   if (!open || !portalRootElement) return null;
 
   return createPortal(
-    <FocusTrap>
+    <FocusLock>
       <div onClick={() => onClose()} className={styles.overlay}>
         <div
           onClick={(event) => event.stopPropagation()}
@@ -37,7 +37,7 @@ export const Modal: FC<ModalProps> = ({ className, children, open, onClose }) =>
           {children}
         </div>
       </div>
-    </FocusTrap>,
+    </FocusLock>,
     portalRootElement
   );
 };

@@ -8,10 +8,16 @@
   align-items: stretch;
   gap: 1rem;
 
-  &:hover,
-  &:focus {
+  &:is(:hover, :focus) {
     box-shadow: var(--box-shadow-active);
     outline: none;
+  }
+
+  &.active {
+    border: 2px solid var(--color-primary);
+    transform: scale(1.02);
+    background-color: rgb(239, 232, 255);
+    transition: all 0.2s linear;
   }
 }
 
@@ -30,13 +36,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-align: left;
-}
-
-.active {
-  border: 2px solid var(--color-primary);
-  transform: scale(1.02);
-  background-color: rgb(239, 232, 255);
-  transition: all 0.2s linear;
 }
 
 .trackBox {

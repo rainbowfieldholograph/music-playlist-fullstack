@@ -1,3 +1,5 @@
+@use '../../styles/mixins.scss' as mixins;
+
 .label {
   --focus-bg-color: rgb(237, 237, 237);
   --focus-border-color: var(--color-primary);
@@ -16,16 +18,14 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  &:hover {
+  &:is(:hover, :focus-within) {
     background-color: var(--focus-bg-color);
     border-color: var(--focus-border-color);
+    color: var(--color-primary);
   }
 
   &:focus-within {
-    background-color: var(--focus-bg-color);
-    border-color: var(--focus-border-color);
-    outline: 1px solid var(--focus-border-color);
-    outline-offset: 2px;
+    @include mixins.default-outline();
   }
 }
 
