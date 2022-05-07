@@ -1,4 +1,10 @@
+@use '../../styles/mixins.scss' as mixins;
+
 .slider {
   cursor: pointer;
   width: 100%;
+
+  &:focus-visible {
+    @include mixins.default-outline();
+  }
 }
