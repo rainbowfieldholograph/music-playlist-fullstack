@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerControls } from '../PlayerControls';
 import { PlayerVolume } from '../PlayerVolume';
@@ -9,7 +9,7 @@ import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerPlayingToggle } from '../PlayerTogglePlaying';
 import { PlayerToggleRandom } from '../PlayerToggleRandom';
 import styles from './Player.module.scss';
-import type { KeyboardEvent as ReactKeyBoardEvent } from 'react';
+import type { KeyboardEvent as ReactKeyBoardEvent, FC } from 'react';
 
 const {
   toggleAudio,
@@ -21,7 +21,8 @@ const {
   volumeVar,
 } = PlayerStore;
 
-// TODO: Update styles for toggle random
+const CURRENT_TIME_DASH = 5; // seconds
+const VOLUME_DASH = 0.05;
 
 export const Player: FC = () => {
   const currentTrack = useReactiveVar(currentTrackVar);
@@ -36,7 +37,7 @@ export const Player: FC = () => {
     const eventTarget = event.target as HTMLElement;
 
     const checkIsValidKey =
-      (!!currentTrackVar() && // idk why but we can't use reactive var currentTrack here
+      (currentTrackVar() && // idk why, but we can't use reactive var currentTrack here
         !event.ctrlKey &&
         !event.metaKey &&
         !event.altKey &&
@@ -53,11 +54,11 @@ export const Player: FC = () => {
         break;
       case 'ArrowRight':
         event.preventDefault();
-        changeCurrentTime(currentTimeVar() + 5);
+        changeCurrentTime(currentTimeVar() + CURRENT_TIME_DASH);
         break;
       case 'ArrowLeft':
         event.preventDefault();
-        changeCurrentTime(currentTimeVar() - 5);
+        changeCurrentTime(currentTimeVar() - CURRENT_TIME_DASH);
         break;
     }
   };
@@ -67,11 +68,11 @@ export const Player: FC = () => {
     switch (event.code) {
       case 'ArrowUp':
         event.preventDefault();
-        changeVolume(volumeVar() + 0.05);
+        changeVolume(volumeVar() + VOLUME_DASH);
         break;
       case 'ArrowDown':
         event.preventDefault();
-        changeVolume(volumeVar() - 0.05);
+        changeVolume(volumeVar() - VOLUME_DASH);
         break;
     }
   };
