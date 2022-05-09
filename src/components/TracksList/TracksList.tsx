@@ -6,7 +6,7 @@ import type { Track } from '../../generated';
 import type { TracksListProps } from './TracksList.props';
 import type { FC } from 'react';
 
-export const TracksList: FC<TracksListProps> = ({ data }) => {
+export const TracksList: FC<TracksListProps> = ({ tracks }) => {
   const { currentTrackVar, changePlaying } = PlayerStore;
 
   const currentTrack = useReactiveVar(currentTrackVar);
@@ -17,16 +17,19 @@ export const TracksList: FC<TracksListProps> = ({ data }) => {
 
   return (
     <ul className={styles.tracksBlock}>
-      {data.map((track) => (
-        <li key={track.id}>
-          <TrackItem
-            isActive={track.id === currentTrack?.id}
-            onClick={onClickTrack(track)}
-            title={track.title}
-            author={track.author}
-          />
-        </li>
-      ))}
+      {tracks.map((track) => {
+        const isActive = track.id === currentTrack?.id;
+        return (
+          <li key={track.id}>
+            <TrackItem
+              isActive={isActive}
+              onClick={onClickTrack(track)}
+              title={track.title}
+              author={track.author}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 };

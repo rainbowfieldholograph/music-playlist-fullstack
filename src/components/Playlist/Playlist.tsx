@@ -53,7 +53,7 @@ export const Playlist: FC = () => {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
-      <TracksList data={filteredSongs ?? tracks} />
+      <TracksList tracks={filteredSongs ?? tracks} />
     </div>
   );
 };
