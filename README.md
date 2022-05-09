@@ -14,6 +14,7 @@ Fullstack приложение для прослушивания/добавле�
   <li>Vite</li>
   <li>TypeScript</li>
   <li>Apollo Client [+ local state]</li>
+  <li>SCSS</li>
 </ul>
 
 <h4>Backend</h4>
