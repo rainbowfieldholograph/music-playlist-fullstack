@@ -1,10 +1,10 @@
 import { useReactiveVar } from '@apollo/client';
-import { FC } from 'react';
 import { TrackItem } from '../TrackItem';
-import { Track } from '../../generated';
 import { PlayerStore } from '../../store/PlayerStore';
 import styles from './TracksList.module.scss';
-import { TracksListProps } from './TracksList.props';
+import type { Track } from '../../generated';
+import type { TracksListProps } from './TracksList.props';
+import type { FC } from 'react';
 
 export const TracksList: FC<TracksListProps> = ({ data }) => {
   const { currentTrackVar, changePlaying } = PlayerStore;

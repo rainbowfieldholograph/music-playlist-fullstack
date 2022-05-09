@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { FC } from 'react';
-import { InputFileProps } from './InputFile.props';
 import styles from './InputFile.module.scss';
+import type { FC } from 'react';
+import type { InputFileProps } from './InputFile.props';
 
 export const InputFile: FC<InputFileProps> = ({ text, className, style, ...rest }) => {
   return (

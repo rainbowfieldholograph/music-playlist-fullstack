@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { FC } from 'react';
-import { ButtonIconProps } from './ButtonIcon.props';
 import styles from './ButtonIcon.module.scss';
+import type { FC } from 'react';
+import type { ButtonIconProps } from './ButtonIcon.props';
 
 export const ButtonIcon: FC<ButtonIconProps> = ({ SvgIcon, className, ...rest }) => {
   return (

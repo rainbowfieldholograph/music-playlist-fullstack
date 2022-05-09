@@ -1,6 +1,7 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../Button';
 import { UploadModal } from '../UploadModal';
+import type { FC } from 'react';
 
 export const AddNewTrack: FC = () => {
   const [modal, setModal] = useState<boolean>(false);

@@ -1,7 +1,7 @@
 import { makeVar } from '@apollo/client';
-import { Track } from '../../generated';
 import { getRandomInteger } from '../../helpers/randomInteger';
-import { SwitchTrackActions } from './PlayerStore.d';
+import type { Track } from '../../generated';
+import type { SwitchTrackActions } from './PlayerStore.d';
 
 type ActionsType = {
   [key in SwitchTrackActions]: () => void;

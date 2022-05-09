@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { FC } from 'react';
 import styles from './FullHeightBlock.module.scss';
-import { FullHeightBlockProps } from './FullHeightBlock.props';
+import type { FC } from 'react';
+import type { FullHeightBlockProps } from './FullHeightBlock.props';
 
 export const FullHeightBlock: FC<FullHeightBlockProps> = ({
   children,

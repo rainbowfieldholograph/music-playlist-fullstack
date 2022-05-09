@@ -1,10 +1,10 @@
-import { FC } from 'react';
 import { Modal } from '../Modal';
 import { UploadForm } from '../UploadForm';
 import { ReactComponent as CloseButton } from '../../img/close-icon.svg';
 import { ButtonIcon } from '../ButtonIcon';
-import { UploadModalProps } from './UploadModal.props';
 import styles from './UploadModal.module.scss';
+import type { FC } from 'react';
+import type { UploadModalProps } from './UploadModal.props';
 
 export const UploadModal: FC<UploadModalProps> = ({ isOpen, onClose }) => {
   const closeButtonLable = 'Close modal window';

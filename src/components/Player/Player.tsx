@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent as ReactKeyBoardEvent, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { PlayerControls } from '../PlayerControls';
 import { PlayerVolume } from '../PlayerVolume';
@@ -9,6 +9,7 @@ import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerPlayingToggle } from '../PlayerTogglePlaying';
 import { PlayerToggleRandom } from '../PlayerToggleRandom';
 import styles from './Player.module.scss';
+import type { KeyboardEvent as ReactKeyBoardEvent } from 'react';
 
 const {
   toggleAudio,

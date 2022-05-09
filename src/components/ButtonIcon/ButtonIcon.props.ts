@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, SVGProps } from 'react';
+import type { DetailedHTMLProps, FC, HTMLAttributes, SVGProps } from 'react';
 
 export interface ButtonIconProps
   extends Omit<

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { FC } from 'react';
 import styles from './TrackItem.module.scss';
-import { TrackItemProps } from './TrackItem.props';
+import type { FC } from 'react';
+import type { TrackItemProps } from './TrackItem.props';
 
 export const TrackItem: FC<TrackItemProps> = ({ title, isActive, author, onClick }) => {
   const trackLabel = `Play audio: ${author} - ${title}`;

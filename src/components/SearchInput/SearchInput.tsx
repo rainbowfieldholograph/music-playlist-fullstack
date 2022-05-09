@@ -1,8 +1,8 @@
 import clsx from 'clsx';
-import { FC } from 'react';
 import { ReactComponent as SearchIcon } from '../../img/search-icon.svg';
-import { SearchInputProps } from './SearchInput.props';
 import styles from './SearchInput.module.scss';
+import type { FC } from 'react';
+import type { SearchInputProps } from './SearchInput.props';
 
 export const SearchInput: FC<SearchInputProps> = ({ className, value, onChange }) => {
   return (

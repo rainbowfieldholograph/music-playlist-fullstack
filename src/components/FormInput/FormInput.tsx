@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { FC } from 'react';
 import styles from './FormInput.module.scss';
-import { FormInputProps } from './FormInput.props';
+import type { FC } from 'react';
+import type { FormInputProps } from './FormInput.props';
 
 export const FormInput: FC<FormInputProps> = ({
   inputState,

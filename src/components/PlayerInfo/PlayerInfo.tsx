@@ -1,9 +1,9 @@
 import { useReactiveVar } from '@apollo/client';
-import { ChangeEvent, FC } from 'react';
 import { formatTime } from '../../helpers/formatTime';
 import { PlayerStore } from '../../store/PlayerStore';
 import { Slider } from '../Slider';
 import styles from './PlayerInfo.module.scss';
+import type { ChangeEvent, FC } from 'react';
 
 const { currentTimeVar, canChangeTimeVar, durationVar, currentTrackVar, changeCurrentTime } =
   PlayerStore;

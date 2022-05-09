@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import { FC } from 'react';
 import { ReactComponent as ArrowIcon } from '../../img/arrow-icon.svg';
 import { PlayerStore } from '../../store/PlayerStore';
 import { ButtonIcon } from '../ButtonIcon';
 import styles from './PlayerControls.module.scss';
+import type { FC } from 'react';
 
 const { nextTrack, prevTrack } = PlayerStore;
 
