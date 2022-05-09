@@ -3,6 +3,10 @@ import { Track } from '../../generated';
 import { getRandomInteger } from '../../helpers/randomInteger';
 import { SwitchTrackActions } from './PlayerStore.d';
 
+type ActionsType = {
+  [key in SwitchTrackActions]: () => void;
+};
+
 class PlayerStore {
   private readonly DISABLE_TIME = 500; // optimal value 500+
   private readonly DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
@@ -25,24 +29,26 @@ class PlayerStore {
 
     if (!playlist || !currentTrack) return;
 
-    const playlistLastIndex = playlist.length - 1;
+    const lastIndex = playlist.length - 1;
     const currentIndex = playlist.findIndex((t) => t.id === currentTrack.id);
 
-    switch (action) {
-      case 'NEXT':
-        currentIndex === playlistLastIndex
+    const actions: ActionsType = {
+      NEXT: () => {
+        currentIndex === lastIndex
           ? this.currentTrackVar(playlist[0])
           : this.currentTrackVar(playlist[currentIndex + 1]);
-        break;
-      case 'PREV':
+      },
+      PREV: () => {
         currentIndex === 0
-          ? this.currentTrackVar(playlist[playlistLastIndex])
+          ? this.currentTrackVar(playlist[lastIndex])
           : this.currentTrackVar(playlist[currentIndex - 1]);
-        break;
-      case 'RANDOM':
-        this.currentTrackVar(playlist[getRandomInteger(0, playlistLastIndex)]);
-        break;
-    }
+      },
+      RANDOM: () => {
+        this.currentTrackVar(playlist[getRandomInteger(0, lastIndex)]);
+      },
+    };
+
+    actions[action]();
   };
 
   changeCurrentTime = (newValue: number) => {
