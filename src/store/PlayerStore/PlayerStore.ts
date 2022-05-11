@@ -1,11 +1,9 @@
 import { makeVar } from '@apollo/client';
 import { getRandomInteger } from '../../helpers/randomInteger';
+import { overflowBetween } from '../../helpers/overflowBetween';
+import { clamp } from '../../helpers/clamp';
 import type { Track } from '../../generated';
-import type { SwitchTrackActions } from './PlayerStore.d';
-
-type ActionsType = {
-  [key in SwitchTrackActions]: () => void;
-};
+import type { newIndexesType, SwitchTrackActions } from './PlayerStore.d';
 
 class PlayerStore {
   private readonly DISABLE_TIME = 500; // optimal value 500+
@@ -32,45 +30,27 @@ class PlayerStore {
     const lastIndex = playlist.length - 1;
     const currentIndex = playlist.findIndex((t) => t.id === currentTrack.id);
 
-    const actions: ActionsType = {
-      NEXT: () => {
-        currentIndex === lastIndex
-          ? this.currentTrackVar(playlist[0])
-          : this.currentTrackVar(playlist[currentIndex + 1]);
-      },
-      PREV: () => {
-        currentIndex === 0
-          ? this.currentTrackVar(playlist[lastIndex])
-          : this.currentTrackVar(playlist[currentIndex - 1]);
-      },
-      RANDOM: () => {
-        this.currentTrackVar(playlist[getRandomInteger(0, lastIndex)]);
-      },
+    const newIndexes: newIndexesType = {
+      NEXT: overflowBetween(currentIndex + 1, 0, lastIndex),
+      PREV: overflowBetween(currentIndex - 1, 0, lastIndex),
+      RANDOM: getRandomInteger(0, lastIndex),
     };
 
-    actions[action]();
+    this.currentTrackVar(playlist[newIndexes[action]]);
   };
 
   changeCurrentTime = (newValue: number) => {
     if (!this.canChangeTimeVar() || !this.currentTrackVar()) return;
-
-    let actualNewValue = newValue;
-    if (newValue < 0) actualNewValue = 0;
-    if (newValue > this.audio.duration) actualNewValue = this.audio.duration;
-
-    this.currentTimeVar(actualNewValue);
-    this.audio.currentTime = actualNewValue;
+    const currentTimeValue = clamp(newValue, 0, this.audio.duration);
+    this.currentTimeVar(currentTimeValue);
+    this.audio.currentTime = currentTimeValue;
   };
 
   changeVolume = (newValue: number) => {
     if (!this.currentTrackVar()) return;
-
-    let actualNewValue = newValue;
-    if (newValue < 0) actualNewValue = 0;
-    if (newValue > 1) actualNewValue = 1;
-
-    this.volumeVar(actualNewValue);
-    this.audio.volume = actualNewValue;
+    const volumeValue = clamp(newValue, 0, 1);
+    this.volumeVar(volumeValue);
+    this.audio.volume = volumeValue;
   };
 
   changePlaying = (play: boolean) => {
