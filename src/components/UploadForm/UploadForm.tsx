@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { toast } from 'react-toastify';
 import { FormInput } from '../FormInput';
 import { Button } from '../Button';
 import { UploadingBlock } from '../UploadingBlock';
@@ -17,25 +18,40 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
-    selectedFile && selectedFile.type.includes('audio/')
-      ? setFile(selectedFile)
-      : alert('Select audio/mpeg file');
+    if (selectedFile && selectedFile.type.includes('audio/')) {
+      setFile(selectedFile);
+    } else {
+      toast.error('Select audio/mpeg file', {
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   const onSubmitUpload: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
+    const addTrackPromise = addTrack({
+      variables: { title: title, author: author, file: file },
+      refetchQueries: [{ query: GetAllTracksDocument }],
+    });
+    onSubmit();
     try {
-      await addTrack({
-        variables: { title: title, author: author, file: file },
-        refetchQueries: [{ query: GetAllTracksDocument }],
+      toast.promise(addTrackPromise, {
+        pending: 'Loading file',
+        success: 'File loaded succesfuly',
+        error: 'An error occurred while uploading the file to the server',
       });
-      onSubmit();
+      await addTrackPromise;
+      console.log('success');
+    } catch (error) {
+      console.log('Upload failed: ', error);
+    } finally {
       setAuthor('');
       setTitle('');
-    } catch (error) {
       setFile(null);
-      alert('An error occurred while uploading the file to the server');
-      console.log('Upload failed: ', error);
     }
   };
 
