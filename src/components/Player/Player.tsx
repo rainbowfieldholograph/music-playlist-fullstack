@@ -94,7 +94,6 @@ export const Player: FC = () => {
     <div
       onKeyDown={handlePlayerKeyDown}
       aria-label="Audio player"
-      tabIndex={0}
       className={styles.player}
       ref={playerRef}
     >

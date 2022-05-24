@@ -27,26 +27,37 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
+        position: 'bottom-left',
       });
     }
   };
 
   const onSubmitUpload: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    const addTrackPromise = addTrack({
-      variables: { title: title, author: author, file: file },
-      refetchQueries: [{ query: GetAllTracksDocument }],
-    });
     onSubmit();
+    const loadingToast = toast.loading('Loading file...', {
+      position: 'bottom-left',
+    });
     try {
-      toast.promise(addTrackPromise, {
-        pending: 'Loading file',
-        success: 'File loaded succesfuly',
-        error: 'An error occurred while uploading the file to the server',
+      await addTrack({
+        variables: { title: title, author: author, file: file },
+        refetchQueries: [{ query: GetAllTracksDocument }],
       });
-      await addTrackPromise;
-      console.log('success');
+      toast.update(loadingToast, {
+        render: 'File loaded succesfuly',
+        type: 'success',
+        isLoading: false,
+        autoClose: 4000,
+        closeOnClick: true,
+      });
     } catch (error) {
+      toast.update(loadingToast, {
+        render: 'An error occurred while uploading the file to the server',
+        type: 'error',
+        isLoading: false,
+        autoClose: 4000,
+        closeOnClick: true,
+      });
       console.log('Upload failed: ', error);
     } finally {
       setAuthor('');
@@ -62,7 +73,7 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
       <FormInput inputState={author} setInputState={setAuthor} labelText="Author" />
       <FormInput inputState={title} setInputState={setTitle} labelText="Title" />
       <InputFile
-        text={file?.name ?? 'Chose Audio File'}
+        text={file?.name ?? 'Select audio file'}
         className={styles.fileInput}
         required
         onChange={handleFileChange}
