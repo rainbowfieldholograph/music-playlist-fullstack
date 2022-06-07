@@ -3,7 +3,7 @@ import { getRandomInteger } from '../../helpers/randomInteger';
 import { overflowBetween } from '../../helpers/overflowBetween';
 import { clamp } from '../../helpers/clamp';
 import type { Track } from '../../generated';
-import type { newIndexesType, SwitchTrackActions } from './PlayerStore.d';
+import type { NewIndexes, SwitchTrackActions } from './PlayerStore.d';
 
 class PlayerStore {
   private readonly DISABLE_TIME = 500; // optimal value 500+
@@ -30,7 +30,7 @@ class PlayerStore {
     const lastIndex = playlist.length - 1;
     const currentIndex = playlist.findIndex((t) => t.id === currentTrack.id);
 
-    const newIndexes: newIndexesType = {
+    const newIndexes: NewIndexes = {
       NEXT: overflowBetween(currentIndex + 1, 0, lastIndex),
       PREV: overflowBetween(currentIndex - 1, 0, lastIndex),
       RANDOM: getRandomInteger(0, lastIndex),
@@ -101,7 +101,10 @@ class PlayerStore {
       }
 
       if (this.prevTimerId) clearTimeout(this.prevTimerId);
-      this.prevTimerId = setTimeout(() => this.canChangeTimeVar(true), this.DISABLE_TIME);
+      this.prevTimerId = setTimeout(
+        () => this.canChangeTimeVar(true),
+        this.DISABLE_TIME
+      );
     };
 
     this.audio.onloadedmetadata = () => {

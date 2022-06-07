@@ -21,7 +21,7 @@ const {
   volumeVar,
 } = PlayerStore;
 
-const CURRENT_TIME_DASH = 5; // seconds
+const CURRENT_TIME_DASH_SEC = 5; // seconds
 const VOLUME_DASH = 0.05;
 
 export const Player: FC = () => {
@@ -36,14 +36,18 @@ export const Player: FC = () => {
   const handleWindowKeyDown = (event: KeyboardEvent) => {
     const eventTarget = event.target as HTMLElement;
 
+    const isTargetBody = eventTarget.tagName === 'BODY';
+    const isTargetPlayer = eventTarget === playerRef.current;
+    const isTargetPlayerChildren = playerRef.current?.contains(eventTarget);
+
     const checkIsValidKey =
-      (currentTrackVar() && // idk why, but we can't use reactive var currentTrack here
+      (currentTrackVar() &&
         !event.ctrlKey &&
         !event.metaKey &&
         !event.altKey &&
-        eventTarget.tagName === 'BODY') ||
-      eventTarget === playerRef.current ||
-      playerRef.current?.contains(eventTarget);
+        isTargetBody) ||
+      isTargetPlayer ||
+      isTargetPlayerChildren;
 
     if (!checkIsValidKey) return;
 
@@ -54,11 +58,11 @@ export const Player: FC = () => {
         break;
       case 'ArrowRight':
         event.preventDefault();
-        changeCurrentTime(currentTimeVar() + CURRENT_TIME_DASH);
+        changeCurrentTime(currentTimeVar() + CURRENT_TIME_DASH_SEC);
         break;
       case 'ArrowLeft':
         event.preventDefault();
-        changeCurrentTime(currentTimeVar() - CURRENT_TIME_DASH);
+        changeCurrentTime(currentTimeVar() - CURRENT_TIME_DASH_SEC);
         break;
     }
   };

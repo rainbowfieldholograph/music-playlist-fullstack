@@ -1,5 +1,5 @@
 export type SwitchTrackActions = 'NEXT' | 'PREV' | 'RANDOM';
 
-export type newIndexesType = {
+export type NewIndexes = {
   [key in SwitchTrackActions]: number;
 };
