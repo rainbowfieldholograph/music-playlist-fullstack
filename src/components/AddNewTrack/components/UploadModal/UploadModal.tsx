@@ -1,5 +1,5 @@
 import { Modal } from '../../../Modal';
-import { UploadForm } from '../../../UploadForm';
+import { UploadForm } from '../UploadForm';
 import { ReactComponent as CloseButton } from '../../../../assets/close-icon.svg';
 import { ButtonIcon } from '../../../ButtonIcon';
 import styles from './UploadModal.module.scss';

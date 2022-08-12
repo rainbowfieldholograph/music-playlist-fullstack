@@ -1,5 +1,5 @@
 import type { Track } from '../../generated';
 
-export interface TracksListProps {
+export type TracksListProps = {
   tracks: Track[];
-}
+};

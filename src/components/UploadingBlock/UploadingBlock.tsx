@@ -7,9 +7,10 @@ import type { UploadingBlockProps } from './UploadingBlock.props';
 export const UploadingBlock: FC<UploadingBlockProps> = ({
   title = 'Uploading audio file. Please wait.',
   className,
+  style,
 }) => {
   return (
-    <div className={clsx(styles.block, className)}>
+    <div style={style} className={clsx(styles.block, className)}>
       <p className={styles.title}>{title}</p>
       <Spinner />
     </div>

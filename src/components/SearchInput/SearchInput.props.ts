@@ -1,7 +1,8 @@
-import type { ChangeEventHandler } from 'react';
+import type { ChangeEventHandler, CSSProperties } from 'react';
 
-export interface SearchInputProps {
+export type SearchInputProps = {
   className?: string;
+  style?: CSSProperties;
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
-}
+};

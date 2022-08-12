@@ -1,6 +1,8 @@
 import type { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-export interface FullHeightBlockProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export type FullHeightBlockProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> & {
   childsCenter?: boolean;
-}
+};

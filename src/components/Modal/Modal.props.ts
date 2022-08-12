@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
-export interface ModalProps {
+export type ModalProps = {
   className?: string;
   open: boolean;
   onClose: () => void;
   children: ReactNode;
-}
+};

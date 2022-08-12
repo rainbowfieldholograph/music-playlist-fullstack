@@ -7,10 +7,11 @@ import type { SearchInputProps } from './SearchInput.props';
 export const SearchInput: FC<SearchInputProps> = ({
   className,
   value,
+  style,
   onChange,
 }) => {
   return (
-    <label className={clsx(styles.wrapper, className)}>
+    <label style={style} className={clsx(styles.wrapper, className)}>
       <input
         value={value}
         onChange={onChange}

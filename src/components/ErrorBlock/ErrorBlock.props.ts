@@ -1,4 +1,6 @@
 import type { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-export interface ErrorBlockProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+export type ErrorBlockProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;

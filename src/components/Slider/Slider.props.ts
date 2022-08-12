@@ -1,7 +1,6 @@
 import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
-export interface SliderProps
-  extends Omit<
-    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    'type'
-  > {}
+export type SliderProps = Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  'type'
+>;

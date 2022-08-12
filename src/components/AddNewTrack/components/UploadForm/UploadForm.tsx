@@ -1,20 +1,25 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
-import { FormInput } from '../FormInput';
-import { Button } from '../Button';
-import { UploadingBlock } from '../UploadingBlock';
-import { AddTrackDocument, AddTrackMutation, GetAllTracksDocument } from '../../generated';
-import { InputFile } from '../InputFile';
+import { FormInput } from '../../../FormInput';
+import { Button } from '../../../Button';
+import { UploadingBlock } from '../../../UploadingBlock';
+import {
+  AddTrackDocument,
+  AddTrackMutation,
+  GetAllTracksDocument,
+} from '../../../../generated';
+import { InputFile } from '../../../InputFile';
 import styles from './UploadForm.module.scss';
-import type { UploadFormProps } from './UplodaForm.props';
+import type { UploadFormProps } from './UploadForm.props';
 import type { ChangeEvent, FC, FormEventHandler } from 'react';
 
 export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [author, setAuthor] = useState<string>('');
-  const [addTrack, { loading }] = useMutation<AddTrackMutation>(AddTrackDocument);
+  const [addTrack, { loading }] =
+    useMutation<AddTrackMutation>(AddTrackDocument);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -70,8 +75,16 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
-      <FormInput inputState={author} setInputState={setAuthor} labelText="Author" />
-      <FormInput inputState={title} setInputState={setTitle} labelText="Title" />
+      <FormInput
+        inputState={author}
+        setInputState={setAuthor}
+        labelText="Author"
+      />
+      <FormInput
+        inputState={title}
+        setInputState={setTitle}
+        labelText="Title"
+      />
       <InputFile
         text={file?.name ?? 'Select audio file'}
         className={styles.fileInput}

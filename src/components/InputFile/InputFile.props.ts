@@ -1,9 +1,8 @@
 import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
-export interface InputFileProps
-  extends Omit<
-    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    'width' | 'height'
-  > {
+export type InputFileProps = Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  'width' | 'height'
+> & {
   text: string;
-}
+};
