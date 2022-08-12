@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
+import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
+import { PlayerMusicImage } from '../MusicBox';
+import { playerStore } from '../../store/PlayerStore';
 import { PlayerControls } from './components/PlayerControls';
 import { PlayerVolume } from './components/PlayerVolume';
-import { PlayerMusicImage } from '../MusicBox';
 import { PlayerInfo } from './components/PlayerInfo';
-import { playerStore } from '../../store/PlayerStore';
-import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerPlayingToggle } from './components/PlayerTogglePlaying';
 import { PlayerToggleRandom } from './components/PlayerToggleRandom';
 import styles from './Player.module.scss';
@@ -31,42 +31,6 @@ export const Player: FC = () => {
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 
-  // global keys
-  // TODO: Add hotkey for toggle random
-  const handleWindowKeyDown = (event: KeyboardEvent) => {
-    const eventTarget = event.target as HTMLElement;
-
-    const isTargetBody = eventTarget.tagName === 'BODY';
-    const isTargetPlayer = eventTarget === playerRef.current;
-    const isTargetPlayerChildren = playerRef.current?.contains(eventTarget);
-
-    const checkIsValidKey =
-      (currentTrackVar() &&
-        !event.ctrlKey &&
-        !event.metaKey &&
-        !event.altKey &&
-        isTargetBody) ||
-      isTargetPlayer ||
-      isTargetPlayerChildren;
-
-    if (!checkIsValidKey) return;
-
-    switch (event.code) {
-      case 'Space':
-        event.preventDefault();
-        toggleAudio();
-        break;
-      case 'ArrowRight':
-        event.preventDefault();
-        changeCurrentTime(currentTimeVar() + CURRENT_TIME_DASH_SEC);
-        break;
-      case 'ArrowLeft':
-        event.preventDefault();
-        changeCurrentTime(currentTimeVar() - CURRENT_TIME_DASH_SEC);
-        break;
-    }
-  };
-
   // local keys
   const handlePlayerKeyDown = (event: ReactKeyBoardEvent) => {
     switch (event.code) {
@@ -88,9 +52,46 @@ export const Player: FC = () => {
   }, [currentTrack, tracks]);
 
   useEffect(() => {
+    // global keys
+    // TODO: Add hotkey for toggle random
+    const handleWindowKeyDown = (event: KeyboardEvent) => {
+      const eventTarget = event.target as HTMLElement;
+      const bodyName = window.document.body.tagName;
+
+      const isTargetBody = eventTarget.tagName === bodyName;
+      const isTargetPlayer = eventTarget === playerRef.current;
+      const isTargetPlayerChildren = playerRef.current?.contains(eventTarget);
+
+      const isValidKey =
+        (currentTrack &&
+          !event.ctrlKey &&
+          !event.metaKey &&
+          !event.altKey &&
+          isTargetBody) ||
+        isTargetPlayer ||
+        isTargetPlayerChildren;
+
+      if (!isValidKey) return;
+
+      const keyAction: { [key: string]: () => void } = {
+        Space: () => toggleAudio(),
+        ArrowRight: () =>
+          changeCurrentTime(currentTimeVar() + CURRENT_TIME_DASH_SEC),
+        ArrowLeft: () =>
+          changeCurrentTime(currentTimeVar() - CURRENT_TIME_DASH_SEC),
+      };
+
+      const { code } = event;
+
+      if (Object.hasOwn(keyAction, code)) {
+        event.preventDefault();
+        keyAction[code]();
+      }
+    };
+
     window.addEventListener('keydown', handleWindowKeyDown);
     return () => window.removeEventListener('keydown', handleWindowKeyDown);
-  }, []);
+  }, [currentTrack]);
 
   if (!currentTrack) return null;
 

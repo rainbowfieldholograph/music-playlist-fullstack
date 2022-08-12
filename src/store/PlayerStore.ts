@@ -1,8 +1,8 @@
 import { makeVar } from '@apollo/client';
-import { getRandomInteger } from '../../helpers/randomInteger';
-import { overflowBetween } from '../../helpers/overflowBetween';
-import { clamp } from '../../helpers/clamp';
-import type { Track } from '../../generated';
+import { getRandomInteger } from '../helpers/randomInteger';
+import { overflowBetween } from '../helpers/overflowBetween';
+import { clamp } from '../helpers/clamp';
+import type { Track } from '../generated';
 
 type SwitchTrackActions = 'NEXT' | 'PREV' | 'RANDOM';
 
