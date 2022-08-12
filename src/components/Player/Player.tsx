@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
-import { PlayerControls } from '../PlayerControls';
-import { PlayerVolume } from '../PlayerVolume';
+import { PlayerControls } from './components/PlayerControls';
+import { PlayerVolume } from './components/PlayerVolume';
 import { PlayerMusicImage } from '../MusicBox';
-import { PlayerInfo } from '../PlayerInfo';
-import { PlayerStore } from '../../store/PlayerStore';
+import { PlayerInfo } from './components/PlayerInfo';
+import { playerStore } from '../../store/PlayerStore';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
-import { PlayerPlayingToggle } from '../PlayerTogglePlaying';
-import { PlayerToggleRandom } from '../PlayerToggleRandom';
+import { PlayerPlayingToggle } from './components/PlayerTogglePlaying';
+import { PlayerToggleRandom } from './components/PlayerToggleRandom';
 import styles from './Player.module.scss';
 import type { KeyboardEvent as ReactKeyBoardEvent, FC } from 'react';
 
@@ -19,7 +19,7 @@ const {
   currentTrackVar,
   currentTimeVar,
   volumeVar,
-} = PlayerStore;
+} = playerStore;
 
 const CURRENT_TIME_DASH_SEC = 5; // seconds
 const VOLUME_DASH = 0.05;

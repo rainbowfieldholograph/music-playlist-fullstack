@@ -1,9 +1,11 @@
 .block {
-  height: calc(100vh - (var(--container-padding-block) + var(--container-margin-block)) * 2);
-}
+  height: calc(
+    100vh - (var(--container-padding-block) + var(--container-margin-block)) * 2
+  );
 
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  &.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

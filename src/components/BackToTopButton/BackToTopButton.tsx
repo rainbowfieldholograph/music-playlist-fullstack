@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ButtonIcon } from '../ButtonIcon';
-import { ReactComponent as UpIcon } from '../../img/up-icon.svg';
+import { ReactComponent as UpIcon } from '../../assets/up-icon.svg';
 import styles from './BackToTopButton.module.scss';
 import type { FC } from 'react';
 
 const SHOW_BUTTON_DISTANCE = 800;
+
+const scrollUp = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 export const BackToTopButton: FC = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
@@ -17,10 +19,9 @@ export const BackToTopButton: FC = () => {
     }
   };
 
-  const scrollUp = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler);
+
     return () => removeEventListener('scroll', scrollHandler);
   }, []);
 

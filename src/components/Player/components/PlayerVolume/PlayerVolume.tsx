@@ -1,10 +1,10 @@
 import { useReactiveVar } from '@apollo/client';
-import { PlayerStore } from '../../store/PlayerStore';
-import { Slider } from '../Slider';
+import { playerStore } from '../../../../store/PlayerStore';
+import { Slider } from '../../../Slider';
 import styles from './PlayerVolume.module.scss';
 import type { ChangeEvent, FC } from 'react';
 
-const { volumeVar, changeVolume } = PlayerStore;
+const { volumeVar, changeVolume } = playerStore;
 
 const onChangeRange = (event: ChangeEvent<HTMLInputElement>) => {
   changeVolume(+event.target.value / 100);

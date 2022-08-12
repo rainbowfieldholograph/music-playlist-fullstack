@@ -3,10 +3,15 @@ import { getRandomInteger } from '../../helpers/randomInteger';
 import { overflowBetween } from '../../helpers/overflowBetween';
 import { clamp } from '../../helpers/clamp';
 import type { Track } from '../../generated';
-import type { NewIndexes, SwitchTrackActions } from './PlayerStore.d';
+
+type SwitchTrackActions = 'NEXT' | 'PREV' | 'RANDOM';
+
+type NewIndexes = {
+  [key in SwitchTrackActions]: number;
+};
 
 class PlayerStore {
-  private readonly DISABLE_TIME = 500; // optimal value 500+
+  private readonly DISABLE_TIME_MS = 500; // optimal value 500+
   private readonly DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
   private prevTimerId: null | number = null;
   private audio = new Audio();
@@ -103,7 +108,7 @@ class PlayerStore {
       if (this.prevTimerId) clearTimeout(this.prevTimerId);
       this.prevTimerId = setTimeout(
         () => this.canChangeTimeVar(true),
-        this.DISABLE_TIME
+        this.DISABLE_TIME_MS
       );
     };
 
@@ -120,6 +125,4 @@ class PlayerStore {
   };
 }
 
-const PlayerStoreInstance = new PlayerStore();
-
-export { PlayerStoreInstance as PlayerStore };
+export const playerStore = new PlayerStore();

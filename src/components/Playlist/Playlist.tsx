@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { ErorrBlock } from '../ErrorBlock';
+import { ErrorBlock } from '../ErrorBlock';
 import { FullHeightBlock } from '../FullHeightBlock';
 import { Spinner } from '../Spinner';
 import { TracksList } from '../TracksList';
@@ -10,7 +10,8 @@ import { SearchInput } from '../SearchInput';
 import styles from './Playlist.module.scss';
 
 export const Playlist: FC = () => {
-  const { data, loading, error } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
+  const { data, loading, error } =
+    useQuery<GetAllTracksQuery>(GetAllTracksDocument);
   const tracks = data?.getAllTracks;
 
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -21,14 +22,16 @@ export const Playlist: FC = () => {
     return tracks?.filter(({ title, author }) => {
       const titleLower = title.toLowerCase();
       const authorLower = author.toLowerCase();
-      return titleLower.includes(searchQuery) || authorLower.includes(searchLower);
+      return (
+        titleLower.includes(searchQuery) || authorLower.includes(searchLower)
+      );
     });
   }, [searchQuery, tracks]);
 
   if (error)
     return (
       <FullHeightBlock>
-        <ErorrBlock />
+        <ErrorBlock />
       </FullHeightBlock>
     );
 
@@ -50,7 +53,11 @@ export const Playlist: FC = () => {
         <h1 className={styles.title}>{`Playlist: ${tracks.length}`}</h1>
         <AddNewTrack />
       </div>
-      <SearchInput className={styles.search} value={searchQuery} onChange={onChangeQuery} />
+      <SearchInput
+        className={styles.search}
+        value={searchQuery}
+        onChange={onChangeQuery}
+      />
       <TracksList tracks={filteredSongs ?? tracks} />
     </div>
   );

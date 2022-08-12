@@ -1,11 +1,11 @@
 import clsx from 'clsx';
-import { ReactComponent as ArrowIcon } from '../../img/arrow-icon.svg';
-import { PlayerStore } from '../../store/PlayerStore';
-import { ButtonIcon } from '../ButtonIcon';
+import { ReactComponent as ArrowIcon } from '../../../../assets/arrow-icon.svg';
+import { playerStore } from '../../../../store/PlayerStore';
+import { ButtonIcon } from '../../../ButtonIcon';
 import styles from './PlayerControls.module.scss';
 import type { FC } from 'react';
 
-const { nextTrack, prevTrack } = PlayerStore;
+const { nextTrack, prevTrack } = playerStore;
 
 export const PlayerControls: FC = () => {
   return (

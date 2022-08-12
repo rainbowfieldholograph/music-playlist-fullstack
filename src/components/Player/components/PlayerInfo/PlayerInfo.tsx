@@ -1,12 +1,17 @@
 import { useReactiveVar } from '@apollo/client';
-import { formatTime } from '../../helpers/formatTime';
-import { PlayerStore } from '../../store/PlayerStore';
-import { Slider } from '../Slider';
+import { formatTime } from '../../../../helpers/formatTime';
+import { playerStore } from '../../../../store/PlayerStore';
+import { Slider } from '../../../Slider';
 import styles from './PlayerInfo.module.scss';
 import type { ChangeEvent, FC } from 'react';
 
-const { currentTimeVar, canChangeTimeVar, durationVar, currentTrackVar, changeCurrentTime } =
-  PlayerStore;
+const {
+  currentTimeVar,
+  canChangeTimeVar,
+  durationVar,
+  currentTrackVar,
+  changeCurrentTime,
+} = playerStore;
 
 const computeDuration = (currentTime: number, duration: number): number => {
   const result = Math.round((currentTime * 100) / duration);

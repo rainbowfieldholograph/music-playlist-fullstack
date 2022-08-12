@@ -3,6 +3,7 @@
 .slider {
   cursor: pointer;
   width: 100%;
+  accent-color: var(--color-primary);
 
   &:focus-visible {
     @include mixins.default-outline();
