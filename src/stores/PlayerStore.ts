@@ -13,6 +13,7 @@ type KeyActions = {
 export class PlayerStore {
   private readonly DISABLE_TIME_MS = 500; // optimal value 500+
   private readonly DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
+
   private prevTimerId: null | number = null;
   private prevSrc: null | string = null;
   private audio = new Audio();
@@ -46,8 +47,13 @@ export class PlayerStore {
   };
 
   changeCurrentTime = (newValue: number) => {
-    if (!this.canChangeTimeVar() || !this.currentTrackVar()) return;
-    const currentTimeValue = clamp(newValue, 0, this.audio.duration);
+    const { duration } = this.audio;
+    const preventChange =
+      !this.canChangeTimeVar() || !this.currentTrackVar() || isNaN(duration);
+
+    if (preventChange) return;
+
+    const currentTimeValue = clamp(newValue, 0, duration);
     this.currentTimeVar(currentTimeValue);
     this.audio.currentTime = currentTimeValue;
   };
