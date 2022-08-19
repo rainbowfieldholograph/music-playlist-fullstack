@@ -10,9 +10,8 @@ const { toggleAudio, isPlayingVar } = playerStore;
 
 export const PlayerPlayingToggle: FC = () => {
   const isPlaying = useReactiveVar(isPlayingVar);
-  const showCorrectIcon = (isPlaying: boolean) =>
-    isPlaying ? PauseIcon : PlayIcon;
   const buttonLabel = isPlaying ? 'Pause audio (Space)' : 'Play audio (Space)';
+  const getIcon = (isPlaying: boolean) => (isPlaying ? PauseIcon : PlayIcon);
 
   return (
     <ButtonIcon
@@ -20,7 +19,7 @@ export const PlayerPlayingToggle: FC = () => {
       title={buttonLabel}
       className={styles.toggle}
       onClick={() => toggleAudio()}
-      SvgIcon={showCorrectIcon(isPlaying)}
+      SvgIcon={getIcon(isPlaying)}
     />
   );
 };

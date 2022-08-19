@@ -25,7 +25,8 @@ export const PlayerInfo: FC = () => {
   const currentTime = useReactiveVar(currentTimeVar);
 
   const handleProgress = (event: ChangeEvent<HTMLInputElement>) => {
-    const timeCompute = (+event.target.value * duration) / 100;
+    const progressValue = +event.target.value;
+    const timeCompute = (progressValue * duration) / 100;
     changeCurrentTime(timeCompute);
   };
 

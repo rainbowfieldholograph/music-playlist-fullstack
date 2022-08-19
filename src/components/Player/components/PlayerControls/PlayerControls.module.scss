@@ -17,8 +17,8 @@
 
 .arrow {
   font-size: 1.6rem;
-}
 
-.inverse {
-  transform: rotate(180deg);
+  &.inverse {
+    transform: rotate(180deg);
+  }
 }
