@@ -3,7 +3,6 @@ import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { FormInput } from '../../../FormInput';
 import { Button } from '../../../Button';
-import { UploadingBlock } from '../../../UploadingBlock';
 import {
   AddTrackDocument,
   AddTrackMutation,
@@ -19,11 +18,15 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
   const [title, setTitle] = useState<string>('');
   const [author, setAuthor] = useState<string>('');
 
-  const [addTrack, { loading }] =
-    useMutation<AddTrackMutation>(AddTrackDocument);
+  const [addTrack] = useMutation<AddTrackMutation>(AddTrackDocument);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0];
+    const { files } = event.target;
+
+    if (!files) return;
+
+    const [selectedFile] = files;
+
     if (selectedFile && selectedFile.type.includes('audio/')) {
       setFile(selectedFile);
     } else {
@@ -74,8 +77,6 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
       setFile(null);
     }
   };
-
-  if (loading) return <UploadingBlock />;
 
   return (
     <form className={styles.form} action="" onSubmit={onSubmitUpload}>
