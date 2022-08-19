@@ -6,14 +6,15 @@ import type { Track } from '../generated';
 
 type SwitchTrackActions = 'NEXT' | 'PREV' | 'RANDOM';
 
-type NewIndexes = {
+type KeyActions = {
   [key in SwitchTrackActions]: number;
 };
 
-class PlayerStore {
+export class PlayerStore {
   private readonly DISABLE_TIME_MS = 500; // optimal value 500+
   private readonly DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
   private prevTimerId: null | number = null;
+  private prevSrc: null | string = null;
   private audio = new Audio();
   private currentPlaylist: Track[] | null = null;
 
@@ -35,13 +36,13 @@ class PlayerStore {
     const lastIndex = playlist.length - 1;
     const currentIndex = playlist.findIndex((t) => t.id === currentTrack.id);
 
-    const newIndexes: NewIndexes = {
+    const keyActions: KeyActions = {
       NEXT: overflowBetween(currentIndex + 1, 0, lastIndex),
       PREV: overflowBetween(currentIndex - 1, 0, lastIndex),
       RANDOM: getRandomInteger(0, lastIndex),
     };
 
-    this.currentTrackVar(playlist[newIndexes[action]]);
+    this.currentTrackVar(playlist[keyActions[action]]);
   };
 
   changeCurrentTime = (newValue: number) => {
@@ -95,7 +96,11 @@ class PlayerStore {
   };
 
   initializeAudio = (src: string, playlist: Track[]) => {
-    this.audio.src = src;
+    if (src !== this.prevSrc) {
+      this.audio.src = src;
+      this.prevSrc = src;
+    }
+
     this.currentPlaylist = [...playlist];
 
     this.audio.ontimeupdate = () => this.currentTimeVar(this.audio.currentTime);
@@ -124,5 +129,3 @@ class PlayerStore {
     this.audio.volume = this.volumeVar();
   };
 }
-
-export const playerStore = new PlayerStore();

@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client';
 import { formatTime } from '../../../../helpers/formatTime';
-import { playerStore } from '../../../../store/PlayerStore';
+import { playerStore } from '../../../../stores';
 import { Slider } from '../../../Slider';
 import styles from './PlayerInfo.module.scss';
 import type { ChangeEvent, FC } from 'react';

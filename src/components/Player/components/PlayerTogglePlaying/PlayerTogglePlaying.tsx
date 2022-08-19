@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client';
 import { ButtonIcon } from '../../../ButtonIcon';
-import { playerStore } from '../../../../store/PlayerStore';
+import { playerStore } from '../../../../stores';
 import { ReactComponent as PauseIcon } from '../../../../assets/pause-icon.svg';
 import { ReactComponent as PlayIcon } from '../../../../assets/play-icon.svg';
 import styles from './PlayerTogglePlaying.module.scss';

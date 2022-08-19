@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useQuery, useReactiveVar } from '@apollo/client';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerMusicImage } from '../MusicBox';
-import { playerStore } from '../../store/PlayerStore';
+import { playerStore } from '../../stores';
 import { PlayerControls } from './components/PlayerControls';
 import { PlayerVolume } from './components/PlayerVolume';
 import { PlayerInfo } from './components/PlayerInfo';
@@ -20,6 +20,8 @@ const {
   currentTimeVar,
   volumeVar,
 } = playerStore;
+
+type KeyActions = { [key: string]: () => void };
 
 const CURRENT_TIME_DASH_SEC = 5; // seconds
 const VOLUME_DASH = 0.05;
@@ -73,7 +75,7 @@ export const Player: FC = () => {
 
       if (!isValidKey) return;
 
-      const keyAction: { [key: string]: () => void } = {
+      const keyActions: KeyActions = {
         Space: () => toggleAudio(),
         ArrowRight: () =>
           changeCurrentTime(currentTimeVar() + CURRENT_TIME_DASH_SEC),
@@ -83,9 +85,9 @@ export const Player: FC = () => {
 
       const { code } = event;
 
-      if (Object.hasOwn(keyAction, code)) {
+      if (Object.hasOwn(keyActions, code)) {
         event.preventDefault();
-        keyAction[code]();
+        keyActions[code]();
       }
     };
 

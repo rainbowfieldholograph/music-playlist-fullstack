@@ -2,7 +2,7 @@ import { useReactiveVar } from '@apollo/client';
 import clsx from 'clsx';
 import { ButtonIcon } from '../../../ButtonIcon';
 import { ReactComponent as RandomIcon } from '../../../../assets/random-icon.svg';
-import { playerStore } from '../../../../store/PlayerStore';
+import { playerStore } from '../../../../stores';
 import styles from './PlayerToggleRandom.module.scss';
 import type { FC } from 'react';
 

@@ -1,6 +1,6 @@
 import { useReactiveVar } from '@apollo/client';
 import { TrackItem } from '../TrackItem';
-import { playerStore } from '../../store/PlayerStore';
+import { playerStore } from '../../stores';
 import styles from './TracksList.module.scss';
 import type { Track } from '../../generated';
 import type { TracksListProps } from './TracksList.props';
