@@ -1,7 +1,5 @@
-@use '../../styles/mixins.scss' as mixins;
-
-$breakpoint-1: 56rem;
-$breakpoint-2: 26rem;
+@use '../../styles/mixins.scss';
+@use './styles/breakpoints.scss';
 
 .player {
   width: 100%;
@@ -30,7 +28,7 @@ $breakpoint-2: 26rem;
     @include mixins.default-outline();
   }
 
-  @media (max-width: $breakpoint-1) {
+  @media (max-width: breakpoints.$tablet) {
     padding-top: 1rem;
     padding-bottom: 1rem;
     justify-items: center;

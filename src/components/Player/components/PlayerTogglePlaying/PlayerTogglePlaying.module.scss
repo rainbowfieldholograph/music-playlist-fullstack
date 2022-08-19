@@ -1,9 +1,9 @@
-@use '../../Player.module';
+@use '../../styles/breakpoints.scss';
 
 .toggle {
   font-size: 3rem;
 
-  @media (max-width: Player.$breakpoint-2) {
+  @media (max-width: breakpoints.$mobile) {
     grid-column: 2 / 4;
   }
 }

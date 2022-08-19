@@ -18,6 +18,7 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [author, setAuthor] = useState<string>('');
+
   const [addTrack, { loading }] =
     useMutation<AddTrackMutation>(AddTrackDocument);
 
@@ -40,16 +41,19 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
   const onSubmitUpload: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     onSubmit();
+
     const loadingToast = toast.loading('Loading file...', {
       position: 'bottom-left',
     });
+
     try {
       await addTrack({
-        variables: { title: title, author: author, file: file },
+        variables: { title, author, file },
         refetchQueries: [{ query: GetAllTracksDocument }],
       });
+
       toast.update(loadingToast, {
-        render: 'File loaded succesfuly',
+        render: 'File loaded successfully',
         type: 'success',
         isLoading: false,
         autoClose: 4000,
@@ -63,7 +67,7 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
         autoClose: 4000,
         closeOnClick: true,
       });
-      console.log('Upload failed: ', error);
+      console.error('Upload failed: ', error);
     } finally {
       setAuthor('');
       setTitle('');

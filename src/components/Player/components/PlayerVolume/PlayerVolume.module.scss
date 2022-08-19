@@ -1,4 +1,4 @@
-@use '../../Player.module';
+@use '../../styles/breakpoints.scss';
 
 .wrapper {
   max-width: 100%;
@@ -8,14 +8,14 @@
   flex-direction: column;
   justify-content: center;
 
-  @media (max-width: Player.$breakpoint-1) {
+  @media (max-width: breakpoints.$tablet) {
     width: 100%;
     justify-content: center;
     grid-row: 3;
     grid-column: 1 / 5;
   }
 
-  @media (max-width: Player.$breakpoint-2) {
+  @media (max-width: breakpoints.$mobile) {
     grid-column: 1 / 4;
   }
 }

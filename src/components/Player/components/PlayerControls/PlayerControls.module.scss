@@ -1,16 +1,16 @@
-@use '../../Player.module';
+@use '../../styles/breakpoints.scss';
 
 .controls {
   display: grid;
   grid-auto-flow: column;
   gap: 0.6rem;
 
-  @media (max-width: Player.$breakpoint-1) {
+  @media (max-width: breakpoints.$tablet) {
     grid-row: 1;
     grid-column: 3;
   }
 
-  @media (max-width: Player.$breakpoint-2) {
+  @media (max-width: breakpoints.$mobile) {
     grid-column: 4;
   }
 }
