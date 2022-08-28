@@ -1,5 +1,6 @@
 @mixin default-outline($offset: false) {
   outline: 2px solid var(--color-primary);
+
   @if $offset {
     outline-offset: 0.15rem;
   }
