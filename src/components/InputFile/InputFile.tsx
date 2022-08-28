@@ -1,9 +1,14 @@
 import clsx from 'clsx';
+import { FC, memo } from 'react';
 import styles from './InputFile.module.scss';
-import type { FC } from 'react';
 import type { InputFileProps } from './InputFile.props';
 
-export const InputFile: FC<InputFileProps> = ({ text, className, style, ...rest }) => {
+export const InputFile: FC<InputFileProps> = ({
+  text,
+  className,
+  style,
+  ...rest
+}) => {
   return (
     <label className={clsx(className, styles.label)} style={style}>
       {text}
@@ -11,3 +16,5 @@ export const InputFile: FC<InputFileProps> = ({ text, className, style, ...rest 
     </label>
   );
 };
+
+export const InputFileMemo = memo(InputFile);

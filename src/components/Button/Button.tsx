@@ -1,6 +1,6 @@
 import clsx from 'clsx';
+import { FC, memo } from 'react';
 import styles from './Button.module.scss';
-import type { FC } from 'react';
 import type { ButtonProps } from './Button.props';
 
 export const Button: FC<ButtonProps> = ({ children, className, ...rest }) => {
@@ -10,3 +10,5 @@ export const Button: FC<ButtonProps> = ({ children, className, ...rest }) => {
     </button>
   );
 };
+
+export const ButtonMemo = memo(Button);
