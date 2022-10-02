@@ -101,6 +101,7 @@ export const Player: FC = () => {
       aria-label="Audio player"
       className={styles.player}
       ref={playerRef}
+      tabIndex={0}
     >
       <PlayerPlayingToggle />
       <PlayerControls />
