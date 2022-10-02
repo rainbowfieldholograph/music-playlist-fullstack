@@ -15,14 +15,14 @@ export const PlayerControls: FC = () => {
         title="Previous audio"
         SvgIcon={ArrowIcon}
         className={clsx(styles.arrow, styles.inverse)}
-        onClick={() => prevTrack()}
+        onClick={prevTrack}
       />
       <ButtonIcon
         aria-label="Next audio"
         title="Next audio"
         SvgIcon={ArrowIcon}
         className={styles.arrow}
-        onClick={() => nextTrack()}
+        onClick={nextTrack}
       />
     </div>
   );

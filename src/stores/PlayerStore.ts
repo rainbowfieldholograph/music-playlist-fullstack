@@ -1,4 +1,4 @@
-import { makeVar } from '@apollo/client';
+import { makeVar, useReactiveVar } from '@apollo/client';
 import { getRandomInteger } from '../helpers/randomInteger';
 import { overflowBetween } from '../helpers/overflowBetween';
 import { clamp } from '../helpers/clamp';
@@ -19,14 +19,15 @@ export class PlayerStore {
   private audio = new Audio();
   private currentPlaylist: Track[] | null = null;
 
-  currentTrackVar = makeVar<Track | null>(null);
-  isPlayingVar = makeVar<boolean>(false);
+  // Apollo Reactive Variables
+  private currentTrackVar = makeVar<Track | null>(null);
+  private isPlayingVar = makeVar<boolean>(false);
   // isRepeatVar = makeVar<boolean>(false);
-  isRandomVar = makeVar<boolean>(false);
-  canChangeTimeVar = makeVar<boolean>(false);
-  volumeVar = makeVar<number>(this.DEFAULT_VOLUME);
-  currentTimeVar = makeVar<number>(0);
-  durationVar = makeVar<number>(0);
+  private isRandomVar = makeVar<boolean>(false);
+  private canChangeTimeVar = makeVar<boolean>(false);
+  private volumeVar = makeVar<number>(this.DEFAULT_VOLUME);
+  private currentTimeVar = makeVar<number>(0);
+  private durationVar = makeVar<number>(0);
 
   private switchTrack = (action: SwitchTrackActions) => {
     const currentTrack = this.currentTrackVar();
@@ -75,6 +76,18 @@ export class PlayerStore {
       this.isPlayingVar(false);
       this.audio.pause();
     }
+  };
+
+  changeCurrentTrack = (track: Track) => {
+    this.currentTrackVar(track);
+  };
+
+  updateCurrentTime = (value: number) => {
+    this.changeCurrentTime(this.currentTimeVar() + value);
+  };
+
+  updateVolume = (value: number) => {
+    this.changeVolume(this.volumeVar() + value);
   };
 
   toggleAudio = () => {
@@ -133,5 +146,34 @@ export class PlayerStore {
     };
 
     this.audio.volume = this.volumeVar();
+  };
+
+  // React Hooks
+  useCurrentTrack = () => {
+    return useReactiveVar(this.currentTrackVar);
+  };
+
+  useIsPlaying = () => {
+    return useReactiveVar(this.isPlayingVar);
+  };
+
+  useIsRandom = () => {
+    return useReactiveVar(this.isRandomVar);
+  };
+
+  useCanChangeTime = () => {
+    return useReactiveVar(this.canChangeTimeVar);
+  };
+
+  useVolume = () => {
+    return useReactiveVar(this.volumeVar);
+  };
+
+  useCurrentTime = () => {
+    return useReactiveVar(this.currentTimeVar);
+  };
+
+  useDuration = () => {
+    return useReactiveVar(this.durationVar);
   };
 }

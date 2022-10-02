@@ -1,4 +1,3 @@
-import { useReactiveVar } from '@apollo/client';
 import { formatTime } from '../../../../helpers/formatTime';
 import { playerStore } from '../../../../stores';
 import { Slider } from '../../../Slider';
@@ -6,11 +5,11 @@ import styles from './PlayerInfo.module.scss';
 import type { ChangeEvent, FC } from 'react';
 
 const {
-  currentTimeVar,
-  canChangeTimeVar,
-  durationVar,
-  currentTrackVar,
   changeCurrentTime,
+  useCanChangeTime,
+  useDuration,
+  useCurrentTrack,
+  useCurrentTime,
 } = playerStore;
 
 const computeDuration = (currentTime: number, duration: number): number => {
@@ -19,10 +18,10 @@ const computeDuration = (currentTime: number, duration: number): number => {
 };
 
 export const PlayerInfo: FC = () => {
-  const canChangeTime = useReactiveVar(canChangeTimeVar);
-  const duration = useReactiveVar(durationVar);
-  const currentTrack = useReactiveVar(currentTrackVar);
-  const currentTime = useReactiveVar(currentTimeVar);
+  const canChangeTime = useCanChangeTime();
+  const duration = useDuration();
+  const currentTrack = useCurrentTrack();
+  const currentTime = useCurrentTime();
 
   const handleProgress = (event: ChangeEvent<HTMLInputElement>) => {
     const progressValue = +event.target.value;

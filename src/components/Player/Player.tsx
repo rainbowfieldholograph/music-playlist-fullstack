@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useQuery, useReactiveVar } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { PlayerMusicImage } from '../MusicBox';
 import { playerStore } from '../../stores';
@@ -14,11 +14,9 @@ import type { KeyboardEvent as ReactKeyBoardEvent, FC } from 'react';
 const {
   toggleAudio,
   initializeAudio,
-  changeCurrentTime,
-  changeVolume,
-  currentTrackVar,
-  currentTimeVar,
-  volumeVar,
+  useCurrentTrack,
+  updateVolume,
+  updateCurrentTime,
 } = playerStore;
 
 type KeyActions = { [key: string]: () => void };
@@ -27,7 +25,8 @@ const CURRENT_TIME_DASH_SEC = 5; // seconds
 const VOLUME_DASH = 0.05;
 
 export const Player: FC = () => {
-  const currentTrack = useReactiveVar(currentTrackVar);
+  const currentTrack = useCurrentTrack();
+
   const playerRef = useRef<null | HTMLDivElement>(null);
 
   const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
@@ -38,15 +37,16 @@ export const Player: FC = () => {
     switch (event.code) {
       case 'ArrowUp':
         event.preventDefault();
-        changeVolume(volumeVar() + VOLUME_DASH);
+        updateVolume(VOLUME_DASH);
         break;
       case 'ArrowDown':
         event.preventDefault();
-        changeVolume(volumeVar() - VOLUME_DASH);
+        updateVolume(-VOLUME_DASH);
         break;
     }
   };
 
+  // TODO: Add playlist store logic
   useEffect(() => {
     if (currentTrack && tracks) {
       initializeAudio(currentTrack.src, tracks);
@@ -77,10 +77,8 @@ export const Player: FC = () => {
 
       const keyActions: KeyActions = {
         Space: () => toggleAudio(),
-        ArrowRight: () =>
-          changeCurrentTime(currentTimeVar() + CURRENT_TIME_DASH_SEC),
-        ArrowLeft: () =>
-          changeCurrentTime(currentTimeVar() - CURRENT_TIME_DASH_SEC),
+        ArrowRight: () => updateCurrentTime(CURRENT_TIME_DASH_SEC),
+        ArrowLeft: () => updateCurrentTime(-CURRENT_TIME_DASH_SEC),
       };
 
       const { code } = event;

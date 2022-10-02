@@ -1,4 +1,3 @@
-import { useReactiveVar } from '@apollo/client';
 import clsx from 'clsx';
 import { ButtonIcon } from '../../../ButtonIcon';
 import { ReactComponent as RandomIcon } from '../../../../assets/random-icon.svg';
@@ -6,10 +5,10 @@ import { playerStore } from '../../../../stores';
 import styles from './PlayerToggleRandom.module.scss';
 import type { FC } from 'react';
 
-const { isRandomVar, toggleRandom } = playerStore;
+const { useIsRandom, toggleRandom } = playerStore;
 
 export const PlayerToggleRandom: FC = () => {
-  const isRandom = useReactiveVar(isRandomVar);
+  const isRandom = useIsRandom();
   const buttonLabel = isRandom ? 'Disable random' : 'Enable random';
 
   return (
