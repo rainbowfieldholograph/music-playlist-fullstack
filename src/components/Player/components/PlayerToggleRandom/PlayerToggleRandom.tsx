@@ -1,13 +1,13 @@
 import clsx from 'clsx';
+import { FC, memo } from 'react';
 import { ButtonIcon } from '../../../ButtonIcon';
 import { ReactComponent as RandomIcon } from '../../../../assets/random-icon.svg';
 import { playerStore } from '../../../../stores';
 import styles from './PlayerToggleRandom.module.scss';
-import type { FC } from 'react';
 
 const { useIsRandom, toggleRandom } = playerStore;
 
-export const PlayerToggleRandom: FC = () => {
+export const PlayerToggleRandom: FC = memo(() => {
   const isRandom = useIsRandom();
   const buttonLabel = isRandom ? 'Disable random' : 'Enable random';
 
@@ -20,4 +20,6 @@ export const PlayerToggleRandom: FC = () => {
       SvgIcon={RandomIcon}
     />
   );
-};
+});
+
+PlayerToggleRandom.displayName = 'PlayerToggleRandom';

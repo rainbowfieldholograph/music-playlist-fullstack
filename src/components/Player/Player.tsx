@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useQuery } from '@apollo/client';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
-import { PlayerMusicImage } from '../MusicBox';
+import { MusicBoxMemo } from '../MusicBox';
 import { playerStore } from '../../stores';
 import { PlayerControls } from './components/PlayerControls';
 import { PlayerVolume } from './components/PlayerVolume';
@@ -105,7 +105,7 @@ export const Player: FC = () => {
     >
       <PlayerPlayingToggle />
       <PlayerControls />
-      <PlayerMusicImage className={styles.musicImage} />
+      <MusicBoxMemo className={styles.musicImage} />
       <PlayerInfo />
       <PlayerVolume />
       <PlayerToggleRandom />

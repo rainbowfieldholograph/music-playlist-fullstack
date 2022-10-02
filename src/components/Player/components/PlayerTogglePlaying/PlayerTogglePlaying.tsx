@@ -1,16 +1,16 @@
+import { FC, memo } from 'react';
 import { ButtonIcon } from '../../../ButtonIcon';
 import { playerStore } from '../../../../stores';
 import { ReactComponent as PauseIcon } from '../../../../assets/pause-icon.svg';
 import { ReactComponent as PlayIcon } from '../../../../assets/play-icon.svg';
 import styles from './PlayerTogglePlaying.module.scss';
-import type { FC } from 'react';
 
 const { toggleAudio, useIsPlaying } = playerStore;
 
-export const PlayerPlayingToggle: FC = () => {
+export const PlayerPlayingToggle: FC = memo(() => {
   const isPlaying = useIsPlaying();
   const buttonLabel = isPlaying ? 'Pause audio (Space)' : 'Play audio (Space)';
-  const getIcon = (isPlaying: boolean) => (isPlaying ? PauseIcon : PlayIcon);
+  const icon = (isPlaying: boolean) => (isPlaying ? PauseIcon : PlayIcon);
 
   return (
     <ButtonIcon
@@ -18,7 +18,9 @@ export const PlayerPlayingToggle: FC = () => {
       title={buttonLabel}
       className={styles.toggle}
       onClick={() => toggleAudio()}
-      SvgIcon={getIcon(isPlaying)}
+      SvgIcon={icon(isPlaying)}
     />
   );
-};
+});
+
+PlayerPlayingToggle.displayName = 'PlayerPlayingToggle';

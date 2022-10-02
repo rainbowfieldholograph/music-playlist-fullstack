@@ -1,13 +1,13 @@
 import clsx from 'clsx';
+import { FC, memo } from 'react';
 import { ReactComponent as ArrowIcon } from '../../../../assets/arrow-icon.svg';
 import { playerStore } from '../../../../stores';
 import { ButtonIcon } from '../../../ButtonIcon';
 import styles from './PlayerControls.module.scss';
-import type { FC } from 'react';
 
 const { nextTrack, prevTrack } = playerStore;
 
-export const PlayerControls: FC = () => {
+export const PlayerControls: FC = memo(() => {
   return (
     <div className={styles.controls}>
       <ButtonIcon
@@ -26,4 +26,6 @@ export const PlayerControls: FC = () => {
       />
     </div>
   );
-};
+});
+
+PlayerControls.displayName = 'PlayerControls';
