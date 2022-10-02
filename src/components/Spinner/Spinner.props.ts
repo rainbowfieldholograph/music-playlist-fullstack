@@ -1,6 +1,3 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type SpinnerProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
+export type SpinnerProps = ComponentPropsWithoutRef<'div'>;

@@ -1,6 +1,3 @@
-import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type InputProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->;
+export type InputProps = ComponentPropsWithoutRef<'input'>;

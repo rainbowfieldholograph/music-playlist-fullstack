@@ -1,6 +1,6 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
 export type PlayerMusicImageProps = Omit<
-  DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  ComponentPropsWithoutRef<'div'>,
   'children'
 >;

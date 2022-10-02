@@ -1,12 +1,14 @@
-import type { DetailedHTMLProps, FC, HTMLAttributes, SVGProps } from 'react';
+import type { ComponentPropsWithoutRef, FC, SVGProps } from 'react';
+
+type SvgComponent = FC<
+  SVGProps<SVGSVGElement> & {
+    title?: string | undefined;
+  }
+>;
 
 export type ButtonIconProps = Omit<
-  DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+  ComponentPropsWithoutRef<'button'>,
   'children'
 > & {
-  SvgIcon: FC<
-    SVGProps<SVGSVGElement> & {
-      title?: string | undefined;
-    }
-  >;
+  SvgIcon: SvgComponent;
 };

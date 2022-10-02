@@ -1,6 +1,3 @@
-import type { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type ButtonProps = DetailedHTMLProps<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
+export type ButtonProps = ComponentPropsWithoutRef<'button'>;

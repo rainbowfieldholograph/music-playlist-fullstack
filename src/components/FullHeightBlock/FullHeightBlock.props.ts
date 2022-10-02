@@ -1,8 +1,5 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type FullHeightBlockProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
-> & {
+export type FullHeightBlockProps = ComponentPropsWithoutRef<'div'> & {
   childsCenter?: boolean;
 };

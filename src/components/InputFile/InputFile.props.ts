@@ -1,7 +1,7 @@
-import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
 export type InputFileProps = Omit<
-  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  ComponentPropsWithoutRef<'input'>,
   'width' | 'height'
 > & {
   text: string;

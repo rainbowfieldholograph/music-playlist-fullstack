@@ -1,6 +1,3 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type ContainerProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
+export type ContainerProps = ComponentPropsWithoutRef<'div'>;

@@ -1,6 +1,3 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type ErrorBlockProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
+export type ErrorBlockProps = ComponentPropsWithoutRef<'div'>;

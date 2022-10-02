@@ -1,6 +1,3 @@
-import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type SliderProps = Omit<
-  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-  'type'
->;
+export type SliderProps = Omit<ComponentPropsWithoutRef<'input'>, 'type'>;

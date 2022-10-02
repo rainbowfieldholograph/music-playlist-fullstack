@@ -1,9 +1,6 @@
-import type { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type FormInputProps = DetailedHTMLProps<
-  InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
-> & {
+export type FormInputProps = ComponentPropsWithoutRef<'input'> & {
   inputState: string;
   setInputState: (value: string) => void;
   labelText: string;
