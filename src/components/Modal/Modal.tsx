@@ -1,44 +1,57 @@
-import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
+import { MouseEventHandler, useEffect } from 'react';
 import clsx from 'clsx';
 import FocusLock from 'react-focus-lock';
+import { Portal } from '../Portal';
 import styles from './Modal.module.scss';
 import type { FC } from 'react';
 import type { ModalProps } from './Modal.props';
 
-const portalRootElement = document.getElementById('modal');
-
-export const Modal: FC<ModalProps> = ({ className, children, open, onClose }) => {
-  const onClickEsc = (event: KeyboardEvent) => {
-    if (event.key === 'Esc' || event.key === 'Escape') onClose();
-  };
-
+export const Modal: FC<ModalProps> = ({
+  className,
+  children,
+  isOpened,
+  onClose,
+}) => {
   useEffect(() => {
     document.body.classList.add(styles._lock);
   }, []);
 
   useEffect(() => {
+    const onClickEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Esc' || event.key === 'Escape') onClose();
+    };
+
     document.body.classList.toggle(styles._lock);
-    if (open) {
+
+    if (isOpened) {
       window.addEventListener('keydown', onClickEsc);
       return () => window.removeEventListener('keydown', onClickEsc);
     }
-  }, [open]);
+  }, [onClose, isOpened]);
 
-  if (!open || !portalRootElement) return null;
+  if (!isOpened) return null;
 
-  return createPortal(
-    <FocusLock>
-      <div onClick={() => onClose()} className={styles.overlay}>
-        <div
-          onClick={(event) => event.stopPropagation()}
-          role="dialog"
-          className={clsx(styles.modal, className)}
-        >
-          {children}
+  const onClickOverlay = () => {
+    onClose();
+  };
+
+  const onClickModal: MouseEventHandler = (event) => {
+    event.stopPropagation();
+  };
+
+  return (
+    <Portal>
+      <FocusLock>
+        <div onClick={onClickOverlay} className={styles.overlay}>
+          <div
+            onClick={onClickModal}
+            role="dialog"
+            className={clsx(styles.modal, className)}
+          >
+            {children}
+          </div>
         </div>
-      </div>
-    </FocusLock>,
-    portalRootElement
+      </FocusLock>
+    </Portal>
   );
 };

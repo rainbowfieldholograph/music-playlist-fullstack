@@ -10,7 +10,7 @@ export const UploadModal: FC<UploadModalProps> = ({ isOpen, onClose }) => {
   const closeButtonLabel = 'Close modal window';
 
   return (
-    <Modal className={styles.modal} open={isOpen} onClose={onClose}>
+    <Modal className={styles.modal} isOpened={isOpen} onClose={onClose}>
       <div className={styles.head}>
         <h1 className={styles.title}>Upload audio file</h1>
         <ButtonIcon

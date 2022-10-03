@@ -73,6 +73,7 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
         autoClose: 4000,
         closeOnClick: true,
       });
+      // eslint-disable-next-line no-console
       console.error('Upload failed: ', error);
     } finally {
       setAuthor('');
