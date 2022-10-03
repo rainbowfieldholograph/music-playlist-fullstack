@@ -17,7 +17,7 @@ export const ToggleRandom: FC = memo(() => {
       title={buttonLabel}
       className={clsx(styles.toggle, { [styles.active]: isRandom })}
       onClick={() => toggleRandom()}
-      SvgIcon={RandomIcon}
+      svgIcon={RandomIcon}
     />
   );
 });

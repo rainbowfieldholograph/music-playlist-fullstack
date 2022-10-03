@@ -18,7 +18,7 @@ export const TogglePlaying: FC = memo(() => {
       title={buttonLabel}
       className={styles.toggle}
       onClick={() => toggleAudio()}
-      SvgIcon={icon(isPlaying)}
+      svgIcon={icon(isPlaying)}
     />
   );
 });

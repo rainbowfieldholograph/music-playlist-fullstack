@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { useQuery } from '@apollo/client';
-import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { MusicBoxMemo } from '../MusicBox';
 import { playerStore } from '../../stores';
+import { useTracks } from '../../hooks/useTracks';
 import { Controls } from './components/Controls';
 import { Volume } from './components/Volume';
 import { Info } from './components/Info';
@@ -29,7 +28,7 @@ export const Player: FC = () => {
 
   const playerRef = useRef<null | HTMLDivElement>(null);
 
-  const { data } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
+  const { data } = useTracks();
   const tracks = data?.getAllTracks;
 
   // local keys

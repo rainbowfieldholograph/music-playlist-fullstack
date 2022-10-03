@@ -31,7 +31,7 @@ export const BackToTopButton: FC = () => {
     <ButtonIcon
       title="Scroll to top"
       aria-label="Scroll to top"
-      SvgIcon={UpIcon}
+      svgIcon={UpIcon}
       className={styles.button}
       onClick={scrollUp}
     />

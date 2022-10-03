@@ -13,14 +13,14 @@ export const Controls: FC = memo(() => {
       <ButtonIcon
         aria-label="Previous audio"
         title="Previous audio"
-        SvgIcon={ArrowIcon}
+        svgIcon={ArrowIcon}
         className={clsx(styles.arrow, styles.inverse)}
         onClick={prevTrack}
       />
       <ButtonIcon
         aria-label="Next audio"
         title="Next audio"
-        SvgIcon={ArrowIcon}
+        svgIcon={ArrowIcon}
         className={styles.arrow}
         onClick={nextTrack}
       />

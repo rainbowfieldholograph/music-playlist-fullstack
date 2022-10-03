@@ -18,7 +18,7 @@ export const UploadModal: FC<UploadModalProps> = ({ isOpen, onClose }) => {
           title={closeButtonLabel}
           onClick={onClose}
           className={styles.closeButton}
-          SvgIcon={CloseButton}
+          svgIcon={CloseButton}
         />
       </div>
       <UploadForm onSubmit={onClose} />

@@ -1,46 +1,49 @@
 import { ChangeEvent, FC, useMemo, useState } from 'react';
-import { useQuery } from '@apollo/client';
 import { ErrorBlock } from '../ErrorBlock';
 import { FullHeightBlock } from '../FullHeightBlock';
 import { Spinner } from '../Spinner';
 import { TracksList } from '../TracksList';
-import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { AddNewTrack } from '../AddNewTrack';
 import { SearchInput } from '../SearchInput';
+import { useTracks } from '../../hooks/useTracks';
 import styles from './Playlist.module.scss';
 
 export const Playlist: FC = () => {
-  const { data, loading, error } =
-    useQuery<GetAllTracksQuery>(GetAllTracksDocument);
+  const { data, loading, error } = useTracks();
   const tracks = data?.getAllTracks;
 
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const filteredSongs = useMemo(() => {
     if (!searchQuery) return tracks;
+
     const searchLower = searchQuery.toLowerCase();
+
     return tracks?.filter(({ title, author }) => {
       const titleLower = title.toLowerCase();
       const authorLower = author.toLowerCase();
+
       return (
         titleLower.includes(searchQuery) || authorLower.includes(searchLower)
       );
     });
   }, [searchQuery, tracks]);
 
-  if (error)
+  if (error) {
     return (
       <FullHeightBlock>
         <ErrorBlock />
       </FullHeightBlock>
     );
+  }
 
-  if (loading || !tracks)
+  if (loading || !tracks) {
     return (
       <FullHeightBlock childsCenter>
         <Spinner />
       </FullHeightBlock>
     );
+  }
 
   const onChangeQuery = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -50,7 +53,7 @@ export const Playlist: FC = () => {
   return (
     <div className={styles.playlist}>
       <div className={styles.head}>
-        <h1 className={styles.title}>{`Playlist: ${tracks.length}`}</h1>
+        <h1 className={styles.title}>Playlist: {tracks.length}</h1>
         <AddNewTrack />
       </div>
       <SearchInput

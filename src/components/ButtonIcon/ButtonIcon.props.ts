@@ -10,5 +10,5 @@ export type ButtonIconProps = Omit<
   ComponentPropsWithoutRef<'button'>,
   'children'
 > & {
-  SvgIcon: SvgComponent;
+  svgIcon: SvgComponent;
 };
