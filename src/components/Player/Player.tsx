@@ -26,10 +26,9 @@ const VOLUME_DASH = 0.05;
 export const Player: FC = () => {
   const currentTrack = useCurrentTrack();
 
-  const playerRef = useRef<null | HTMLDivElement>(null);
+  const playerRef = useRef<HTMLDivElement>(null);
 
-  const { data } = useTracks();
-  const tracks = data?.getAllTracks;
+  const { data: tracks } = useTracks();
 
   // local keys
   const handlePlayerKeyDown = (event: ReactKeyBoardEvent) => {
@@ -84,11 +83,15 @@ export const Player: FC = () => {
 
       if (Object.hasOwn(keyActions, code)) {
         event.preventDefault();
-        keyActions[code]();
+
+        const action = keyActions[code];
+
+        action();
       }
     };
 
     window.addEventListener('keydown', handleWindowKeyDown);
+
     return () => window.removeEventListener('keydown', handleWindowKeyDown);
   }, [currentTrack]);
 

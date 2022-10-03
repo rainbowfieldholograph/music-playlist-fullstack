@@ -9,8 +9,7 @@ import { useTracks } from '../../hooks/useTracks';
 import styles from './Playlist.module.scss';
 
 export const Playlist: FC = () => {
-  const { data, loading, error } = useTracks();
-  const tracks = data?.getAllTracks;
+  const { data: tracks, loading, error } = useTracks();
 
   const [searchQuery, setSearchQuery] = useState<string>('');
 
