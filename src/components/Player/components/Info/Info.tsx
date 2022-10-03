@@ -1,7 +1,7 @@
 import { formatTime } from '../../../../helpers/formatTime';
 import { playerStore } from '../../../../stores';
 import { Slider } from '../../../Slider';
-import styles from './PlayerInfo.module.scss';
+import styles from './Info.module.scss';
 import type { ChangeEvent, FC } from 'react';
 
 const {
@@ -17,7 +17,7 @@ const computeDuration = (currentTime: number, duration: number): number => {
   return isNaN(result) ? 0 : result;
 };
 
-export const PlayerInfo: FC = () => {
+export const Info: FC = () => {
   const canChangeTime = useCanChangeTime();
   const duration = useDuration();
   const currentTrack = useCurrentTrack();

@@ -3,11 +3,11 @@ import { useQuery } from '@apollo/client';
 import { GetAllTracksDocument, GetAllTracksQuery } from '../../generated';
 import { MusicBoxMemo } from '../MusicBox';
 import { playerStore } from '../../stores';
-import { PlayerControls } from './components/PlayerControls';
-import { PlayerVolume } from './components/PlayerVolume';
-import { PlayerInfo } from './components/PlayerInfo';
-import { PlayerPlayingToggle } from './components/PlayerTogglePlaying';
-import { PlayerToggleRandom } from './components/PlayerToggleRandom';
+import { Controls } from './components/Controls';
+import { Volume } from './components/Volume';
+import { Info } from './components/Info';
+import { TogglePlaying } from './components/TogglePlaying';
+import { ToggleRandom } from './components/ToggleRandom';
 import styles from './Player.module.scss';
 import type { KeyboardEvent as ReactKeyBoardEvent, FC } from 'react';
 
@@ -103,12 +103,12 @@ export const Player: FC = () => {
       ref={playerRef}
       tabIndex={0}
     >
-      <PlayerPlayingToggle />
-      <PlayerControls />
+      <TogglePlaying />
+      <Controls />
       <MusicBoxMemo className={styles.musicImage} />
-      <PlayerInfo />
-      <PlayerVolume />
-      <PlayerToggleRandom />
+      <Info />
+      <Volume />
+      <ToggleRandom />
     </div>
   );
 };

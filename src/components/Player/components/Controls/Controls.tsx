@@ -3,11 +3,11 @@ import { FC, memo } from 'react';
 import { ReactComponent as ArrowIcon } from '../../../../assets/arrow-icon.svg';
 import { playerStore } from '../../../../stores';
 import { ButtonIcon } from '../../../ButtonIcon';
-import styles from './PlayerControls.module.scss';
+import styles from './Controls.module.scss';
 
 const { nextTrack, prevTrack } = playerStore;
 
-export const PlayerControls: FC = memo(() => {
+export const Controls: FC = memo(() => {
   return (
     <div className={styles.controls}>
       <ButtonIcon
@@ -28,4 +28,4 @@ export const PlayerControls: FC = memo(() => {
   );
 });
 
-PlayerControls.displayName = 'PlayerControls';
+Controls.displayName = 'Controls';

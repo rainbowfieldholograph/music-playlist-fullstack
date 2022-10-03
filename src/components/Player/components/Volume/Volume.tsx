@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, memo } from 'react';
 import { playerStore } from '../../../../stores';
 import { Slider } from '../../../Slider';
-import styles from './PlayerVolume.module.scss';
+import styles from './Volume.module.scss';
 
 const { useVolume, changeVolume } = playerStore;
 
@@ -9,7 +9,7 @@ const onChangeRange = (event: ChangeEvent<HTMLInputElement>) => {
   changeVolume(+event.target.value / 100);
 };
 
-export const PlayerVolume: FC = memo(() => {
+export const Volume: FC = memo(() => {
   const volume = useVolume();
   const computedVolume = Math.round(volume * 100);
 
@@ -26,4 +26,4 @@ export const PlayerVolume: FC = memo(() => {
   );
 });
 
-PlayerVolume.displayName = 'PlayerVolume';
+Volume.displayName = 'Volume';
