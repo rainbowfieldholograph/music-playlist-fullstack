@@ -1,6 +1,7 @@
+import type { Track } from '../../generated';
+
 export type TrackItemProps = {
-  title: string;
-  author: string;
+  track: Track;
   isActive: boolean;
-  onClick: () => void;
+  changeTrackHandler: (track: Track) => void;
 };
