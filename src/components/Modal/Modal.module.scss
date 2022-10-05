@@ -7,18 +7,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
   overflow-y: auto;
   overflow-x: hidden;
 
   background-color: white;
   border-radius: 0.5rem;
 
-  word-break: break-word;
-
   min-width: 20rem;
   min-height: 16rem;
   max-height: 100%;
+
+  word-break: break-word;
 
   @supports (hyphens: auto) {
     hyphens: auto;
@@ -28,7 +27,6 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 9;
 
   background-color: rgba(0, 0, 0, 0.7);
 }
