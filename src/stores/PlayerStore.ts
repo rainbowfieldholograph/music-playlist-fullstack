@@ -36,15 +36,17 @@ export class PlayerStore {
     if (!playlist || !currentTrack) return;
 
     const lastIndex = playlist.length - 1;
-    const currentIndex = playlist.findIndex((t) => t.id === currentTrack.id);
+    const currentIndex = playlist.findIndex(({ id }) => id === currentTrack.id);
 
-    const keyActions: KeyActions = {
+    const actionsDict: KeyActions = {
       NEXT: overflowBetween(currentIndex + 1, 0, lastIndex),
       PREV: overflowBetween(currentIndex - 1, 0, lastIndex),
       RANDOM: getRandomInteger(0, lastIndex),
     };
 
-    this.currentTrackVar(playlist[keyActions[action]]);
+    const newIndex = actionsDict[action];
+
+    this.currentTrackVar(playlist[newIndex]);
   };
 
   changeCurrentTime = (newValue: number) => {
