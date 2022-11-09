@@ -1,4 +1,4 @@
-@use '../../styles/mixins.scss' as mixins;
+@use 'src/app' as *;
 
 .wrapper {
   --search-input-space: 0.5rem;
@@ -16,7 +16,7 @@
   cursor: text;
 
   &:focus-within {
-    @include mixins.default-outline();
+    @include default-outline();
   }
 
   &:focus-within > .icon {

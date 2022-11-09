@@ -1,5 +1,5 @@
-@use '../../styles/mixins.scss';
-@use './styles/breakpoints.scss';
+@use 'src/app' as *;
+@use 'src/features/player/styles/breakpoints.scss';
 
 .player {
   width: 100%;
@@ -12,7 +12,6 @@
   margin-bottom: 2rem;
 
   position: sticky;
-  z-index: 1;
   top: 0;
 
   border-radius: 0.3rem;
@@ -25,7 +24,7 @@
   gap: 1rem;
 
   &:focus-within {
-    @include mixins.default-outline();
+    @include default-outline();
   }
 
   @media (max-width: breakpoints.$tablet) {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ButtonIcon } from '../ButtonIcon';
-import { ReactComponent as UpIcon } from '../../assets/up-icon.svg';
+import { ReactComponent as UpIcon } from 'assets/up-icon.svg';
+import { ButtonIcon } from 'components';
 import styles from './BackToTopButton.module.scss';
 import type { FC } from 'react';
 

@@ -1,4 +1,4 @@
-import type { Track } from '../../generated';
+import type { Track } from 'generated';
 
 export type TracksListProps = {
   tracks: Track[];

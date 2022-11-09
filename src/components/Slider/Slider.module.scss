@@ -1,4 +1,4 @@
-@use '../../styles/mixins.scss' as mixins;
+@use 'src/app' as *;
 
 .slider {
   cursor: pointer;
@@ -6,6 +6,6 @@
   accent-color: var(--color-primary);
 
   &:focus-visible {
-    @include mixins.default-outline();
+    @include default-outline();
   }
 }

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
+import { ReactComponent as SearchIcon } from 'assets/search-icon.svg';
 import styles from './SearchInput.module.scss';
 import type { FC } from 'react';
 import type { SearchInputProps } from './SearchInput.props';

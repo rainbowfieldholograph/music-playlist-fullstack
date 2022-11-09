@@ -15,6 +15,7 @@
     "@apollo/client": "^3.7.0",
     "apollo-upload-client": "^17.0.0",
     "clsx": "^1.2.1",
+    "compose-function": "^3.0.3",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -27,6 +28,7 @@
     "@graphql-codegen/typescript": "^2.4.7",
     "@graphql-codegen/typescript-operations": "^2.3.4",
     "@types/apollo-upload-client": "^17.0.0",
+    "@types/compose-function": "^0.0.30",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
@@ -42,6 +44,7 @@
     "sass": "^1.55.0",
     "typescript": "^4.8.4",
     "vite": "^2.9.15",
-    "vite-plugin-svgr": "^1.1.0"
+    "vite-plugin-svgr": "^1.1.0",
+    "vite-tsconfig-paths": "^3.5.1"
   }
 }

@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { MusicBoxMemo } from '../MusicBox';
-import { playerStore } from '../../stores';
-import { useTracks } from '../../hooks/useTracks';
-import { Controls } from './components/Controls';
-import { Volume } from './components/Volume';
-import { Info } from './components/Info';
-import { TogglePlaying } from './components/TogglePlaying';
-import { ToggleRandom } from './components/ToggleRandom';
+import { useTracks } from 'features/tracks';
+import {
+  playerStore,
+  Controls,
+  Volume,
+  Info,
+  TogglePlaying,
+  ToggleRandom,
+  MusicBox,
+} from 'features/player';
 import styles from './Player.module.scss';
 import type { KeyboardEvent as ReactKeyBoardEvent, FC } from 'react';
 
@@ -107,7 +109,7 @@ export const Player: FC = () => {
     >
       <TogglePlaying />
       <Controls />
-      <MusicBoxMemo className={styles.musicImage} />
+      <MusicBox className={styles.musicImage} />
       <Info />
       <Volume />
       <ToggleRandom />

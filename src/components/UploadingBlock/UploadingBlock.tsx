@@ -1,11 +1,13 @@
 import clsx from 'clsx';
-import { Spinner } from '../Spinner';
+import { Spinner } from 'components';
 import styles from './UploadingBlock.module.scss';
 import type { FC } from 'react';
 import type { UploadingBlockProps } from './UploadingBlock.props';
 
+const initialTitle = 'Uploading audio file. Please wait.';
+
 export const UploadingBlock: FC<UploadingBlockProps> = ({
-  title = 'Uploading audio file. Please wait.',
+  title = initialTitle,
   className,
   style,
 }) => {

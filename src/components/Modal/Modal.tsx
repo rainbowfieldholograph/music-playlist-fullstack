@@ -1,7 +1,7 @@
 import { MouseEventHandler, useEffect } from 'react';
 import clsx from 'clsx';
 import FocusLock from 'react-focus-lock';
-import { Portal } from '../Portal';
+import { Portal } from 'components';
 import styles from './Modal.module.scss';
 import type { FC } from 'react';
 import type { ModalProps } from './Modal.props';

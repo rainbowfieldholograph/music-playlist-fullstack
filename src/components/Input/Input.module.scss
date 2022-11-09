@@ -1,4 +1,4 @@
-@use '../../styles/mixins.scss' as mixins;
+@use 'src/app' as *;
 
 .input {
   border: 1px solid var(--color-ghost-border);
@@ -6,6 +6,6 @@
   outline: none;
 
   &:focus {
-    @include mixins.default-outline();
+    @include default-outline();
   }
 }
