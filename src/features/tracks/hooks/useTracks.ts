@@ -4,7 +4,5 @@ import { GetAllTracksDocument, GetAllTracksQuery } from 'generated';
 export const useTracks = () => {
   const { data, ...rest } = useQuery<GetAllTracksQuery>(GetAllTracksDocument);
 
-  const tracks = data?.getAllTracks;
-
-  return { data: tracks, ...rest };
+  return { tracks: data?.tracks, ...rest };
 };

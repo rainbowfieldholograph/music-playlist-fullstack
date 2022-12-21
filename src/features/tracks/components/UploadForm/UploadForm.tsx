@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
-import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { ButtonMemo, FormInput, InputFileMemo } from 'components';
-import { AddTrackDocument, AddTrackMutation, GetAllTracksDocument } from 'generated';
+import { GetAllTracksDocument } from 'generated';
+import { useAddTrack } from 'features/tracks';
 import styles from './UploadForm.module.scss';
 import type { UploadFormProps } from './UploadForm.props';
 import type { ChangeEvent, FC, FormEventHandler } from 'react';
@@ -12,7 +12,7 @@ export const UploadForm: FC<UploadFormProps> = ({ onSubmit }) => {
   const [title, setTitle] = useState<string>('');
   const [author, setAuthor] = useState<string>('');
 
-  const [addTrack] = useMutation<AddTrackMutation>(AddTrackDocument);
+  const [addTrack] = useAddTrack();
 
   const handleFileChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;

@@ -1,12 +1,12 @@
 import { ChangeEvent, FC, useMemo, useState } from 'react';
 import { ErrorBlock, FullHeightBlock, SearchInput } from 'components';
 import { Spinner } from 'components';
-import { TracksList, AddNewTrack } from 'features/tracks/components';
-import { useTracks } from 'features/tracks/hooks';
+import { AddNewTrack, useTracks } from 'features/tracks';
+import { TracksList } from 'components/TracksList';
 import styles from './Playlist.module.scss';
 
 export const Playlist: FC = () => {
-  const { data: tracks, loading, error } = useTracks();
+  const { tracks, loading, error } = useTracks();
 
   const [searchQuery, setSearchQuery] = useState<string>('');
 

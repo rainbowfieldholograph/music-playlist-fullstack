@@ -1,4 +1,4 @@
-mutation addTrack($title: String!, $author: String!, $file: Upload!) {
+mutation AddTrack($title: String!, $author: String!, $file: Upload!) {
   addTrack(title: $title, author: $author, file: $file) {
     src
     author

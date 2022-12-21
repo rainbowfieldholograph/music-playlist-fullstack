@@ -1,5 +1,5 @@
 query GetAllTracks {
-  getAllTracks {
+  tracks {
     id
     title
     author

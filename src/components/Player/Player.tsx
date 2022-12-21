@@ -22,7 +22,7 @@ const {
 
 type KeyActions = { [key: string]: () => void };
 
-const CURRENT_TIME_DASH_SEC = 5; // seconds
+const CURRENT_TIME_DASH_SEC = 5;
 const VOLUME_DASH = 0.05;
 
 export const Player: FC = () => {
@@ -30,7 +30,7 @@ export const Player: FC = () => {
 
   const playerRef = useRef<HTMLDivElement>(null);
 
-  const { data: tracks } = useTracks();
+  const { tracks } = useTracks();
 
   // local keys
   const handlePlayerKeyDown = (event: ReactKeyBoardEvent) => {

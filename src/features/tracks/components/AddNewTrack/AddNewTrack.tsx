@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Button } from 'components';
 import { UploadModal } from '../UploadModal';
 import type { FC } from 'react';
 
-export const AddNewTrack: FC = () => {
+export const AddNewTrack: FC = memo(() => {
   const [modal, setModal] = useState<boolean>(false);
 
   const closeModal = () => setModal(false);
@@ -15,4 +15,6 @@ export const AddNewTrack: FC = () => {
       <UploadModal isOpen={modal} onClose={closeModal} />
     </>
   );
-};
+});
+
+AddNewTrack.displayName = 'AddNewTrack';

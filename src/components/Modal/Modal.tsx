@@ -21,13 +21,15 @@ export const Modal: FC<ModalProps> = ({
       if (event.key === 'Esc' || event.key === 'Escape') onClose();
     };
 
-    document.body.classList.toggle(styles._lock);
-
     if (isOpened) {
       window.addEventListener('keydown', onClickEsc);
       return () => window.removeEventListener('keydown', onClickEsc);
     }
   }, [onClose, isOpened]);
+
+  useEffect(() => {
+    document.body.classList.toggle(styles._lock);
+  }, [isOpened]);
 
   if (!isOpened) return null;
 
