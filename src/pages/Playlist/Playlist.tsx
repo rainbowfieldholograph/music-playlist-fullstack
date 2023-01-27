@@ -1,6 +1,5 @@
 import { ChangeEvent, FC, useMemo, useState } from 'react';
-import { ErrorBlock, FullHeightBlock, SearchInput } from 'components';
-import { Spinner } from 'components';
+import { ErrorBlock, FullHeightBlock, SearchInput, Spinner } from 'components/UIKit';
 import { AddNewTrack, useTracks } from 'features/tracks';
 import { TracksList } from 'components/TracksList';
 import styles from './Playlist.module.scss';

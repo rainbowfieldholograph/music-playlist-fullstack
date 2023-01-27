@@ -1,7 +1,7 @@
 import { ToastContainer } from 'react-toastify';
-import { BackToTopButton } from 'components';
+import { BackToTopButton, Player } from 'components';
 import { Playlist } from 'pages';
-import { Container, Player } from 'components';
+import { Container } from 'components/UIKit';
 import { withProviders } from './hocs';
 import type { FC } from 'react';
 import 'react-toastify/dist/ReactToastify.css';

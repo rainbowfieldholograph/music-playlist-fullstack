@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { ButtonIcon } from 'components';
+import { ButtonIcon } from 'components/UIKit';
 import { ReactComponent as PauseIcon } from 'assets/pause-icon.svg';
 import { ReactComponent as PlayIcon } from 'assets/play-icon.svg';
 import { playerStore } from '../..';

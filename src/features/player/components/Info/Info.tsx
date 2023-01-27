@@ -1,4 +1,4 @@
-import { Slider } from 'components';
+import { Slider } from 'components/UIKit';
 import { formatTime } from 'utils';
 import { playerStore } from '../..';
 import styles from './Info.module.scss';

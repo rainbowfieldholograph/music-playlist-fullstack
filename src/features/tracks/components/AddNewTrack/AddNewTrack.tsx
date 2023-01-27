@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { Button } from 'components';
+import { Button } from 'components/UIKit';
 import { UploadModal } from '../UploadModal';
 import type { FC } from 'react';
 

@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, memo } from 'react';
-import { Slider } from 'components';
+import { Slider } from 'components/UIKit';
 import { playerStore } from '../..';
 import styles from './Volume.module.scss';
 

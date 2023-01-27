@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
-import { ButtonMemo, FormInput, InputFileMemo } from 'components';
+import { ButtonMemo, FormInput, InputFileMemo } from 'components/UIKit';
 import { GetAllTracksDocument } from 'generated';
 import { useAddTrack } from 'features/tracks';
 import styles from './UploadForm.module.scss';
