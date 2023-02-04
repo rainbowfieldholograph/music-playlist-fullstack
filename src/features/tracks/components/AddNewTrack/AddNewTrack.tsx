@@ -1,5 +1,5 @@
-import { memo, useState } from 'react';
-import { Button } from 'components/UIKit';
+import { memo, useCallback, useState } from 'react';
+import { ButtonMemo } from 'components/UIKit';
 import { UploadModal } from '../UploadModal';
 import type { FC } from 'react';
 
@@ -7,11 +7,13 @@ export const AddNewTrack: FC = memo(() => {
   const [modal, setModal] = useState<boolean>(false);
 
   const closeModal = () => setModal(false);
-  const openModal = () => setModal(true);
+  const openModal = useCallback(() => {
+    setModal(true);
+  }, [setModal]);
 
   return (
     <>
-      <Button onClick={openModal}>Add new track</Button>
+      <ButtonMemo onClick={openModal}>Add new track</ButtonMemo>
       <UploadModal isOpen={modal} onClose={closeModal} />
     </>
   );
