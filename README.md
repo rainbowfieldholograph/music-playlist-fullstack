@@ -3,7 +3,8 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> <strong>Код сервера хранится в ветке backend</strong>
+> <strong>Код сервера хранится в ветке backend.</strong>
+> <strong>Сервер не доступен, потому что Heroku больше не предоставляет бесплатные услуги хостинга.</strong>
 
 Fullstack приложение для прослушивания/добавления треков (по типу Музыки в ВК).
 
