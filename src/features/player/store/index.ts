@@ -1,3 +1,3 @@
-import { PlayerStore } from './PlayerStore';
+import { PlayerStore } from './player-store';
 
 export const playerStore = new PlayerStore();

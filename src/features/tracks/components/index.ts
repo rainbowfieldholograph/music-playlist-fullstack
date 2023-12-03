@@ -1,2 +1,2 @@
-export * from './AddNewTrack';
-export * from './TrackItem';
+export * from './add-new-track';
+export * from './track-item';

@@ -1,2 +1,2 @@
-export * from './useTracks';
-export * from './useAddTrack';
+export * from './use-tracks';
+export * from './use-add-track';
