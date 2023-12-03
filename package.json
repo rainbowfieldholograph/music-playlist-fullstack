@@ -10,7 +10,8 @@
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
     "generate-types": "graphql-codegen",
-    "lint": "eslint src --ext .ts,.js,.tsx,.jsx"
+    "lint": "eslint src --ext .ts,.js,.tsx,.jsx",
+    "lint:fix": "eslint src --ext .ts,.js,.tsx,.jsx --fix"
   },
   "dependencies": {
     "@apollo/client": "^3.7.0",

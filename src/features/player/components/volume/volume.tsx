@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, memo } from 'react';
 import { Slider } from 'components/ui-kit';
-import { playerStore } from '../..';
+import { playerModel } from '../../model';
 import styles from './volume.module.scss';
 
 export const Volume: FC = memo(() => {
-  const { useVolume, changeVolume } = playerStore;
+  const { useVolume, changeVolume } = playerModel;
 
   const volume = useVolume();
   const computedVolume = Math.round(volume * 100);

@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 import { ButtonMemo, FormInput, InputFileMemo } from 'components/ui-kit';
 import { GetAllTracksDocument } from 'generated';
-import { useAddTrack } from 'features/tracks';
+import { useAddTrack } from '../../hooks';
 import styles from './upload-form.module.scss';
 import type { UploadFormProps } from './upload-form.props';
 import type { ChangeEvent, FC, FormEventHandler } from 'react';

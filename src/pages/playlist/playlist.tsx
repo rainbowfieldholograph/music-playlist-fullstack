@@ -5,8 +5,8 @@ import {
   SearchInput,
   Spinner,
 } from 'components/ui-kit';
-import { AddNewTrack, useTracks } from 'features/tracks';
-import { TracksList } from 'components/tracks-list';
+import { useTracks } from 'features/tracks/hooks';
+import { AddNewTrack, TracksList } from 'features/tracks/components';
 import styles from './playlist.module.scss';
 
 export const Playlist: FC = () => {

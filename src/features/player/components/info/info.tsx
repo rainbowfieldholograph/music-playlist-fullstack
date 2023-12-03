@@ -1,6 +1,6 @@
 import { Slider } from 'components/ui-kit';
 import { formatTime } from 'utils';
-import { playerStore } from '../..';
+import { playerModel } from '../../model';
 import styles from './info.module.scss';
 import type { ChangeEvent, FC } from 'react';
 
@@ -16,7 +16,7 @@ export const Info: FC = () => {
     useDuration,
     useCurrentTrack,
     useCurrentTime,
-  } = playerStore;
+  } = playerModel;
 
   const canChangeTime = useCanChangeTime();
   const duration = useDuration();

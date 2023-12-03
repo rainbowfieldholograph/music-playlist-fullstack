@@ -2,11 +2,11 @@ import { FC, memo } from 'react';
 import { ButtonIcon } from 'components/ui-kit';
 import PauseIcon from 'assets/pause-icon.svg?react';
 import PlayIcon from 'assets/play-icon.svg?react';
-import { playerStore } from '../..';
+import { playerModel } from '../../model';
 import styles from './toggle-playing.module.scss';
 
 export const TogglePlaying: FC = memo(() => {
-  const { toggleAudio, useIsPlaying } = playerStore;
+  const { toggleAudio, useIsPlaying } = playerModel;
 
   const isPlaying = useIsPlaying();
   const buttonLabel = isPlaying ? 'Pause audio (Space)' : 'Play audio (Space)';

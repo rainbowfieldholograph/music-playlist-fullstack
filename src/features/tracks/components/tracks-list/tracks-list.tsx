@@ -1,12 +1,12 @@
 import { FC, useCallback } from 'react';
-import { playerStore } from 'features/player';
-import { TrackItem } from 'features/tracks';
+import { playerModel } from 'features/player/model';
+import { TrackItem } from '../track-item';
 import styles from './tracks-list.module.scss';
 import type { Track } from 'generated';
 import type { TracksListProps } from './tracks-list.props';
 
 export const TracksList: FC<TracksListProps> = ({ tracks }) => {
-  const { useCurrentTrack, changePlaying, changeCurrentTrack } = playerStore;
+  const { useCurrentTrack, changePlaying, changeCurrentTrack } = playerModel;
 
   const currentTrack = useCurrentTrack();
 

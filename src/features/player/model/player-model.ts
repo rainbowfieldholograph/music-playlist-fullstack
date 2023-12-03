@@ -8,7 +8,7 @@ type KeyActions = {
   [key in SwitchTrackActions]: number;
 };
 
-export class PlayerStore {
+export class PlayerModel {
   private readonly DISABLE_TIME_MS = 500; // optimal value 500+
   private readonly DEFAULT_VOLUME = 0.2; // can be only 0.0 -> 1.0
 

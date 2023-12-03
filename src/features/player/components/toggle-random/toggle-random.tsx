@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import { FC, memo } from 'react';
 import { ButtonIcon } from 'components/ui-kit';
 import RandomIcon from 'assets/random-icon.svg?react';
-import { playerStore } from '../..';
+import { playerModel } from '../../model';
 import styles from './toggle-random.module.scss';
 
 export const ToggleRandom: FC = memo(() => {
-  const { useIsRandom, toggleRandom } = playerStore;
+  const { useIsRandom, toggleRandom } = playerModel;
 
   const isRandom = useIsRandom();
   const buttonLabel = isRandom ? 'Disable random' : 'Enable random';

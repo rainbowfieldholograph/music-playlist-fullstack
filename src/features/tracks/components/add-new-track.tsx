@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
 import { ButtonMemo } from 'components/ui-kit';
-import { UploadModal } from '../upload-modal';
+import { UploadModal } from './upload-modal';
 import type { FC } from 'react';
 
 export const AddNewTrack: FC = memo(() => {

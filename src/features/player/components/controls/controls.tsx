@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import { FC, memo } from 'react';
 import { ButtonIcon } from 'components/ui-kit';
 import ArrowIcon from 'assets/arrow-icon.svg?react';
-import { playerStore } from '../..';
+import { playerModel } from '../../model';
 import styles from './controls.module.scss';
 
 export const Controls: FC = memo(() => {
-  const { nextTrack, prevTrack } = playerStore;
+  const { nextTrack, prevTrack } = playerModel;
 
   return (
     <div className={styles.controls}>

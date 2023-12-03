@@ -1,14 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { useTracks } from 'features/tracks';
-import {
-  playerStore,
-  Controls,
-  Volume,
-  Info,
-  TogglePlaying,
-  ToggleRandom,
-  MusicBox,
-} from 'features/player';
+import { useTracks } from 'features/tracks/hooks';
+import { playerModel } from '../../model';
+import { Info } from '../info';
+import { ToggleRandom } from '../toggle-random';
+import { Controls } from '../controls';
+import { Volume } from '../volume';
+import { MusicBox } from '../music-box';
+import { TogglePlaying } from '../toggle-playing';
 import styles from './player.module.scss';
 import type { KeyboardEvent as ReactKeyBoardEvent, FC } from 'react';
 
@@ -18,7 +16,7 @@ const {
   useCurrentTrack,
   updateVolume,
   updateCurrentTime,
-} = playerStore;
+} = playerModel;
 
 type KeyActions = { [key: string]: () => void };
 
