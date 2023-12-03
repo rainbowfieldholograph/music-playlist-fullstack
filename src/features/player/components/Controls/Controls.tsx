@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { FC, memo } from 'react';
 import { ButtonIcon } from 'components/UIKit';
-import { ReactComponent as ArrowIcon } from 'assets/arrow-icon.svg';
+import ArrowIcon from 'assets/arrow-icon.svg?react';
 import { playerStore } from '../..';
 import styles from './Controls.module.scss';
 

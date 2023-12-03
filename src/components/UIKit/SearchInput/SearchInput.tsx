@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactComponent as SearchIcon } from 'assets/search-icon.svg';
+import SearchIcon from 'assets/search-icon.svg?react';
 import styles from './SearchInput.module.scss';
 import type { FC } from 'react';
 import type { SearchInputProps } from './SearchInput.props';
@@ -17,7 +17,7 @@ export const SearchInput: FC<SearchInputProps> = ({
         onChange={onChange}
         placeholder="Search..."
         type="search"
-        className={clsx(styles.input)}
+        className={styles.input}
       />
       <SearchIcon className={styles.icon} />
     </label>

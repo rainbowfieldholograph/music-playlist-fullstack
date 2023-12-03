@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ButtonIcon } from 'components/UIKit';
-import { ReactComponent as PauseIcon } from 'assets/pause-icon.svg';
-import { ReactComponent as PlayIcon } from 'assets/play-icon.svg';
+import PauseIcon from 'assets/pause-icon.svg?react';
+import PlayIcon from 'assets/play-icon.svg?react';
 import { playerStore } from '../..';
 import styles from './TogglePlaying.module.scss';
 

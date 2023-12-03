@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { FC, memo } from 'react';
 import { ButtonIcon } from 'components/UIKit';
-import { ReactComponent as RandomIcon } from 'assets/random-icon.svg';
+import RandomIcon from 'assets/random-icon.svg?react';
 import { playerStore } from '../..';
 import styles from './ToggleRandom.module.scss';
 

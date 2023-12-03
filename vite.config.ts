@@ -5,14 +5,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigPaths(),
-    svgrPlugin({
-      svgrOptions: {
-        icon: true,
-      },
-    }),
-  ],
+  plugins: [react(), tsconfigPaths(), svgrPlugin({ svgrOptions: { icon: true } })],
   base: '/music-playlist-fullstack/',
 });
